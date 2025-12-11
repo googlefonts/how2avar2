@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<designspace format="5.1">
+<designspace format="5.2">
   <axes>
     <axis tag="wght" name="Weight" minimum="1" maximum="1000" default="400">
       <map input="1" output="1"/>
