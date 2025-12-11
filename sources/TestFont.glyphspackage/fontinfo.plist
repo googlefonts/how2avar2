@@ -15,14 +15,59 @@ name = "Optical size";
 tag = opsz;
 }
 );
+customParameters = (
+{
+name = "Use Typo Metrics";
+value = 1;
+},
+{
+name = fsType;
+value = (
+);
+}
+);
 date = "2025-12-09 17:44:16 +0000";
-familyName = "Test Font Base";
+familyName = "Test Font";
 fontMaster = (
 {
 axesValues = (
 1,
 50,
 16
+);
+customParameters = (
+{
+name = typoAscender;
+value = 2000;
+},
+{
+name = typoDescender;
+value = -600;
+},
+{
+name = typoLineGap;
+value = 0;
+},
+{
+name = hheaAscender;
+value = 2000;
+},
+{
+name = hheaDescender;
+value = -600;
+},
+{
+name = hheaLineGap;
+value = 0;
+},
+{
+name = winAscent;
+value = 2000;
+},
+{
+name = winDescent;
+value = -400;
+}
 );
 iconName = Light_Condensed;
 id = "12302582-4287-4EDC-BAC1-A11CF135F65A";
@@ -57,6 +102,40 @@ axesValues = (
 50,
 16
 );
+customParameters = (
+{
+name = typoAscender;
+value = 2000;
+},
+{
+name = typoDescender;
+value = -600;
+},
+{
+name = typoLineGap;
+value = 0;
+},
+{
+name = hheaAscender;
+value = 2000;
+},
+{
+name = hheaDescender;
+value = -600;
+},
+{
+name = hheaLineGap;
+value = 0;
+},
+{
+name = winAscent;
+value = 2000;
+},
+{
+name = winDescent;
+value = -400;
+}
+);
 iconName = Condensed;
 id = m01;
 metricValues = (
@@ -89,6 +168,40 @@ axesValues = (
 1000,
 50,
 16
+);
+customParameters = (
+{
+name = typoAscender;
+value = 2000;
+},
+{
+name = typoDescender;
+value = -600;
+},
+{
+name = typoLineGap;
+value = 0;
+},
+{
+name = hheaAscender;
+value = 2000;
+},
+{
+name = hheaDescender;
+value = -600;
+},
+{
+name = hheaLineGap;
+value = 0;
+},
+{
+name = winAscent;
+value = 2000;
+},
+{
+name = winDescent;
+value = -400;
+}
 );
 iconName = Bold_Condensed;
 id = "B4260A0E-857F-422D-A4F4-35CF22B8EA81";
@@ -123,6 +236,40 @@ axesValues = (
 100,
 16
 );
+customParameters = (
+{
+name = typoAscender;
+value = 2000;
+},
+{
+name = typoDescender;
+value = -600;
+},
+{
+name = typoLineGap;
+value = 0;
+},
+{
+name = hheaAscender;
+value = 2000;
+},
+{
+name = hheaDescender;
+value = -600;
+},
+{
+name = hheaLineGap;
+value = 0;
+},
+{
+name = winAscent;
+value = 2000;
+},
+{
+name = winDescent;
+value = -400;
+}
+);
 iconName = Light;
 id = m004;
 metricValues = (
@@ -156,6 +303,40 @@ axesValues = (
 100,
 16
 );
+customParameters = (
+{
+name = typoAscender;
+value = 2000;
+},
+{
+name = typoDescender;
+value = -600;
+},
+{
+name = typoLineGap;
+value = 0;
+},
+{
+name = hheaAscender;
+value = 2000;
+},
+{
+name = hheaDescender;
+value = -600;
+},
+{
+name = hheaLineGap;
+value = 0;
+},
+{
+name = winAscent;
+value = 2000;
+},
+{
+name = winDescent;
+value = -400;
+}
+);
 id = m005;
 metricValues = (
 {
@@ -187,6 +368,40 @@ axesValues = (
 1000,
 100,
 16
+);
+customParameters = (
+{
+name = typoAscender;
+value = 2000;
+},
+{
+name = typoDescender;
+value = -600;
+},
+{
+name = typoLineGap;
+value = 0;
+},
+{
+name = hheaAscender;
+value = 2000;
+},
+{
+name = hheaDescender;
+value = -600;
+},
+{
+name = hheaLineGap;
+value = 0;
+},
+{
+name = winAscent;
+value = 2000;
+},
+{
+name = winDescent;
+value = -400;
+}
 );
 iconName = Bold;
 id = m006;
@@ -221,6 +436,40 @@ axesValues = (
 150,
 16
 );
+customParameters = (
+{
+name = typoAscender;
+value = 2000;
+},
+{
+name = typoDescender;
+value = -600;
+},
+{
+name = typoLineGap;
+value = 0;
+},
+{
+name = hheaAscender;
+value = 2000;
+},
+{
+name = hheaDescender;
+value = -600;
+},
+{
+name = hheaLineGap;
+value = 0;
+},
+{
+name = winAscent;
+value = 2000;
+},
+{
+name = winDescent;
+value = -400;
+}
+);
 iconName = Light_Extended;
 id = m007;
 metricValues = (
@@ -254,6 +503,40 @@ axesValues = (
 150,
 16
 );
+customParameters = (
+{
+name = typoAscender;
+value = 2000;
+},
+{
+name = typoDescender;
+value = -600;
+},
+{
+name = typoLineGap;
+value = 0;
+},
+{
+name = hheaAscender;
+value = 2000;
+},
+{
+name = hheaDescender;
+value = -600;
+},
+{
+name = hheaLineGap;
+value = 0;
+},
+{
+name = winAscent;
+value = 2000;
+},
+{
+name = winDescent;
+value = -400;
+}
+);
 iconName = Extended;
 id = m008;
 metricValues = (
@@ -286,6 +569,40 @@ axesValues = (
 1000,
 150,
 16
+);
+customParameters = (
+{
+name = typoAscender;
+value = 2000;
+},
+{
+name = typoDescender;
+value = -600;
+},
+{
+name = typoLineGap;
+value = 0;
+},
+{
+name = hheaAscender;
+value = 2000;
+},
+{
+name = hheaDescender;
+value = -600;
+},
+{
+name = hheaLineGap;
+value = 0;
+},
+{
+name = winAscent;
+value = 2000;
+},
+{
+name = winDescent;
+value = -400;
+}
 );
 iconName = Bold_Extended;
 id = m009;
