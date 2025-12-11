@@ -1,0 +1,11 @@
+[tools]
+python = "3.13"
+"pipx:fontmake" = "latest"
+"pipx:fonttools" = "latest"
+"pipx:gftools" = "latest"
+"pipx:glyphsLib" = "latest"
+"cargo:fontspector" = "latest"
+
+
+[env]
+_.source = ["venv/bin/activate"]
