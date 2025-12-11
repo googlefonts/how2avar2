@@ -15,12 +15,39 @@ help:
 	@echo
 
 build: build.stamp
+	# opentype mappings https://learn.microsoft.com/en-us/typography/opentype/spec/os2#usweightclass
+
+	# fix opsz axis
+	./scripts/fix-opsz.py --inplace --min 6 --max 144 "fonts/variable/TestFont[opsz,wdth,wght].ttf"
+
 	# rename Test Font => Test Font Base
 	cp "./fonts/variable/TestFont[opsz,wdth,wght].ttf" "./fonts/variable/TestFontBase[opsz,wdth,wght].ttf"
 	./scripts/rename-fonts.py --inplace --suffix " Base" "./fonts/variable/TestFontBase[opsz,wdth,wght].ttf"
-	# create Avar1 demo
+
+	# create Avar1 demo with axis mappings
 	fonttools varLib.avar.build -o "./fonts/variable/TestFontAvar1[opsz,wdth,wght].ttf" "./fonts/variable/TestFont[opsz,wdth,wght].ttf" "./sources/avar1.designspace"
 	./scripts/rename-fonts.py --inplace --suffix " Avar1" "./fonts/variable/TestFontAvar1[opsz,wdth,wght].ttf"
+
+	# create Avar2 demo with axis mappings
+	fonttools varLib.avar.build -o "./fonts/variable/TestFontAvar2[opsz,wdth,wght].ttf" "./fonts/variable/TestFont[opsz,wdth,wght].ttf" "./sources/avar2.designspace"
+	./scripts/rename-fonts.py --inplace --suffix " Avar2" "./fonts/variable/TestFontAvar2[opsz,wdth,wght].ttf"
+
+	# create Avar2 demo with fences
+	fonttools varLib.avar.build -o "./fonts/variable/TestFontAvar2Fences[opsz,wdth,wght].ttf" "./fonts/variable/TestFont[opsz,wdth,wght].ttf" "./sources/avar2Fences.designspace"
+	./scripts/rename-fonts.py --inplace --suffix " Avar2 Fences" "./fonts/variable/TestFontAvar2Fences[opsz,wdth,wght].ttf"
+
+	# create Avar2 demo with optical size
+	fonttools varLib.avar.build -o "./fonts/variable/TestFontAvar2OpticalSize[opsz,wdth,wght].ttf" "./fonts/variable/TestFont[opsz,wdth,wght].ttf" "./sources/avar2OpticalSize.designspace"
+	./scripts/rename-fonts.py --inplace --suffix " Avar2 Optical Size" "./fonts/variable/TestFontAvar2OpticalSize[opsz,wdth,wght].ttf"
+
+	# decompile fonts for testing
+	rm -rf "ttx"
+	mkdir "ttx"
+	ttx -d "ttx" "fonts/variable/TestFontBase[opsz,wdth,wght].ttf"
+	ttx -d "ttx" "fonts/variable/TestFontAvar1[opsz,wdth,wght].ttf"
+	ttx -d "ttx" "fonts/variable/TestFontAvar2[opsz,wdth,wght].ttf"
+	ttx -d "ttx" "fonts/variable/TestFontAvar2Fences[opsz,wdth,wght].ttf"
+	ttx -d "ttx" "fonts/variable/TestFontAvar2OpticalSize[opsz,wdth,wght].ttf"
 
 venv: venv/touchfile
 
@@ -40,7 +67,7 @@ test: build.stamp
 	which fontspector || (echo "fontspector not found. Please install it with 'cargo install fontspector'." && exit 1)
 	TOCHECK=$$(find fonts/variable -type f 2>/dev/null); if [ -z "$$TOCHECK" ]; then TOCHECK=$$(find fonts/ttf -type f 2>/dev/null); fi ; mkdir -p out/ out/fontspector; fontspector --profile googlefonts -l warn --full-lists --succinct --html out/fontspector/fontspector-report.html --ghmarkdown out/fontspector/fontspector-report.md --badges out/badges $$TOCHECK  || echo '::warning file=sources/config.yaml,title=fontspector failures::The fontspector QA check reported errors in your font. Please check the generated report.'
 
-proof: venv build.stamp
+proof: venv build.stamp build
 	TOCHECK=$$(find fonts/variable -type f 2>/dev/null); if [ -z "$$TOCHECK" ]; then TOCHECK=$$(find fonts/ttf -type f 2>/dev/null); fi ; . venv/bin/activate; mkdir -p out/ out/proof; diffenator2 proof $$TOCHECK -o out/proof
 
 images: venv $(DRAWBOT_OUTPUT)
