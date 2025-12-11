@@ -15,6 +15,12 @@ help:
 	@echo
 
 build: build.stamp
+	# rename Test Font => Test Font Base
+	cp "./fonts/variable/TestFont[opsz,wdth,wght].ttf" "./fonts/variable/TestFontBase[opsz,wdth,wght].ttf"
+	./scripts/rename-fonts.py --inplace --suffix " Base" "./fonts/variable/TestFontBase[opsz,wdth,wght].ttf"
+	# create Avar1 demo
+	fonttools varLib.avar.build -o "./fonts/variable/TestFontAvar1[opsz,wdth,wght].ttf" "./fonts/variable/TestFont[opsz,wdth,wght].ttf" "./sources/avar1.designspace"
+	./scripts/rename-fonts.py --inplace --suffix " Avar1" "./fonts/variable/TestFontAvar1[opsz,wdth,wght].ttf"
 
 venv: venv/touchfile
 
