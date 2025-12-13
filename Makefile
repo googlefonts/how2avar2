@@ -18,7 +18,7 @@ build: build.stamp
 	# opentype mappings https://learn.microsoft.com/en-us/typography/opentype/spec/os2#usweightclass
 
 	# fix opsz axis
-	./scripts/fix-opsz.py --inplace --min 6 --max 144 "fonts/variable/TestFont[opsz,wdth,wght].ttf"
+	./scripts/fix-axis-bounds.py --inplace --axis opsz --min 6 --max 144 "fonts/variable/TestFont[opsz,wdth,wght].ttf"
 
 	# rename Test Font => Test Font Base
 	cp "./fonts/variable/TestFont[opsz,wdth,wght].ttf" "./fonts/variable/TestFontBase[opsz,wdth,wght].ttf"

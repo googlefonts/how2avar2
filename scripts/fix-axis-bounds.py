@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
-"""Script to update the `opsz` axis range in the input font's `fvar` table.
+"""Script to update the specific axis bounds in the input font's `fvar` table.
 
-Search for an existing 'opsz' axis and update the minimum
-and maximum values. Automatically clamp the default value if it falls
-outside the range.
+Search for the specific axis tag (e.g. 'opsz') and update the
+minimum and maximum values. Automatically clamp the default value if it
+falls outside the range.
 """
 
 import argparse
@@ -16,8 +16,10 @@ from fontTools.ttLib import TTFont
 logger = logging.getLogger()
 
 
-def update_opsz_axis(font, new_minValue, new_maxValue, new_defaultValue=None):
-    """Find the opsz axis and update its min, max, and default values."""
+def update_axis_bounds(
+    font, axis_tag, new_minValue, new_maxValue, new_defaultValue=None
+):
+    """Find the axis and update its min, max, and default values."""
 
     if "fvar" not in font:
         logger.warning("  Skipping: No 'fvar' table found.")
@@ -25,40 +27,42 @@ def update_opsz_axis(font, new_minValue, new_maxValue, new_defaultValue=None):
 
     fvar = font["fvar"]
 
-    opsz_axis = next((axis for axis in fvar.axes if axis.axisTag == "opsz"), None)
+    # Find the axis by tag
+    axis = next((axis for axis in fvar.axes if axis.axisTag == axis_tag), None)
 
-    if opsz_axis is None:
-        logger.warning("  Skipping: No 'opsz' axis found in fvar.")
+    if axis is None:
+        logger.warning("  Skipping: No '%s' axis found in fvar.", axis_tag)
         return False
 
-    old_minValue = opsz_axis.minValue
-    old_maxValue = opsz_axis.maxValue
-    old_defaultValue = opsz_axis.defaultValue
+    old_minValue = axis.minValue
+    old_maxValue = axis.maxValue
+    old_defaultValue = axis.defaultValue
 
     # Update values
-    opsz_axis.minValue = new_minValue
-    opsz_axis.maxValue = new_maxValue
+    axis.minValue = new_minValue
+    axis.maxValue = new_maxValue
 
     # Handle default value
     if new_defaultValue is not None:
-        opsz_axis.defaultValue = new_defaultValue
+        axis.defaultValue = new_defaultValue
     else:
         # Clamp existing default to be within new bounds
-        if opsz_axis.defaultValue < new_minValue:
-            opsz_axis.defaultValue = new_minValue
+        if axis.defaultValue < new_minValue:
+            axis.defaultValue = new_minValue
             logger.info("    Clamped default value up to %s", new_minValue)
-        elif opsz_axis.defaultValue > new_maxValue:
-            opsz_axis.defaultValue = new_maxValue
+        elif axis.defaultValue > new_maxValue:
+            axis.defaultValue = new_maxValue
             logger.info("    Clamped default value down to %s", new_maxValue)
 
     logger.info(
-        "    Updated opsz: [%s:%s:%s] -> [%s:%s:%s]",
+        "    Updated %s: [%s:%s:%s] -> [%s:%s:%s]",
+        axis_tag,
         old_minValue,
         old_defaultValue,
         old_maxValue,
-        opsz_axis.minValue,
-        opsz_axis.defaultValue,
-        opsz_axis.maxValue,
+        axis.minValue,
+        axis.defaultValue,
+        axis.maxValue,
     )
     return True
 
@@ -69,15 +73,16 @@ def main(args=None):
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
 
-    # opsz args
+    # axis args
+    parser.add_argument("--axis", required=True, help="The axis tag (e.g. 'opsz')")
     parser.add_argument(
-        "--min", type=float, required=True, help="New minimum opsz value"
+        "--min", type=float, required=True, help="New minimum axis value"
     )
     parser.add_argument(
-        "--max", type=float, required=True, help="New maximum opsz value"
+        "--max", type=float, required=True, help="New maximum axis value"
     )
     parser.add_argument(
-        "--default", type=float, help="New default opsz value (optional)"
+        "--default", type=float, help="New default axis value (optional)"
     )
 
     # file args
@@ -114,7 +119,9 @@ def main(args=None):
         try:
             font = TTFont(input_name)
 
-            modified = update_opsz_axis(font, options.min, options.max, options.default)
+            modified = update_axis_bounds(
+                font, options.axis, options.min, options.max, options.default
+            )
 
             if modified:
                 if options.inplace:
