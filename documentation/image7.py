@@ -18,30 +18,27 @@ from fontTools.ttLib import TTFont
 
 # Constants, these are the main "settings" for the image
 WIDTH = 2048
-# Increased height to fit 11 rows comfortably
-HEIGHT = 3000
+HEIGHT = 1024
 MARGIN = 128
 FRAMES = 1
 
 # List of fonts to process
+# Note: Ensure these fonts actually support the ZROT axis
 FONT_PATHS = [
     "fonts/variable/TestFontBase[opsz,wdth,wght].ttf",
-    "fonts/variable/TestFontAvar1[opsz,wdth,wght].ttf",
-    "fonts/variable/TestFontAvar2[opsz,wdth,wght].ttf",
-    "fonts/variable/TestFontFencesAvar2[opsz,wdth,wght].ttf",
-    "fonts/variable/TestFontOpticalSizeAvar2[opsz,wdth,wght].ttf",
+    "fonts/variable/TestFontLinearRotation[ZROT].ttf",
+    "fonts/variable/TestFontQuadraticRotationAvar2[AAAA,BBBB,ZROT].ttf",
 ]
 FONT_LICENSE = "OFL v1.1"
 AUXILIARY_FONT = "Helvetica"
 AUXILIARY_FONT_SIZE = 48
 
-# Specific Axis Values
-# Widths (Columns: 8 steps)
-WDTH_SPECS = [50, 62.5, 75, 87.5, 100, 112.5, 125, 150]
-# Weights (Rows: 11 steps)
-WGHT_SPECS = [1, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
-# Optical Sizes (Used to pick best fit for the grid size to ensure clean rendering)
-OPSZ_SPECS = [6, 12, 16, 24, 48, 72, 144]
+# Fixed Settings
+FIXED_WDTH = 100
+FIXED_WGHT = 400
+
+# Z Rotation values to iterate through
+ZROT_SPECS = [0, 30, 45, 60, 90]
 
 GRID_VIEW = False  # Toggle this for a grid overlay
 
@@ -51,7 +48,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--output", metavar="PNG", help="where to write the PNG file")
 args = parser.parse_args()
 
-# Constants that are worked out dynamically (Git info is constant for the repo)
+# Constants that are worked out dynamically
 # We use try/except to avoid crashing if not in a git repo
 try:
     MY_URL = subprocess.check_output("git remote get-url origin", shell=True).decode()
@@ -89,56 +86,48 @@ def draw_background():
         pass
 
 
-# Draw main text in a Weight x Width grid using the current font
+# Draw main text: Single line iterating Z Rotation
 def draw_main_text(current_font_path):
     fill(1)
     stroke(None)
     font(current_font_path)
 
-    # 1. Calculate Grid Dimensions
-    cols = len(WDTH_SPECS)
-    rows = len(WGHT_SPECS)
+    # 1. Setup Layout
+    count = len(ZROT_SPECS)
 
     # Area to draw in (inside margins)
     draw_w = WIDTH - (MARGIN * 2)
-    draw_h = HEIGHT - (MARGIN * 3)  # Extra bottom margin for footer separation
 
-    # Cell size
-    cell_w = draw_w / cols
-    cell_h = draw_h / rows
+    # Column width per letter
+    col_w = draw_w / count
 
-    # 2. Calculate Font Size
-    # Fit the letter within the smaller dimension of the cell
-    target_font_size = min(cell_w, cell_h) * 0.75
-    fontSize(target_font_size)
+    # Set a large font size to visualize the features clearly
+    main_font_size = 280
+    fontSize(main_font_size)
 
-    # 3. Determine Optical Size
-    # Find the value in OPSZ_SPECS closest to the target_font_size
-    target_opsz = min(OPSZ_SPECS, key=lambda x: abs(x - target_font_size))
+    # Vertical center
+    y_center = HEIGHT / 2
+    # Adjust for visual baseline
+    y_pos = y_center - (main_font_size * 0.35)
 
-    # 4. Draw the Grid
-    # Y-Loop: Weights (Top to Bottom -> Light to Bold)
-    for r, wght_val in enumerate(WGHT_SPECS):
-        # X-Loop: Widths (Left to Right -> Narrow to Wide)
-        for c, wdth_val in enumerate(WDTH_SPECS):
-            # Calculate Center Position of the Cell
-            # X: Start Margin + (current column * cell width) + half cell
-            x_pos = MARGIN + (c * cell_w) + (cell_w / 2)
+    # 2. Loop through ZROT values
+    for i, zrot_val in enumerate(ZROT_SPECS):
+        # Calculate X Center
+        x_pos = MARGIN + (i * col_w) + (col_w / 2)
 
-            # Y: Start Top (Height - Margin) - (current row * cell height) - half cell
-            # We subtract because coordinates start at bottom-left.
-            # We shift down slightly to account for the top header margin.
-            y_center = (HEIGHT - (MARGIN * 1.5)) - (r * cell_h) - (cell_h / 2)
+        # Apply Variations
+        # We pass ZROT as a keyword argument corresponding to the axis tag
+        fontVariations(wdth=FIXED_WDTH, wght=FIXED_WGHT, ZROT=zrot_val)
 
-            # Adjust Y for visual baseline (move down by ~35% of font size to center the capital H)
-            y_pos = y_center - (target_font_size * 0.35)
+        # Draw Letter
+        text("H", (x_pos, y_pos), align="center")
 
-            # Apply Variations
-            # We fix opsz to the best fit, while varying wdth and wght
-            fontVariations(wdth=wdth_val, wght=wght_val, opsz=target_opsz)
-
-            # Draw
-            text("H", (x_pos, y_pos), align="center")
+        # Optional: Draw label below to identify the ZROT value
+        with savedState():
+            font(AUXILIARY_FONT)
+            fontSize(24)
+            fill(0.5)
+            text(f"{zrot_val}°", (x_pos, y_pos - 50), align="center")
 
 
 # Divider lines
@@ -178,7 +167,7 @@ if __name__ == "__main__":
         sys.exit(1)
 
     for font_path in FONT_PATHS:
-        # 1. Reset the drawing stack for each font
+        # 1. Reset the drawing stack for each font to ensure singular output files
         newDrawing()
 
         print(f"DrawBot: Processing {font_path}...")
@@ -195,7 +184,6 @@ if __name__ == "__main__":
         draw_auxiliary_text(font_name, font_version)
 
         # 4. Determine unique output filename
-        # E.g. documentation/image1.png -> documentation/image1-TestFontBase.png
         dir_name, full_filename = os.path.split(args.output)
         file_root, file_ext = os.path.splitext(full_filename)
 
