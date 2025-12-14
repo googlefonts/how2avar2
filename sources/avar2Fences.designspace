@@ -11,48 +11,48 @@
           <dimension name="Width" xvalue="50"/>
         </input>
         <output>
-          <dimension name="Weight" xvalue="700"/>
+          <dimension name="Weight" xvalue="600"/>
           <dimension name="Width" xvalue="50"/>
         </output>
       </mapping>
       <mapping>
         <input>
           <dimension name="Weight" xvalue="1000"/>
-          <dimension name="Width" xvalue="75"/>
+          <dimension name="Width" xvalue="90"/>
         </input>
         <output>
-          <dimension name="Weight" xvalue="700"/>
-          <dimension name="Width" xvalue="75"/>
+          <dimension name="Weight" xvalue="600"/>
+          <dimension name="Width" xvalue="90"/>
         </output>
       </mapping>
       <mapping>
         <input>
-          <dimension name="Weight" xvalue="700"/>
+          <dimension name="Weight" xvalue="600"/>
           <dimension name="Width" xvalue="50"/>
         </input>
         <output>
-          <dimension name="Weight" xvalue="700"/>
+          <dimension name="Weight" xvalue="600"/>
           <dimension name="Width" xvalue="50"/>
         </output>
       </mapping>
       <mapping>
         <input>
-          <dimension name="Weight" xvalue="700"/>
-          <dimension name="Width" xvalue="75"/>
+          <dimension name="Weight" xvalue="600"/>
+          <dimension name="Width" xvalue="90"/>
         </input>
         <output>
-          <dimension name="Weight" xvalue="700"/>
-          <dimension name="Width" xvalue="75"/>
+          <dimension name="Weight" xvalue="600"/>
+          <dimension name="Width" xvalue="90"/>
         </output>
       </mapping>
       <mapping>
         <input>
           <dimension name="Weight" xvalue="1000"/>
-          <dimension name="Width" xvalue="75.02"/>
+          <dimension name="Width" xvalue="90.02"/>
         </input>
         <output>
           <dimension name="Weight" xvalue="1000"/>
-          <dimension name="Width" xvalue="75.02"/>
+          <dimension name="Width" xvalue="90.02"/>
         </output>
       </mapping>
     </mappings>
