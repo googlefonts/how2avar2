@@ -21,7 +21,7 @@ HEIGHT = 3000
 MARGIN = 128
 FRAMES = 1
 
-FONT_PATH = "fonts/variable/TestFontBase[opsz,wdth,wght].ttf"
+FONT_PATH = "fonts/variable/TestFont[opsz,wdth,wght].ttf"
 FONT_LICENSE = "OFL v1.1"
 AUXILIARY_FONT = "Helvetica"
 AUXILIARY_FONT_SIZE = 48

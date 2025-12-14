@@ -24,8 +24,10 @@ FRAMES = 1
 
 # List of fonts to process
 FONT_PATHS = [
-    "fonts/variable/TestFontBase[opsz,wdth,wght].ttf",
+    "fonts/variable/TestFont[opsz,wdth,wght].ttf",
     "fonts/variable/TestFontOpticalSizeAvar2[opsz,wdth,wght].ttf",
+    "fonts/variable/AlternateGlyphs[opsz,wdth,wght].ttf",
+    "fonts/variable/AlternateGlyphsOpticalSizeAvar2[opsz,wdth,wght].ttf",
 ]
 FONT_LICENSE = "OFL v1.1"
 AUXILIARY_FONT = "Helvetica"
