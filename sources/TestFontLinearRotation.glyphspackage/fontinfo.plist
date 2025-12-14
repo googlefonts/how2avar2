@@ -1,0 +1,222 @@
+{
+.appVersion = "3436";
+.formatVersion = 3;
+axes = (
+{
+name = "Rotation in Z";
+tag = ZROT;
+}
+);
+customParameters = (
+{
+name = "Use Typo Metrics";
+value = 1;
+},
+{
+name = fsType;
+value = (
+);
+}
+);
+date = "2025-12-09 17:44:16 +0000";
+familyName = "Test Font Linear Rotation";
+fontMaster = (
+{
+axesValues = (
+0
+);
+customParameters = (
+{
+name = typoAscender;
+value = 2000;
+},
+{
+name = typoDescender;
+value = -600;
+},
+{
+name = typoLineGap;
+value = 0;
+},
+{
+name = hheaAscender;
+value = 2000;
+},
+{
+name = hheaDescender;
+value = -600;
+},
+{
+name = hheaLineGap;
+value = 0;
+},
+{
+name = winAscent;
+value = 2000;
+},
+{
+name = winDescent;
+value = -400;
+}
+);
+id = m005;
+metricValues = (
+{
+over = 32;
+pos = 1600;
+},
+{
+over = -32;
+},
+{
+over = -32;
+pos = -400;
+},
+{
+over = 32;
+pos = 1400;
+},
+{
+over = 32;
+pos = 1000;
+},
+{
+}
+);
+name = Regular;
+},
+{
+axesValues = (
+90
+);
+customParameters = (
+{
+name = typoAscender;
+value = 2000;
+},
+{
+name = typoDescender;
+value = -600;
+},
+{
+name = typoLineGap;
+value = 0;
+},
+{
+name = hheaAscender;
+value = 2000;
+},
+{
+name = hheaDescender;
+value = -600;
+},
+{
+name = hheaLineGap;
+value = 0;
+},
+{
+name = winAscent;
+value = 2000;
+},
+{
+name = winDescent;
+value = -400;
+}
+);
+iconName = Extended;
+id = "0697A1EA-C14E-4130-BAED-8025E787F4E9";
+metricValues = (
+{
+over = 32;
+pos = 1600;
+},
+{
+over = -32;
+},
+{
+over = -32;
+pos = -400;
+},
+{
+over = 32;
+pos = 1400;
+},
+{
+over = 32;
+pos = 1000;
+},
+{
+}
+);
+name = Ninety;
+}
+);
+instances = (
+{
+customParameters = (
+{
+name = "Variable Font Origin";
+value = m005;
+}
+);
+name = Regular;
+type = variable;
+},
+{
+axesValues = (
+0
+);
+instanceInterpolations = {
+m005 = 1;
+};
+name = Regular;
+}
+);
+metrics = (
+{
+type = ascender;
+},
+{
+type = baseline;
+},
+{
+type = descender;
+},
+{
+type = "cap height";
+},
+{
+type = "x-height";
+},
+{
+type = "italic angle";
+}
+);
+properties = (
+{
+key = designers;
+values = (
+{
+language = dflt;
+value = "John Leslie Armstrong IV";
+}
+);
+},
+{
+key = licenses;
+values = (
+{
+language = dflt;
+value = "OFL-1.1-no-RFN";
+}
+);
+},
+{
+key = licenseURL;
+value = "https://spdx.org/licenses/OFL-1.1-no-RFN.html";
+}
+);
+unitsPerEm = 2048;
+versionMajor = 1;
+versionMinor = 0;
+}

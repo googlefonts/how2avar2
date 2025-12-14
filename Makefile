@@ -1,11 +1,11 @@
-SOURCES=$(shell python3 scripts/read-config.py --sources )
-FAMILY=$(shell python3 scripts/read-config.py --family )
+# SOURCES=$(shell python3 scripts/read-config.py --sources )
+# FAMILY=$(shell python3 scripts/read-config.py --family )
 DRAWBOT_SCRIPTS=$(shell ls documentation/*.py)
 DRAWBOT_OUTPUT=$(shell ls documentation/*.py | sed 's/\.py/.png/g')
 
 help:
 	@echo "###"
-	@echo "# Build targets for $(FAMILY)"
+	@echo "# Build targets"
 	@echo "###"
 	@echo
 	@echo "  make build:  Builds the fonts and places them in the fonts/ directory"
@@ -19,6 +19,7 @@ build: build.stamp
 
 	# fix opsz axis
 	./scripts/fix-axis-bounds.py --inplace --axis opsz --min 6 --max 144 "fonts/variable/TestFont[opsz,wdth,wght].ttf"
+	./scripts/fix-axis-bounds.py --inplace --axis ZROT --min 0 --max 90 "fonts/variable/TestFontQuadraticRotation[AAAA,BBBB,ZROT].ttf"
 
 	# rename Test Font => Test Font Base
 	cp "./fonts/variable/TestFont[opsz,wdth,wght].ttf" "./fonts/variable/TestFontBase[opsz,wdth,wght].ttf"
@@ -33,12 +34,16 @@ build: build.stamp
 	./scripts/rename-fonts.py --inplace --suffix " Avar2" "./fonts/variable/TestFontAvar2[opsz,wdth,wght].ttf"
 
 	# create Avar2 demo with fences
-	fonttools varLib.avar.build -o "./fonts/variable/TestFontAvar2Fences[opsz,wdth,wght].ttf" "./fonts/variable/TestFont[opsz,wdth,wght].ttf" "./sources/avar2Fences.designspace"
-	./scripts/rename-fonts.py --inplace --suffix " Avar2 Fences" "./fonts/variable/TestFontAvar2Fences[opsz,wdth,wght].ttf"
+	fonttools varLib.avar.build -o "./fonts/variable/TestFontFencesAvar2[opsz,wdth,wght].ttf" "./fonts/variable/TestFont[opsz,wdth,wght].ttf" "./sources/avar2Fences.designspace"
+	./scripts/rename-fonts.py --inplace --suffix " Fences Avar2" "./fonts/variable/TestFontFencesAvar2[opsz,wdth,wght].ttf"
 
 	# create Avar2 demo with optical size
-	fonttools varLib.avar.build -o "./fonts/variable/TestFontAvar2OpticalSize[opsz,wdth,wght].ttf" "./fonts/variable/TestFont[opsz,wdth,wght].ttf" "./sources/avar2OpticalSize.designspace"
-	./scripts/rename-fonts.py --inplace --suffix " Avar2 Optical Size" "./fonts/variable/TestFontAvar2OpticalSize[opsz,wdth,wght].ttf"
+	fonttools varLib.avar.build -o "./fonts/variable/TestFontOpticalSizeAvar2[opsz,wdth,wght].ttf" "./fonts/variable/TestFont[opsz,wdth,wght].ttf" "./sources/avar2OpticalSize.designspace"
+	./scripts/rename-fonts.py --inplace --suffix " Optical Size Avar2" "./fonts/variable/TestFontOpticalSizeAvar2[opsz,wdth,wght].ttf"
+
+	# create Avar2 demo with quadratic rotation
+	fonttools varLib.avar.build -o "./fonts/variable/TestFontQuadraticRotationAvar2[AAAA,BBBB,ZROT].ttf" "./fonts/variable/TestFontQuadraticRotation[AAAA,BBBB,ZROT].ttf" "./sources/avar2QuadraticRotation.designspace"
+	./scripts/rename-fonts.py --inplace --suffix " Avar2" "./fonts/variable/TestFontQuadraticRotationAvar2[AAAA,BBBB,ZROT].ttf"
 
 	# decompile fonts for testing
 	rm -rf "ttx"
@@ -46,15 +51,21 @@ build: build.stamp
 	ttx -d "ttx" "fonts/variable/TestFontBase[opsz,wdth,wght].ttf"
 	ttx -d "ttx" "fonts/variable/TestFontAvar1[opsz,wdth,wght].ttf"
 	ttx -d "ttx" "fonts/variable/TestFontAvar2[opsz,wdth,wght].ttf"
-	ttx -d "ttx" "fonts/variable/TestFontAvar2Fences[opsz,wdth,wght].ttf"
-	ttx -d "ttx" "fonts/variable/TestFontAvar2OpticalSize[opsz,wdth,wght].ttf"
+	ttx -d "ttx" "fonts/variable/TestFontFencesAvar2[opsz,wdth,wght].ttf"
+	ttx -d "ttx" "fonts/variable/TestFontOpticalSizeAvar2[opsz,wdth,wght].ttf"
+	ttx -d "ttx" "fonts/variable/TestFontLinearRotation[ZROT].ttf"
+	ttx -d "ttx" "fonts/variable/TestFontQuadraticRotationAvar2[AAAA,BBBB,ZROT].ttf"
+
+	# cleanup intermediate files
+	rm fonts/variable/TestFont[opsz,wdth,wght].ttf
+	rm fonts/variable/TestFontQuadraticRotation[AAAA,BBBB,ZROT].ttf
 
 venv: venv/touchfile
 
 customize: venv
 	. venv/bin/activate; python3 scripts/customize.py
 
-build.stamp: venv sources/config.yaml $(SOURCES)
+build.stamp: venv
 	rm -rf fonts
 	(for config in sources/config*.yaml; do . venv/bin/activate; gftools builder $$config; done)  && touch build.stamp
 
