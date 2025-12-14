@@ -1,0 +1,21 @@
+languagesystem DFLT dflt;
+languagesystem latn dflt; # Latin default
+
+# references
+# - https://www.high-logic.com/font-editor/fontcreator/tutorials/switch-glyphs-with-feature-variations
+# - https://glyphsapp.com/learn/switching-shapes#g-2-alternate-glyphs
+
+lookup SingleSubstitutionCondensed { # GSUB lookup type SingleSubstitution
+    sub H by H.condensed;
+} SingleSubstitutionCondensed;
+
+feature rlig { # Required Variation Alternates
+} rlig;
+
+conditionset ConditionSetCondensed {
+    wdth 50 90.02;
+} ConditionSetCondensed;
+
+variation rlig ConditionSetCondensed { # Required Variation Alternates
+    lookup SingleSubstitutionCondensed;
+} rlig;

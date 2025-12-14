@@ -1,0 +1,1720 @@
+{
+.appVersion = "3436";
+.formatVersion = 3;
+axes = (
+{
+name = Weight;
+tag = wght;
+},
+{
+name = Width;
+tag = wdth;
+},
+{
+name = "Optical size";
+tag = opsz;
+}
+);
+customParameters = (
+{
+name = "Use Typo Metrics";
+value = 1;
+},
+{
+name = fsType;
+value = (
+);
+}
+);
+date = "2025-12-09 17:44:16 +0000";
+familyName = "Test Font Alternate Glyphs";
+featurePrefixes = (
+{
+automatic = 1;
+code = "languagesystem DFLT dflt;
+";
+name = Languagesystems;
+}
+);
+features = (
+{
+code = "#ifdef VARIABLE
+
+condition wdth < 90.02;
+sub H by H.condensed;
+
+#endif
+";
+tag = rlig;
+}
+);
+fontMaster = (
+{
+axesValues = (
+1,
+50,
+16
+);
+customParameters = (
+{
+name = typoAscender;
+value = 2000;
+},
+{
+name = typoDescender;
+value = -600;
+},
+{
+name = typoLineGap;
+value = 0;
+},
+{
+name = hheaAscender;
+value = 2000;
+},
+{
+name = hheaDescender;
+value = -600;
+},
+{
+name = hheaLineGap;
+value = 0;
+},
+{
+name = winAscent;
+value = 2000;
+},
+{
+name = winDescent;
+value = -400;
+}
+);
+iconName = Light_Condensed;
+id = "12302582-4287-4EDC-BAC1-A11CF135F65A";
+metricValues = (
+{
+over = 32;
+pos = 1600;
+},
+{
+over = -32;
+},
+{
+over = -32;
+pos = -400;
+},
+{
+over = 32;
+pos = 1400;
+},
+{
+over = 32;
+pos = 1000;
+},
+{
+}
+);
+name = "Ultra-condensed Hairline";
+},
+{
+axesValues = (
+400,
+50,
+16
+);
+customParameters = (
+{
+name = typoAscender;
+value = 2000;
+},
+{
+name = typoDescender;
+value = -600;
+},
+{
+name = typoLineGap;
+value = 0;
+},
+{
+name = hheaAscender;
+value = 2000;
+},
+{
+name = hheaDescender;
+value = -600;
+},
+{
+name = hheaLineGap;
+value = 0;
+},
+{
+name = winAscent;
+value = 2000;
+},
+{
+name = winDescent;
+value = -400;
+}
+);
+iconName = Condensed;
+id = m01;
+metricValues = (
+{
+over = 32;
+pos = 1600;
+},
+{
+over = -32;
+},
+{
+over = -32;
+pos = -400;
+},
+{
+over = 32;
+pos = 1400;
+},
+{
+over = 32;
+pos = 1000;
+},
+{
+}
+);
+name = "Ultra-condensed Regular";
+},
+{
+axesValues = (
+1000,
+50,
+16
+);
+customParameters = (
+{
+name = typoAscender;
+value = 2000;
+},
+{
+name = typoDescender;
+value = -600;
+},
+{
+name = typoLineGap;
+value = 0;
+},
+{
+name = hheaAscender;
+value = 2000;
+},
+{
+name = hheaDescender;
+value = -600;
+},
+{
+name = hheaLineGap;
+value = 0;
+},
+{
+name = winAscent;
+value = 2000;
+},
+{
+name = winDescent;
+value = -400;
+}
+);
+iconName = Bold_Condensed;
+id = "B4260A0E-857F-422D-A4F4-35CF22B8EA81";
+metricValues = (
+{
+over = 32;
+pos = 1600;
+},
+{
+over = -32;
+},
+{
+over = -32;
+pos = -400;
+},
+{
+over = 32;
+pos = 1400;
+},
+{
+over = 32;
+pos = 1000;
+},
+{
+}
+);
+name = "Ultra-condensed Ultra Black";
+},
+{
+axesValues = (
+1,
+100,
+16
+);
+customParameters = (
+{
+name = typoAscender;
+value = 2000;
+},
+{
+name = typoDescender;
+value = -600;
+},
+{
+name = typoLineGap;
+value = 0;
+},
+{
+name = hheaAscender;
+value = 2000;
+},
+{
+name = hheaDescender;
+value = -600;
+},
+{
+name = hheaLineGap;
+value = 0;
+},
+{
+name = winAscent;
+value = 2000;
+},
+{
+name = winDescent;
+value = -400;
+}
+);
+iconName = Light;
+id = m004;
+metricValues = (
+{
+over = 32;
+pos = 1600;
+},
+{
+over = -32;
+},
+{
+over = -32;
+pos = -400;
+},
+{
+over = 32;
+pos = 1400;
+},
+{
+over = 32;
+pos = 1000;
+},
+{
+}
+);
+name = Hairline;
+},
+{
+axesValues = (
+400,
+100,
+16
+);
+customParameters = (
+{
+name = typoAscender;
+value = 2000;
+},
+{
+name = typoDescender;
+value = -600;
+},
+{
+name = typoLineGap;
+value = 0;
+},
+{
+name = hheaAscender;
+value = 2000;
+},
+{
+name = hheaDescender;
+value = -600;
+},
+{
+name = hheaLineGap;
+value = 0;
+},
+{
+name = winAscent;
+value = 2000;
+},
+{
+name = winDescent;
+value = -400;
+}
+);
+id = m005;
+metricValues = (
+{
+over = 32;
+pos = 1600;
+},
+{
+over = -32;
+},
+{
+over = -32;
+pos = -400;
+},
+{
+over = 32;
+pos = 1400;
+},
+{
+over = 32;
+pos = 1000;
+},
+{
+}
+);
+name = Regular;
+},
+{
+axesValues = (
+1000,
+100,
+16
+);
+customParameters = (
+{
+name = typoAscender;
+value = 2000;
+},
+{
+name = typoDescender;
+value = -600;
+},
+{
+name = typoLineGap;
+value = 0;
+},
+{
+name = hheaAscender;
+value = 2000;
+},
+{
+name = hheaDescender;
+value = -600;
+},
+{
+name = hheaLineGap;
+value = 0;
+},
+{
+name = winAscent;
+value = 2000;
+},
+{
+name = winDescent;
+value = -400;
+}
+);
+iconName = Bold;
+id = m006;
+metricValues = (
+{
+over = 32;
+pos = 1600;
+},
+{
+over = -32;
+},
+{
+over = -32;
+pos = -400;
+},
+{
+over = 32;
+pos = 1400;
+},
+{
+over = 32;
+pos = 1000;
+},
+{
+}
+);
+name = "Ultra Black";
+},
+{
+axesValues = (
+1,
+150,
+16
+);
+customParameters = (
+{
+name = typoAscender;
+value = 2000;
+},
+{
+name = typoDescender;
+value = -600;
+},
+{
+name = typoLineGap;
+value = 0;
+},
+{
+name = hheaAscender;
+value = 2000;
+},
+{
+name = hheaDescender;
+value = -600;
+},
+{
+name = hheaLineGap;
+value = 0;
+},
+{
+name = winAscent;
+value = 2000;
+},
+{
+name = winDescent;
+value = -400;
+}
+);
+iconName = Light_Extended;
+id = m007;
+metricValues = (
+{
+over = 32;
+pos = 1600;
+},
+{
+over = -32;
+},
+{
+over = -32;
+pos = -400;
+},
+{
+over = 32;
+pos = 1400;
+},
+{
+over = 32;
+pos = 1000;
+},
+{
+}
+);
+name = "Extra-expanded Hairline";
+},
+{
+axesValues = (
+400,
+150,
+16
+);
+customParameters = (
+{
+name = typoAscender;
+value = 2000;
+},
+{
+name = typoDescender;
+value = -600;
+},
+{
+name = typoLineGap;
+value = 0;
+},
+{
+name = hheaAscender;
+value = 2000;
+},
+{
+name = hheaDescender;
+value = -600;
+},
+{
+name = hheaLineGap;
+value = 0;
+},
+{
+name = winAscent;
+value = 2000;
+},
+{
+name = winDescent;
+value = -400;
+}
+);
+iconName = Extended;
+id = m008;
+metricValues = (
+{
+over = 32;
+pos = 1600;
+},
+{
+over = -32;
+},
+{
+over = -32;
+pos = -400;
+},
+{
+over = 32;
+pos = 1400;
+},
+{
+over = 32;
+pos = 1000;
+},
+{
+}
+);
+name = "Extra-expanded Regular";
+},
+{
+axesValues = (
+1000,
+150,
+16
+);
+customParameters = (
+{
+name = typoAscender;
+value = 2000;
+},
+{
+name = typoDescender;
+value = -600;
+},
+{
+name = typoLineGap;
+value = 0;
+},
+{
+name = hheaAscender;
+value = 2000;
+},
+{
+name = hheaDescender;
+value = -600;
+},
+{
+name = hheaLineGap;
+value = 0;
+},
+{
+name = winAscent;
+value = 2000;
+},
+{
+name = winDescent;
+value = -400;
+}
+);
+iconName = Bold_Extended;
+id = m009;
+metricValues = (
+{
+over = 32;
+pos = 1600;
+},
+{
+over = -32;
+},
+{
+over = -32;
+pos = -400;
+},
+{
+over = 32;
+pos = 1400;
+},
+{
+over = 32;
+pos = 1000;
+},
+{
+}
+);
+name = "Extra-expanded Ultra Black";
+}
+);
+instances = (
+{
+customParameters = (
+{
+name = "Variable Font Origin";
+value = m005;
+}
+);
+name = Regular;
+type = variable;
+},
+{
+axesValues = (
+100,
+50,
+16
+);
+customParameters = (
+{
+name = "Rename Glyphs";
+value = (
+"H=H.condensed"
+);
+}
+);
+instanceInterpolations = {
+"12302582-4287-4EDC-BAC1-A11CF135F65A" = 0.75188;
+m01 = 0.24812;
+};
+name = "Ultra-condensed Thin";
+weightClass = 100;
+widthClass = 1;
+},
+{
+axesValues = (
+200,
+50,
+16
+);
+customParameters = (
+{
+name = "Rename Glyphs";
+value = (
+"H=H.condensed"
+);
+}
+);
+instanceInterpolations = {
+"12302582-4287-4EDC-BAC1-A11CF135F65A" = 0.50125;
+m01 = 0.49875;
+};
+name = "Ultra-condensed Extra-light";
+weightClass = 200;
+widthClass = 1;
+},
+{
+axesValues = (
+300,
+50,
+16
+);
+customParameters = (
+{
+name = "Rename Glyphs";
+value = (
+"H=H.condensed"
+);
+}
+);
+instanceInterpolations = {
+"12302582-4287-4EDC-BAC1-A11CF135F65A" = 0.25063;
+m01 = 0.74937;
+};
+name = "Ultra-condensed Light";
+weightClass = 300;
+widthClass = 1;
+},
+{
+axesValues = (
+400,
+50,
+16
+);
+customParameters = (
+{
+name = "Rename Glyphs";
+value = (
+"H=H.condensed"
+);
+}
+);
+instanceInterpolations = {
+m01 = 1;
+};
+name = "Ultra-condensed Regular";
+widthClass = 1;
+},
+{
+axesValues = (
+500,
+50,
+16
+);
+customParameters = (
+{
+name = "Rename Glyphs";
+value = (
+"H=H.condensed"
+);
+}
+);
+instanceInterpolations = {
+"B4260A0E-857F-422D-A4F4-35CF22B8EA81" = 0.16667;
+m01 = 0.83333;
+};
+name = "Ultra-condensed Medium";
+weightClass = 500;
+widthClass = 1;
+},
+{
+axesValues = (
+600,
+50,
+16
+);
+customParameters = (
+{
+name = "Rename Glyphs";
+value = (
+"H=H.condensed"
+);
+}
+);
+instanceInterpolations = {
+"B4260A0E-857F-422D-A4F4-35CF22B8EA81" = 0.33333;
+m01 = 0.66667;
+};
+name = "Ultra-condensed Semi-bold";
+weightClass = 600;
+widthClass = 1;
+},
+{
+axesValues = (
+700,
+50,
+16
+);
+customParameters = (
+{
+name = "Rename Glyphs";
+value = (
+"H=H.condensed"
+);
+}
+);
+instanceInterpolations = {
+"B4260A0E-857F-422D-A4F4-35CF22B8EA81" = 0.5;
+m01 = 0.5;
+};
+name = "Ultra-condensed Bold";
+weightClass = 700;
+widthClass = 1;
+},
+{
+axesValues = (
+800,
+50,
+16
+);
+customParameters = (
+{
+name = "Rename Glyphs";
+value = (
+"H=H.condensed"
+);
+}
+);
+instanceInterpolations = {
+"B4260A0E-857F-422D-A4F4-35CF22B8EA81" = 0.66667;
+m01 = 0.33333;
+};
+name = "Ultra-condensed Extra-bold";
+weightClass = 800;
+widthClass = 1;
+},
+{
+axesValues = (
+900,
+50,
+16
+);
+customParameters = (
+{
+name = "Rename Glyphs";
+value = (
+"H=H.condensed"
+);
+}
+);
+instanceInterpolations = {
+"B4260A0E-857F-422D-A4F4-35CF22B8EA81" = 0.83333;
+m01 = 0.16667;
+};
+name = "Ultra-condensed Black";
+weightClass = 900;
+widthClass = 1;
+},
+{
+axesValues = (
+100,
+75,
+16
+);
+customParameters = (
+{
+name = "Rename Glyphs";
+value = (
+"H=H.condensed"
+);
+}
+);
+instanceInterpolations = {
+"12302582-4287-4EDC-BAC1-A11CF135F65A" = 0.37594;
+m004 = 0.37594;
+m005 = 0.12406;
+m01 = 0.12406;
+};
+name = "Condensed Thin";
+weightClass = 100;
+widthClass = 3;
+},
+{
+axesValues = (
+200,
+75,
+16
+);
+customParameters = (
+{
+name = "Rename Glyphs";
+value = (
+"H=H.condensed"
+);
+}
+);
+instanceInterpolations = {
+"12302582-4287-4EDC-BAC1-A11CF135F65A" = 0.25063;
+m004 = 0.25063;
+m005 = 0.24937;
+m01 = 0.24937;
+};
+name = "Condensed Extra-light";
+weightClass = 200;
+widthClass = 3;
+},
+{
+axesValues = (
+300,
+75,
+16
+);
+customParameters = (
+{
+name = "Rename Glyphs";
+value = (
+"H=H.condensed"
+);
+}
+);
+instanceInterpolations = {
+"12302582-4287-4EDC-BAC1-A11CF135F65A" = 0.12531;
+m004 = 0.12531;
+m005 = 0.37469;
+m01 = 0.37469;
+};
+name = "Condensed Light";
+weightClass = 300;
+widthClass = 3;
+},
+{
+axesValues = (
+400,
+75,
+16
+);
+customParameters = (
+{
+name = "Rename Glyphs";
+value = (
+"H=H.condensed"
+);
+}
+);
+instanceInterpolations = {
+m005 = 0.5;
+m01 = 0.5;
+};
+name = "Condensed Regular";
+widthClass = 3;
+},
+{
+axesValues = (
+500,
+75,
+16
+);
+customParameters = (
+{
+name = "Rename Glyphs";
+value = (
+"H=H.condensed"
+);
+}
+);
+instanceInterpolations = {
+"B4260A0E-857F-422D-A4F4-35CF22B8EA81" = 0.08333;
+m005 = 0.41667;
+m006 = 0.08333;
+m01 = 0.41667;
+};
+name = "Condensed Medium";
+weightClass = 500;
+widthClass = 3;
+},
+{
+axesValues = (
+600,
+75,
+16
+);
+customParameters = (
+{
+name = "Rename Glyphs";
+value = (
+"H=H.condensed"
+);
+}
+);
+instanceInterpolations = {
+"B4260A0E-857F-422D-A4F4-35CF22B8EA81" = 0.16667;
+m005 = 0.33333;
+m006 = 0.16667;
+m01 = 0.33333;
+};
+name = "Condensed Semi-bold";
+weightClass = 600;
+widthClass = 3;
+},
+{
+axesValues = (
+700,
+75,
+16
+);
+customParameters = (
+{
+name = "Rename Glyphs";
+value = (
+"H=H.condensed"
+);
+}
+);
+instanceInterpolations = {
+"B4260A0E-857F-422D-A4F4-35CF22B8EA81" = 0.25;
+m005 = 0.25;
+m006 = 0.25;
+m01 = 0.25;
+};
+name = "Condensed Bold";
+weightClass = 700;
+widthClass = 3;
+},
+{
+axesValues = (
+800,
+75,
+16
+);
+customParameters = (
+{
+name = "Rename Glyphs";
+value = (
+"H=H.condensed"
+);
+}
+);
+instanceInterpolations = {
+"B4260A0E-857F-422D-A4F4-35CF22B8EA81" = 0.33333;
+m005 = 0.16667;
+m006 = 0.33333;
+m01 = 0.16667;
+};
+name = "Condensed Extra-bold";
+weightClass = 800;
+widthClass = 3;
+},
+{
+axesValues = (
+900,
+75,
+16
+);
+customParameters = (
+{
+name = "Rename Glyphs";
+value = (
+"H=H.condensed"
+);
+}
+);
+instanceInterpolations = {
+"B4260A0E-857F-422D-A4F4-35CF22B8EA81" = 0.41667;
+m005 = 0.08333;
+m006 = 0.41667;
+m01 = 0.08333;
+};
+name = "Condensed Black";
+weightClass = 900;
+widthClass = 3;
+},
+{
+axesValues = (
+100,
+100,
+16
+);
+customParameters = (
+{
+name = "Remove Glyphs";
+value = (
+H.condensed
+);
+}
+);
+instanceInterpolations = {
+m004 = 0.75188;
+m005 = 0.24812;
+};
+name = Thin;
+weightClass = 100;
+},
+{
+axesValues = (
+200,
+100,
+16
+);
+customParameters = (
+{
+name = "Remove Glyphs";
+value = (
+H.condensed
+);
+}
+);
+instanceInterpolations = {
+m004 = 0.50125;
+m005 = 0.49875;
+};
+name = "Extra-light";
+weightClass = 200;
+},
+{
+axesValues = (
+300,
+100,
+16
+);
+customParameters = (
+{
+name = "Remove Glyphs";
+value = (
+H.condensed
+);
+}
+);
+instanceInterpolations = {
+m004 = 0.25063;
+m005 = 0.74937;
+};
+name = Light;
+weightClass = 300;
+},
+{
+axesValues = (
+400,
+100,
+16
+);
+customParameters = (
+{
+name = "Remove Glyphs";
+value = (
+H.condensed
+);
+}
+);
+instanceInterpolations = {
+m005 = 1;
+};
+name = Regular;
+},
+{
+axesValues = (
+500,
+100,
+16
+);
+customParameters = (
+{
+name = "Remove Glyphs";
+value = (
+H.condensed
+);
+}
+);
+instanceInterpolations = {
+m005 = 0.83333;
+m006 = 0.16667;
+};
+name = Medium;
+weightClass = 500;
+},
+{
+axesValues = (
+600,
+100,
+16
+);
+customParameters = (
+{
+name = "Remove Glyphs";
+value = (
+H.condensed
+);
+}
+);
+instanceInterpolations = {
+m005 = 0.66667;
+m006 = 0.33333;
+};
+name = "Semi-bold";
+weightClass = 600;
+},
+{
+axesValues = (
+700,
+100,
+16
+);
+customParameters = (
+{
+name = "Remove Glyphs";
+value = (
+H.condensed
+);
+}
+);
+instanceInterpolations = {
+m005 = 0.5;
+m006 = 0.5;
+};
+isBold = 1;
+name = Bold;
+weightClass = 700;
+},
+{
+axesValues = (
+800,
+100,
+16
+);
+customParameters = (
+{
+name = "Remove Glyphs";
+value = (
+H.condensed
+);
+}
+);
+instanceInterpolations = {
+m005 = 0.33333;
+m006 = 0.66667;
+};
+name = "Extra-bold";
+weightClass = 800;
+},
+{
+axesValues = (
+900,
+100,
+16
+);
+customParameters = (
+{
+name = "Remove Glyphs";
+value = (
+H.condensed
+);
+}
+);
+instanceInterpolations = {
+m005 = 0.16667;
+m006 = 0.83333;
+};
+name = Black;
+weightClass = 900;
+},
+{
+axesValues = (
+100,
+125,
+16
+);
+customParameters = (
+{
+name = "Remove Glyphs";
+value = (
+H.condensed
+);
+}
+);
+instanceInterpolations = {
+m004 = 0.37594;
+m005 = 0.12406;
+m007 = 0.37594;
+m008 = 0.12406;
+};
+name = "Expanded Thin";
+weightClass = 100;
+widthClass = 7;
+},
+{
+axesValues = (
+200,
+125,
+16
+);
+customParameters = (
+{
+name = "Remove Glyphs";
+value = (
+H.condensed
+);
+}
+);
+instanceInterpolations = {
+m004 = 0.25063;
+m005 = 0.24937;
+m007 = 0.25063;
+m008 = 0.24937;
+};
+name = "Expanded Extra-light";
+weightClass = 200;
+widthClass = 7;
+},
+{
+axesValues = (
+300,
+125,
+16
+);
+customParameters = (
+{
+name = "Remove Glyphs";
+value = (
+H.condensed
+);
+}
+);
+instanceInterpolations = {
+m004 = 0.12531;
+m005 = 0.37469;
+m007 = 0.12531;
+m008 = 0.37469;
+};
+name = "Expanded Light";
+weightClass = 300;
+widthClass = 7;
+},
+{
+axesValues = (
+400,
+125,
+16
+);
+customParameters = (
+{
+name = "Remove Glyphs";
+value = (
+H.condensed
+);
+}
+);
+instanceInterpolations = {
+m005 = 0.5;
+m008 = 0.5;
+};
+name = "Expanded Regular";
+widthClass = 7;
+},
+{
+axesValues = (
+500,
+125,
+16
+);
+customParameters = (
+{
+name = "Remove Glyphs";
+value = (
+H.condensed
+);
+}
+);
+instanceInterpolations = {
+m005 = 0.41667;
+m006 = 0.08333;
+m008 = 0.41667;
+m009 = 0.08333;
+};
+name = "Expanded Medium";
+weightClass = 500;
+widthClass = 7;
+},
+{
+axesValues = (
+600,
+125,
+16
+);
+customParameters = (
+{
+name = "Remove Glyphs";
+value = (
+H.condensed
+);
+}
+);
+instanceInterpolations = {
+m005 = 0.33333;
+m006 = 0.16667;
+m008 = 0.33333;
+m009 = 0.16667;
+};
+name = "Expanded Semi-bold";
+weightClass = 600;
+widthClass = 7;
+},
+{
+axesValues = (
+700,
+125,
+16
+);
+customParameters = (
+{
+name = "Remove Glyphs";
+value = (
+H.condensed
+);
+}
+);
+instanceInterpolations = {
+m005 = 0.25;
+m006 = 0.25;
+m008 = 0.25;
+m009 = 0.25;
+};
+name = "Expanded Bold";
+weightClass = 700;
+widthClass = 7;
+},
+{
+axesValues = (
+800,
+125,
+16
+);
+customParameters = (
+{
+name = "Remove Glyphs";
+value = (
+H.condensed
+);
+}
+);
+instanceInterpolations = {
+m005 = 0.16667;
+m006 = 0.33333;
+m008 = 0.16667;
+m009 = 0.33333;
+};
+name = "Expanded Extra-bold";
+weightClass = 800;
+widthClass = 7;
+},
+{
+axesValues = (
+900,
+125,
+16
+);
+customParameters = (
+{
+name = "Remove Glyphs";
+value = (
+H.condensed
+);
+}
+);
+instanceInterpolations = {
+m005 = 0.08333;
+m006 = 0.41667;
+m008 = 0.08333;
+m009 = 0.41667;
+};
+name = "Expanded Black";
+weightClass = 900;
+widthClass = 7;
+},
+{
+axesValues = (
+100,
+150,
+16
+);
+customParameters = (
+{
+name = "Remove Glyphs";
+value = (
+H.condensed
+);
+}
+);
+instanceInterpolations = {
+m007 = 0.75188;
+m008 = 0.24812;
+};
+name = "Extra-expanded Thin";
+weightClass = 100;
+widthClass = 8;
+},
+{
+axesValues = (
+200,
+150,
+16
+);
+customParameters = (
+{
+name = "Remove Glyphs";
+value = (
+H.condensed
+);
+}
+);
+instanceInterpolations = {
+m007 = 0.50125;
+m008 = 0.49875;
+};
+name = "Extra-expanded Extra-light";
+weightClass = 200;
+widthClass = 8;
+},
+{
+axesValues = (
+300,
+150,
+16
+);
+customParameters = (
+{
+name = "Remove Glyphs";
+value = (
+H.condensed
+);
+}
+);
+instanceInterpolations = {
+m007 = 0.25063;
+m008 = 0.74937;
+};
+name = "Extra-expanded Light";
+weightClass = 300;
+widthClass = 8;
+},
+{
+axesValues = (
+400,
+150,
+16
+);
+customParameters = (
+{
+name = "Remove Glyphs";
+value = (
+H.condensed
+);
+}
+);
+instanceInterpolations = {
+m008 = 1;
+};
+name = "Extra-expanded Regular";
+widthClass = 8;
+},
+{
+axesValues = (
+500,
+150,
+16
+);
+customParameters = (
+{
+name = "Remove Glyphs";
+value = (
+H.condensed
+);
+}
+);
+instanceInterpolations = {
+m008 = 0.83333;
+m009 = 0.16667;
+};
+name = "Extra-expanded Medium";
+weightClass = 500;
+widthClass = 8;
+},
+{
+axesValues = (
+600,
+150,
+16
+);
+customParameters = (
+{
+name = "Remove Glyphs";
+value = (
+H.condensed
+);
+}
+);
+instanceInterpolations = {
+m008 = 0.66667;
+m009 = 0.33333;
+};
+name = "Extra-expanded Semi-bold";
+weightClass = 600;
+widthClass = 8;
+},
+{
+axesValues = (
+700,
+150,
+16
+);
+customParameters = (
+{
+name = "Remove Glyphs";
+value = (
+H.condensed
+);
+}
+);
+instanceInterpolations = {
+m008 = 0.5;
+m009 = 0.5;
+};
+name = "Extra-expanded Bold";
+weightClass = 700;
+widthClass = 8;
+},
+{
+axesValues = (
+800,
+150,
+16
+);
+customParameters = (
+{
+name = "Remove Glyphs";
+value = (
+H.condensed
+);
+}
+);
+instanceInterpolations = {
+m008 = 0.33333;
+m009 = 0.66667;
+};
+name = "Extra-expanded Extra-bold";
+weightClass = 800;
+widthClass = 8;
+},
+{
+axesValues = (
+900,
+150,
+16
+);
+customParameters = (
+{
+name = "Remove Glyphs";
+value = (
+H.condensed
+);
+}
+);
+instanceInterpolations = {
+m008 = 0.16667;
+m009 = 0.83333;
+};
+name = "Extra-expanded Black";
+weightClass = 900;
+widthClass = 8;
+}
+);
+metrics = (
+{
+type = ascender;
+},
+{
+type = baseline;
+},
+{
+type = descender;
+},
+{
+type = "cap height";
+},
+{
+type = "x-height";
+},
+{
+type = "italic angle";
+}
+);
+properties = (
+{
+key = designers;
+values = (
+{
+language = dflt;
+value = "John Leslie Armstrong IV";
+}
+);
+},
+{
+key = licenses;
+values = (
+{
+language = dflt;
+value = "OFL-1.1-no-RFN";
+}
+);
+},
+{
+key = licenseURL;
+value = "https://spdx.org/licenses/OFL-1.1-no-RFN.html";
+}
+);
+unitsPerEm = 2048;
+versionMajor = 1;
+versionMinor = 0;
+}

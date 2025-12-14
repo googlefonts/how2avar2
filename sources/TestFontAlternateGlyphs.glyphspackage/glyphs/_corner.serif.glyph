@@ -1,0 +1,230 @@
+{
+glyphname = _corner.serif;
+layers = (
+{
+anchors = (
+{
+name = left;
+pos = (240,217);
+},
+{
+name = origin;
+pos = (240,0);
+}
+);
+layerId = m005;
+shapes = (
+{
+closed = 0;
+nodes = (
+(240,217,l),
+(0,217,l),
+(0,0,l),
+(240,0,l)
+);
+}
+);
+width = 240;
+},
+{
+anchors = (
+{
+name = left;
+pos = (120,2);
+},
+{
+name = origin;
+pos = (120,0);
+}
+);
+layerId = "12302582-4287-4EDC-BAC1-A11CF135F65A";
+shapes = (
+{
+closed = 0;
+nodes = (
+(120,2,l),
+(0,2,l),
+(0,0,l),
+(120,0,l)
+);
+}
+);
+width = 120;
+},
+{
+anchors = (
+{
+name = left;
+pos = (120,217);
+},
+{
+name = origin;
+pos = (120,0);
+}
+);
+layerId = m01;
+shapes = (
+{
+closed = 0;
+nodes = (
+(120,217,l),
+(0,217,l),
+(0,0,l),
+(120,0,l)
+);
+}
+);
+width = 120;
+},
+{
+anchors = (
+{
+name = left;
+pos = (80,348);
+},
+{
+name = origin;
+pos = (80,0);
+}
+);
+layerId = "B4260A0E-857F-422D-A4F4-35CF22B8EA81";
+shapes = (
+{
+closed = 0;
+nodes = (
+(80,348,l),
+(0,348,l),
+(0,0,l),
+(80,0,l)
+);
+}
+);
+width = 80;
+},
+{
+anchors = (
+{
+name = left;
+pos = (240,2);
+},
+{
+name = origin;
+pos = (240,0);
+}
+);
+layerId = m004;
+shapes = (
+{
+closed = 0;
+nodes = (
+(240,2,l),
+(0,2,l),
+(0,0,l),
+(240,0,l)
+);
+}
+);
+width = 240;
+},
+{
+anchors = (
+{
+name = left;
+pos = (160,348);
+},
+{
+name = origin;
+pos = (160,0);
+}
+);
+layerId = m006;
+shapes = (
+{
+closed = 0;
+nodes = (
+(160,348,l),
+(0,348,l),
+(0,0,l),
+(160,0,l)
+);
+}
+);
+width = 160;
+},
+{
+anchors = (
+{
+name = left;
+pos = (360,2);
+},
+{
+name = origin;
+pos = (360,0);
+}
+);
+layerId = m007;
+shapes = (
+{
+closed = 0;
+nodes = (
+(360,2,l),
+(0,2,l),
+(0,0,l),
+(360,0,l)
+);
+}
+);
+width = 360;
+},
+{
+anchors = (
+{
+name = left;
+pos = (360,217);
+},
+{
+name = origin;
+pos = (360,0);
+}
+);
+layerId = m008;
+shapes = (
+{
+closed = 0;
+nodes = (
+(360,217,l),
+(0,217,l),
+(0,0,l),
+(360,0,l)
+);
+}
+);
+width = 360;
+},
+{
+anchors = (
+{
+name = left;
+pos = (240,348);
+},
+{
+name = origin;
+pos = (240,0);
+}
+);
+layerId = m009;
+shapes = (
+{
+closed = 0;
+nodes = (
+(240,348,l),
+(0,348,l),
+(0,0,l),
+(240,0,l)
+);
+}
+);
+width = 240;
+}
+);
+}

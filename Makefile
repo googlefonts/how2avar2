@@ -17,48 +17,52 @@ help:
 build: build.stamp
 	# opentype mappings https://learn.microsoft.com/en-us/typography/opentype/spec/os2#usweightclass
 
+	# fix opentype features
+	fonttools feaLib "./sources/variable-font-substitutions.fea" "./fonts/variable/TestFontAlternateGlyphsDecomposed[opsz,wdth,wght].ttf" -o "./fonts/variable/TestFontAlternateGlyphsDecomposedFea[opsz,wdth,wght].ttf"
+
 	# fix opsz axis
 	./scripts/fix-axis-bounds.py --inplace --axis opsz --min 6 --max 144 "fonts/variable/TestFont[opsz,wdth,wght].ttf"
+	./scripts/fix-axis-bounds.py --inplace --axis opsz --min 6 --max 144 "fonts/variable/TestFontAlternateGlyphsDecomposedFea[opsz,wdth,wght].ttf"
 	./scripts/fix-axis-bounds.py --inplace --axis ZROT --min 0 --max 90 "fonts/variable/TestFontQuadraticRotation[AAAA,BBBB,ZROT].ttf"
 
 	# rename Test Font => Test Font Base
 	cp "./fonts/variable/TestFont[opsz,wdth,wght].ttf" "./fonts/variable/TestFontBase[opsz,wdth,wght].ttf"
 	./scripts/rename-fonts.py --inplace --suffix " Base" "./fonts/variable/TestFontBase[opsz,wdth,wght].ttf"
+	cp "./fonts/variable/TestFontAlternateGlyphsDecomposedFea[opsz,wdth,wght].ttf" "./fonts/variable/TestFontAlternateGlyphsDecomposedFeaBase[opsz,wdth,wght].ttf"
+	./scripts/rename-fonts.py --inplace --suffix " Base" "./fonts/variable/TestFontAlternateGlyphsDecomposedFeaBase[opsz,wdth,wght].ttf"
 
 	# create Avar1 demo with axis mappings
 	fonttools varLib.avar.build -o "./fonts/variable/TestFontAvar1[opsz,wdth,wght].ttf" "./fonts/variable/TestFont[opsz,wdth,wght].ttf" "./sources/avar1.designspace"
 	./scripts/rename-fonts.py --inplace --suffix " Avar1" "./fonts/variable/TestFontAvar1[opsz,wdth,wght].ttf"
+	fonttools varLib.avar.build -o "./fonts/variable/TestFontAlternateGlyphsDecomposedFeaAvar1[opsz,wdth,wght].ttf" "./fonts/variable/TestFontAlternateGlyphsDecomposedFea[opsz,wdth,wght].ttf" "./sources/avar1.designspace"
+	./scripts/rename-fonts.py --inplace --suffix " Avar1" "./fonts/variable/TestFontAlternateGlyphsDecomposedFeaAvar1[opsz,wdth,wght].ttf"
 
 	# create Avar2 demo with axis mappings
 	fonttools varLib.avar.build -o "./fonts/variable/TestFontAvar2[opsz,wdth,wght].ttf" "./fonts/variable/TestFont[opsz,wdth,wght].ttf" "./sources/avar2.designspace"
 	./scripts/rename-fonts.py --inplace --suffix " Avar2" "./fonts/variable/TestFontAvar2[opsz,wdth,wght].ttf"
+	fonttools varLib.avar.build -o "./fonts/variable/TestFontAlternateGlyphsDecomposedFeaAvar2[opsz,wdth,wght].ttf" "./fonts/variable/TestFontAlternateGlyphsDecomposedFea[opsz,wdth,wght].ttf" "./sources/avar2.designspace"
+	./scripts/rename-fonts.py --inplace --suffix " Avar2" "./fonts/variable/TestFontAlternateGlyphsDecomposedFeaAvar2[opsz,wdth,wght].ttf"
 
 	# create Avar2 demo with fences
 	fonttools varLib.avar.build -o "./fonts/variable/TestFontFencesAvar2[opsz,wdth,wght].ttf" "./fonts/variable/TestFont[opsz,wdth,wght].ttf" "./sources/avar2Fences.designspace"
 	./scripts/rename-fonts.py --inplace --suffix " Fences Avar2" "./fonts/variable/TestFontFencesAvar2[opsz,wdth,wght].ttf"
+	fonttools varLib.avar.build -o "./fonts/variable/TestFontAlternateGlyphsDecomposedFeaFencesAvar2[opsz,wdth,wght].ttf" "./fonts/variable/TestFontAlternateGlyphsDecomposedFea[opsz,wdth,wght].ttf" "./sources/avar2Fences.designspace"
+	./scripts/rename-fonts.py --inplace --suffix " Fences Avar2" "./fonts/variable/TestFontAlternateGlyphsDecomposedFeaFencesAvar2[opsz,wdth,wght].ttf"
 
 	# create Avar2 demo with optical size
 	fonttools varLib.avar.build -o "./fonts/variable/TestFontOpticalSizeAvar2[opsz,wdth,wght].ttf" "./fonts/variable/TestFont[opsz,wdth,wght].ttf" "./sources/avar2OpticalSize.designspace"
 	./scripts/rename-fonts.py --inplace --suffix " Optical Size Avar2" "./fonts/variable/TestFontOpticalSizeAvar2[opsz,wdth,wght].ttf"
+	fonttools varLib.avar.build -o "./fonts/variable/TestFontAlternateGlyphsDecomposedFeaOpticalSizeAvar2[opsz,wdth,wght].ttf" "./fonts/variable/TestFontAlternateGlyphsDecomposedFea[opsz,wdth,wght].ttf" "./sources/avar2OpticalSize.designspace"
+	./scripts/rename-fonts.py --inplace --suffix " Optical Size Avar2" "./fonts/variable/TestFontAlternateGlyphsDecomposedFeaOpticalSizeAvar2[opsz,wdth,wght].ttf"
 
 	# create Avar2 demo with quadratic rotation
 	fonttools varLib.avar.build -o "./fonts/variable/TestFontQuadraticRotationAvar2[AAAA,BBBB,ZROT].ttf" "./fonts/variable/TestFontQuadraticRotation[AAAA,BBBB,ZROT].ttf" "./sources/avar2QuadraticRotation.designspace"
 	./scripts/rename-fonts.py --inplace --suffix " Avar2" "./fonts/variable/TestFontQuadraticRotationAvar2[AAAA,BBBB,ZROT].ttf"
 
 	# decompile fonts for testing
-	rm -rf "ttx"
-	mkdir "ttx"
-	ttx -d "ttx" "fonts/variable/TestFontBase[opsz,wdth,wght].ttf"
-	ttx -d "ttx" "fonts/variable/TestFontAvar1[opsz,wdth,wght].ttf"
-	ttx -d "ttx" "fonts/variable/TestFontAvar2[opsz,wdth,wght].ttf"
-	ttx -d "ttx" "fonts/variable/TestFontFencesAvar2[opsz,wdth,wght].ttf"
-	ttx -d "ttx" "fonts/variable/TestFontOpticalSizeAvar2[opsz,wdth,wght].ttf"
-	ttx -d "ttx" "fonts/variable/TestFontLinearRotation[ZROT].ttf"
-	ttx -d "ttx" "fonts/variable/TestFontQuadraticRotationAvar2[AAAA,BBBB,ZROT].ttf"
-
-	# cleanup intermediate files
-	# rm fonts/variable/TestFont[opsz,wdth,wght].ttf
-	# rm fonts/variable/TestFontQuadraticRotation[AAAA,BBBB,ZROT].ttf
+	# rm -rf "ttx"
+	# mkdir "ttx"
+	# ttx -d "ttx" "fonts/variable/TestFontBase[opsz,wdth,wght].ttf"
 
 venv: venv/touchfile
 
