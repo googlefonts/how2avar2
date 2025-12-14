@@ -57,8 +57,8 @@ build: build.stamp
 	ttx -d "ttx" "fonts/variable/TestFontQuadraticRotationAvar2[AAAA,BBBB,ZROT].ttf"
 
 	# cleanup intermediate files
-	rm fonts/variable/TestFont[opsz,wdth,wght].ttf
-	rm fonts/variable/TestFontQuadraticRotation[AAAA,BBBB,ZROT].ttf
+	# rm fonts/variable/TestFont[opsz,wdth,wght].ttf
+	# rm fonts/variable/TestFontQuadraticRotation[AAAA,BBBB,ZROT].ttf
 
 venv: venv/touchfile
 
