@@ -17,26 +17,32 @@ from fontTools.misc.fixedTools import floatToFixedToStr
 from fontTools.ttLib import TTFont
 
 # Constants, these are the main "settings" for the image
+# Dimensions adjusted to reduce spacing (tighter grid)
+# Width: 4096 -> 2048 (2x reduction in spacing)
+# Height: 6000 -> 2000 (3x reduction in spacing)
 WIDTH = 2048
-HEIGHT = 1024
-MARGIN = 128
+HEIGHT = 2000
+MARGIN = 100
 FRAMES = 1
 
 # List of fonts to process
 FONT_PATHS = [
     "fonts/variable/TestFont[opsz,wdth,wght].ttf",
+    "fonts/variable/TestFontAvar1[opsz,wdth,wght].ttf",
+    "fonts/variable/TestFontAvar2[opsz,wdth,wght].ttf",
+    "fonts/variable/TestFontFencesAvar2[opsz,wdth,wght].ttf",
     "fonts/variable/TestFontOpticalSizeAvar2[opsz,wdth,wght].ttf",
-    "fonts/variable/AlternateGlyphs[opsz,wdth,wght].ttf",
-    "fonts/variable/AlternateGlyphsOpticalSizeAvar2[opsz,wdth,wght].ttf",
 ]
 FONT_LICENSE = "OFL v1.1"
 AUXILIARY_FONT = "Helvetica"
-AUXILIARY_FONT_SIZE = 48
+AUXILIARY_FONT_SIZE = 32  # Adjusted for new resolution
 
-# Fixed Settings
-FIXED_WDTH = 100
-FIXED_WGHT = 400
-# Optical Sizes to iterate through
+# Specific Axis Values
+# Widths (Columns: 8 steps)
+WDTH_SPECS = [50, 62.5, 75, 87.5, 100, 112.5, 125, 150]
+# Weights (Rows: 11 steps)
+WGHT_SPECS = [1, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
+# Optical Sizes (Used to pick best fit for the grid size to ensure clean rendering)
 OPSZ_SPECS = [6, 12, 16, 24, 48, 72, 144]
 
 GRID_VIEW = False  # Toggle this for a grid overlay
@@ -47,7 +53,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--output", metavar="PNG", help="where to write the PNG file")
 args = parser.parse_args()
 
-# Constants that are worked out dynamically
+# Constants that are worked out dynamically (Git info is constant for the repo)
 # We use try/except to avoid crashing if not in a git repo
 try:
     MY_URL = subprocess.check_output("git remote get-url origin", shell=True).decode()
@@ -85,53 +91,63 @@ def draw_background():
         pass
 
 
-# Draw main text: Single line iterating Optical Sizes
+# Draw main text in a Weight x Width grid using the current font
 def draw_main_text(current_font_path):
     fill(1)
     stroke(None)
     font(current_font_path)
 
-    # 1. Setup Layout
-    count = len(OPSZ_SPECS)
+    # 1. Calculate Grid Dimensions
+    cols = len(WDTH_SPECS)
+    rows = len(WGHT_SPECS)
 
     # Area to draw in (inside margins)
     draw_w = WIDTH - (MARGIN * 2)
+    draw_h = HEIGHT - (MARGIN * 3)  # Extra bottom margin for footer separation
 
-    # Column width per letter
-    col_w = draw_w / count
+    # Cell size
+    cell_w = draw_w / cols
+    cell_h = draw_h / rows
 
-    # Set a large font size to visualize the Optical Size features clearly
-    main_font_size = 280
-    fontSize(main_font_size)
+    # 2. Calculate Font Size
+    # New calculation for tighter cells.
+    # Divisor 2.5 ensures HLT fits horizontally.
+    target_font_size = min(cell_w / 2.5, cell_h) * 0.85
+    fontSize(target_font_size)
 
-    # Vertical center
-    y_center = HEIGHT / 2
-    # Adjust for visual baseline
-    y_pos = y_center - (main_font_size * 0.35)
+    # 3. Determine Optical Size
+    # Find the value in OPSZ_SPECS closest to the target_font_size
+    target_opsz = min(OPSZ_SPECS, key=lambda x: abs(x - target_font_size))
 
-    # 2. Loop through Optical Sizes
-    for i, opsz_val in enumerate(OPSZ_SPECS):
-        # Calculate X Center
-        x_pos = MARGIN + (i * col_w) + (col_w / 2)
+    # 4. Draw the Grid
+    # Y-Loop: Weights (Top to Bottom -> Light to Bold)
+    for r, wght_val in enumerate(WGHT_SPECS):
+        # X-Loop: Widths (Left to Right -> Narrow to Wide)
+        for c, wdth_val in enumerate(WDTH_SPECS):
+            # Calculate Center Position of the Cell
+            # X: Start Margin + (current column * cell width) + half cell
+            x_pos = MARGIN + (c * cell_w) + (cell_w / 2)
 
-        # Apply Variations
-        fontVariations(wdth=FIXED_WDTH, wght=FIXED_WGHT, opsz=opsz_val)
+            # Y: Start Top (Height - Margin) - (current row * cell height) - half cell
+            # We subtract because coordinates start at bottom-left.
+            # We shift down slightly to account for the top header margin.
+            y_center = (HEIGHT - (MARGIN * 1.5)) - (r * cell_h) - (cell_h / 2)
 
-        # Draw Letter
-        text("H", (x_pos, y_pos), align="center")
+            # Adjust Y for visual baseline (move down by ~30% of font size to center the capital letters)
+            y_pos = y_center - (target_font_size * 0.30)
 
-        # Optional: Draw label below to identify the opsz value
-        with savedState():
-            font(AUXILIARY_FONT)
-            fontSize(24)
-            fill(0.5)
-            text(f"{opsz_val}", (x_pos, y_pos - 50), align="center")
+            # Apply Variations
+            # We fix opsz to the best fit, while varying wdth and wght
+            fontVariations(wdth=wdth_val, wght=wght_val, opsz=target_opsz)
+
+            # Draw
+            text("HLT", (x_pos, y_pos), align="center")
 
 
 # Divider lines
 def draw_divider_lines():
     stroke(1)
-    strokeWidth(5)
+    strokeWidth(4)  # Adjusted for new resolution
     lineCap("round")
     line((MARGIN, HEIGHT - (MARGIN * 1.5)), (WIDTH - MARGIN, HEIGHT - (MARGIN * 1.5)))
     line((MARGIN, MARGIN + (MARGIN / 2)), (WIDTH - MARGIN, MARGIN + (MARGIN / 2)))
@@ -165,7 +181,7 @@ if __name__ == "__main__":
         sys.exit(1)
 
     for font_path in FONT_PATHS:
-        # 1. Reset the drawing stack for each font to ensure singular output files
+        # 1. Reset the drawing stack for each font
         newDrawing()
 
         print(f"DrawBot: Processing {font_path}...")

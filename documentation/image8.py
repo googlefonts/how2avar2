@@ -23,11 +23,11 @@ MARGIN = 128
 FRAMES = 1
 
 # List of fonts to process
+# Note: Ensure these fonts actually support the ZROT axis
 FONT_PATHS = [
     "fonts/variable/TestFont[opsz,wdth,wght].ttf",
-    "fonts/variable/TestFontOpticalSizeAvar2[opsz,wdth,wght].ttf",
-    "fonts/variable/AlternateGlyphs[opsz,wdth,wght].ttf",
-    "fonts/variable/AlternateGlyphsOpticalSizeAvar2[opsz,wdth,wght].ttf",
+    "fonts/variable/LinearRotation[ZROT].ttf",
+    "fonts/variable/QuadraticRotation[AAAA,BBBB,ZROT].ttf",
 ]
 FONT_LICENSE = "OFL v1.1"
 AUXILIARY_FONT = "Helvetica"
@@ -36,8 +36,9 @@ AUXILIARY_FONT_SIZE = 48
 # Fixed Settings
 FIXED_WDTH = 100
 FIXED_WGHT = 400
-# Optical Sizes to iterate through
-OPSZ_SPECS = [6, 12, 16, 24, 48, 72, 144]
+
+# Z Rotation values to iterate through
+ZROT_SPECS = [0, 30, 45, 60, 90]
 
 GRID_VIEW = False  # Toggle this for a grid overlay
 
@@ -85,14 +86,14 @@ def draw_background():
         pass
 
 
-# Draw main text: Single line iterating Optical Sizes
+# Draw main text: Single line iterating Z Rotation
 def draw_main_text(current_font_path):
     fill(1)
     stroke(None)
     font(current_font_path)
 
     # 1. Setup Layout
-    count = len(OPSZ_SPECS)
+    count = len(ZROT_SPECS)
 
     # Area to draw in (inside margins)
     draw_w = WIDTH - (MARGIN * 2)
@@ -100,7 +101,7 @@ def draw_main_text(current_font_path):
     # Column width per letter
     col_w = draw_w / count
 
-    # Set a large font size to visualize the Optical Size features clearly
+    # Set a large font size to visualize the features clearly
     main_font_size = 280
     fontSize(main_font_size)
 
@@ -109,23 +110,24 @@ def draw_main_text(current_font_path):
     # Adjust for visual baseline
     y_pos = y_center - (main_font_size * 0.35)
 
-    # 2. Loop through Optical Sizes
-    for i, opsz_val in enumerate(OPSZ_SPECS):
+    # 2. Loop through ZROT values
+    for i, zrot_val in enumerate(ZROT_SPECS):
         # Calculate X Center
         x_pos = MARGIN + (i * col_w) + (col_w / 2)
 
         # Apply Variations
-        fontVariations(wdth=FIXED_WDTH, wght=FIXED_WGHT, opsz=opsz_val)
+        # We pass ZROT as a keyword argument corresponding to the axis tag
+        fontVariations(wdth=FIXED_WDTH, wght=FIXED_WGHT, ZROT=zrot_val)
 
         # Draw Letter
         text("H", (x_pos, y_pos), align="center")
 
-        # Optional: Draw label below to identify the opsz value
+        # Optional: Draw label below to identify the ZROT value
         with savedState():
             font(AUXILIARY_FONT)
             fontSize(24)
             fill(0.5)
-            text(f"{opsz_val}", (x_pos, y_pos - 50), align="center")
+            text(f"{zrot_val}°", (x_pos, y_pos - 50), align="center")
 
 
 # Divider lines
@@ -182,7 +184,6 @@ if __name__ == "__main__":
         draw_auxiliary_text(font_name, font_version)
 
         # 4. Determine unique output filename
-        # E.g. documentation/image1.png -> documentation/image1-TestFontBase.png
         dir_name, full_filename = os.path.split(args.output)
         file_root, file_ext = os.path.splitext(full_filename)
 
