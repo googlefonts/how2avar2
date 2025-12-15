@@ -7,10 +7,12 @@ name = "Rotation in Z";
 tag = ZROT;
 },
 {
+hidden = 1;
 name = A;
 tag = AAAA;
 },
 {
+hidden = 1;
 name = B;
 tag = BBBB;
 }
