@@ -6,7 +6,7 @@ These test fonts cover the major use cases of avar2:
 
 - Distort the design space to accurately represent the type designer’s artistic vision
 - Set fences in the design space to restrict ugly zones
-- Support higher order interpolation (HOI) / non-linear interpolation (NLI)
+- Support higher order interpolation (HOI) / nonlinear interpolation (NLI)
 - Blend axes together to simplify controls for end users
 
 Information about the test fonts is included below.
