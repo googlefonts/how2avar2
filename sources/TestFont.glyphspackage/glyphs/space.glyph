@@ -3,40 +3,41 @@ glyphname = space;
 layers = (
 {
 layerId = m01;
-width = 200;
+width = 341;
 },
 {
 layerId = "12302582-4287-4EDC-BAC1-A11CF135F65A";
-width = 600;
+width = 222;
 },
 {
 layerId = "B4260A0E-857F-422D-A4F4-35CF22B8EA81";
-width = 600;
+width = 550;
 },
 {
 layerId = m004;
-width = 600;
+width = 442;
 },
 {
 layerId = m005;
-width = 200;
+width = 731;
 },
 {
 layerId = m006;
-width = 600;
+width = 681;
 },
 {
 layerId = m007;
-width = 600;
+width = 662;
 },
 {
 layerId = m008;
-width = 200;
+width = 782;
 },
 {
 layerId = m009;
-width = 600;
+width = 902;
 }
 );
+metricWidth = "=H/2";
 unicode = 32;
 }
