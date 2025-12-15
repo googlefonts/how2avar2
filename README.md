@@ -69,8 +69,8 @@ The following fonts test rotation:
 
 To combine `.designspace` files with test fonts, use `fonttools varLib.avar.build`.
 
-To fix axis bound in test fonts, use `./scripts/fix-axis-bounds.py`.
+To fix axis bounds in test fonts, use `./scripts/fix-axis-bounds.py`.
 
-To rename fonts after making a new variation, use `./scripts/rename-fonts.py`
+To rename fonts after making a new variation, use `./scripts/rename-fonts.py`.
 
 For examples, see the `Makefile`.
