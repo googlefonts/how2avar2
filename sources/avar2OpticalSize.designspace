@@ -12,8 +12,8 @@
           <dimension name="Width" xvalue="100"/>
         </input>
         <output>
-          <dimension name="Weight" xvalue="500"/>
-          <dimension name="Width" xvalue="115"/>
+          <dimension name="Weight" xvalue="600"/>
+          <dimension name="Width" xvalue="125"/>
         </output>
       </mapping>
       <mapping>
@@ -23,8 +23,8 @@
           <dimension name="Width" xvalue="100"/>
         </input>
         <output>
-          <dimension name="Weight" xvalue="300"/>
-          <dimension name="Width" xvalue="85"/>
+          <dimension name="Weight" xvalue="200"/>
+          <dimension name="Width" xvalue="75"/>
         </output>
       </mapping>
     </mappings>
