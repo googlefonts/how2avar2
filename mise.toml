@@ -1,4 +1,5 @@
 [tools]
+node = "24.12"
 python = "3.13"
 "pipx:fontmake" = "latest"
 "pipx:fonttools" = "latest"
