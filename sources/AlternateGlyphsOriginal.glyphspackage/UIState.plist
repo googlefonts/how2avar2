@@ -2,6 +2,8 @@
 displayStrings = (
 " H",
 "/_corner.serif",
-"/H.condensed"
+"/H.condensed",
+" ",
+"/nbspace"
 );
 }

@@ -3,39 +3,39 @@ glyphname = nbspace;
 layers = (
 {
 layerId = "12302582-4287-4EDC-BAC1-A11CF135F65A";
-width = 600;
+width = 342;
 },
 {
 layerId = m01;
-width = 200;
+width = 461;
 },
 {
 layerId = "B4260A0E-857F-422D-A4F4-35CF22B8EA81";
-width = 600;
+width = 630;
 },
 {
 layerId = m004;
-width = 600;
+width = 682;
 },
 {
 layerId = m005;
-width = 200;
+width = 801;
 },
 {
 layerId = m006;
-width = 600;
+width = 841;
 },
 {
 layerId = m007;
-width = 600;
+width = 1022;
 },
 {
 layerId = m008;
-width = 200;
+width = 1142;
 },
 {
 layerId = m009;
-width = 600;
+width = 1142;
 }
 );
 metricWidth = space;
