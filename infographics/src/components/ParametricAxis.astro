@@ -1,0 +1,54 @@
+---
+export type Axis = {
+  abbreviation: string;
+  minimum: number;
+  default: number;
+  maximum: number;
+};
+export type Props = Axis;
+
+const props = Astro.props;
+---
+
+<div
+  style={{
+    display: "grid",
+    width: "100%",
+    placeContent: "center",
+    gridTemplateColumns: `repeat(3, max-content)`,
+  }}
+>
+  <span
+    style={{
+      fontVariationSettings: `"${props.abbreviation}" ${props.minimum}`,
+      aspectRatio: "1 / 1",
+      fontSize: "124px",
+      width: "100%",
+      textAlign: "center",
+      lineHeight: "100%",
+    }}>H</span
+  >
+  <span
+    style={{
+      fontVariationSettings: `"${props.abbreviation}" ${props.default}`,
+      aspectRatio: "1 / 1",
+      fontSize: "124px",
+      width: "100%",
+      textAlign: "center",
+      lineHeight: "100%",
+    }}>H</span
+  >
+  <span
+    style={{
+      fontVariationSettings: `"${props.abbreviation}" ${props.maximum}`,
+      aspectRatio: "1 / 1",
+      fontSize: "124px",
+      width: "100%",
+      textAlign: "center",
+      lineHeight: "100%",
+    }}>H</span
+  >
+  <span style={{ textAlign: "center" }}>Minimum</span>
+  <span style={{ textAlign: "center" }}>Default</span>
+  <span style={{ textAlign: "center" }}>Maximum</span>
+</div>

@@ -1,0 +1,32 @@
+---
+import Letter from "../components/Letter.astro";
+import Grid from "../components/Grid.astro";
+import Layout from "../layouts/Layout.astro";
+import TestFont from "../fonts/TestFont.astro";
+import { getAxis, interpolatedMasters } from "../utilities";
+import fastCartesian from "fast-cartesian";
+
+const weights = getAxis(100, 900);
+const widths = getAxis(50, 150);
+
+const instances = fastCartesian([weights, widths]);
+const drawnIndexes = [0, 6, 42, 48];
+---
+
+<Layout>
+  <TestFont />
+  <div style={{ fontFamily: "TestFont", margin: "100px auto" }}>
+    <Grid>
+      {
+        instances.map((instance, index) => (
+          <Letter
+            weight={instance[0]}
+            width={instance[1]}
+            isDrawnMaster={drawnIndexes.includes(index)}
+            isInterpolatedMaster={interpolatedMasters.includes(index)}
+          />
+        ))
+      }
+    </Grid>
+  </div>
+</Layout>

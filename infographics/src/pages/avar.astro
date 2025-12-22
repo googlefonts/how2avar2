@@ -1,0 +1,22 @@
+---
+import Letter from "../components/Letter.astro";
+import Grid from "../components/Grid.astro";
+import Layout from "../layouts/Layout.astro";
+import TestFont from "../fonts/TestFont.astro";
+
+const weights = [1, 50, 120, 215, 333, 500, 715, 1000];
+---
+
+<Layout>
+  <TestFont />
+  <div style={{ fontFamily: "TestFont", margin: "100px auto" }}>
+    <Grid columnsCount={8}>
+      {weights.map((weight) => <Letter weight={weight} width={100} />)}
+      {
+        weights.map((weight) => (
+          <span style={{ textAlign: "center" }}>{weight}</span>
+        ))
+      }
+    </Grid>
+  </div>
+</Layout>

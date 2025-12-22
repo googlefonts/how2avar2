@@ -1,0 +1,30 @@
+---
+export type Props = {
+  weight: number;
+  width: number;
+  isOriginMaster?: boolean;
+  isDrawnMaster?: boolean;
+  isInterpolatedMaster?: boolean;
+};
+const { weight, width, isOriginMaster, isDrawnMaster, isInterpolatedMaster } =
+  Astro.props;
+---
+
+<span
+  style={{
+    aspectRatio: "1 / 1",
+    fontWeight: weight,
+    fontStretch: width + "%",
+    fontSize: "124px",
+    width: "100%",
+    textAlign: "center",
+    lineHeight: "100%",
+    color: isOriginMaster
+      ? "red"
+      : isDrawnMaster
+        ? "blue"
+        : isInterpolatedMaster
+          ? "green"
+          : "black",
+  }}>H</span
+>

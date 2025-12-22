@@ -1,0 +1,17 @@
+---
+export type Props = {
+  columnsCount?: number;
+};
+const { columnsCount } = Astro.props;
+---
+
+<div
+  style={{
+    display: "grid",
+    width: "100%",
+    placeContent: "center",
+    gridTemplateColumns: `repeat(${columnsCount ?? 7}, max-content)`,
+  }}
+>
+  <slot />
+</div>

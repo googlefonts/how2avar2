@@ -42,3 +42,5 @@ Thumbs.db
 *（已自動儲存）.*
 
 !/how2avar2/package.json
+!/infographics/package.json
+!/infographics/src/fonts

@@ -1,0 +1,19 @@
+---
+import Layout from "../layouts/Layout.astro";
+import RobotoDelta from "../fonts/RobotoDelta.astro";
+import ParametricAxis, { type Axis } from "../components/ParametricAxis.astro";
+
+const axis: Axis = {
+  abbreviation: "XTRA",
+  minimum: 244,
+  maximum: 741,
+  default: 463,
+};
+---
+
+<Layout>
+  <RobotoDelta />
+  <div style={{ fontFamily: "RobotoDelta", margin: "100px auto" }}>
+    <ParametricAxis {...axis} />
+  </div>
+</Layout>
