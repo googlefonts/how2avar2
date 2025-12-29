@@ -1,0 +1,917 @@
+# Designspace Distortion
+
+
+
+import Image from "next/image";
+import notFound from "../../public/static/images/fonts.google.com_notfound.png";
+import linearInterpolation from "../../public/static/images/localhost_4321_no-avar.png";
+import opticalInterpolation from "../../public/static/images/localhost_4321_avar.png";
+import sophiaSans from "../../public/static/images/sophia-sans.png";
+
+## Designspace Mapping to Userspace
+
+Avar1 supports[^fn1] mapping values from the designspace to the userspace. The designspace is the range between the two extremes of an axis, e.g. light and bold weights. The designspace coordinates can be set to any values the type designer chooses. For example, many type designers select the letters’ stem width as the values for the weight axis in their designspace. However, websites and applications have expectations that the Regular weight is 400, Bold is 700, etc. Type designers use the avar1 table to map the userspace values, like 400 and 700, to designspace values in their source files.
+
+## Axis Distortions
+
+Variable fonts use linear interpolation for their axes by default.
+
+<figure>
+  <Image src={linearInterpolation} alt="Poor linear interpolation of the letter H" />
+
+  <figcaption>
+    Linear Interpolation
+  </figcaption>
+</figure>
+
+However, linear interpolation is often undesirable[^fn2]. For weight, optical interpolation means that the bolder the weight, the greater the change in boldness. Conversely, the lighter the weight, the smaller the change in boldness.
+
+<figure>
+  <Image src={opticalInterpolation} alt="Improved optical interpolation of the letter H" />
+
+  <figcaption>
+    Optical Interpolation
+  </figcaption>
+</figure>
+
+Type designers use the avar1 table to define how an axis should interpolate across the designspace.
+
+## Avar1 Limitations
+
+While the avar1 table is perfect for fonts with a single axis, it becomes problematic in fonts with more than one axis. For example, when you have width and weight, you may want the change in weight to interpolate differently based on the width. Also, you may need special treatment for the condensed bold weights. For the best interpolation resolutions, axes need to interact[^fn3] and be interdependent with each other. Unfortunately, this is not possible with avar1.
+
+## Real-world Examples
+
+### Sophia Sans
+
+The Sophia Sans[^fn4] font family has weight and width axes. The type designers chose specific points in the designspace for each named instance, like ExtraCondensedBold or SemiCondensedLight. However, when it came time to make a variable font, it was not possible to map those named instances to points that would interpolate on both axes.
+
+As a workaround, the type designers split the font into four variable fonts, so they could align the weight axis specifically for each width. With avar2, the type designers no longer need to split the font, and they can set the distortions directly in the avar2 table.
+
+<figure>
+  <Image src={sophiaSans} alt="2d graph visualization of the designspace of Sophia Sans with distortions" />
+
+  <figcaption>
+    Visualization of the designspace distortions in Sophia Sans
+  </figcaption>
+</figure>
+
+### Calibre
+
+Luc(as) de Groot[^fn5] designed the Calibre font family. Microsoft commissioned him to add optical sizes to his font family for the regular weight. Ideally, he would add two additional masters. However, with variable fonts, those optical size masters and their deltas affected the interpolation of his existing designspace. Without avar2, the designspace must be orthogonal, and the only solution was to duplicate 16 masters—“outch”!
+
+<figure>
+  <Image src={notFound} alt="Designspace comparisons for Calibre" />
+
+  <figcaption>
+    Slide from Luc(as) de Groot’s
+    [presentation](https://youtu.be/I75Efo7whrs?si=khc_KlgFL3_hGJEm\&t=2320)
+    overlaying the duplicate axes of the orthogonal designspace overtop the
+    designspace he was trying to implement.
+  </figcaption>
+</figure>
+
+With avar2, he can distort the designspace to be non-orthogonal with the points converging towards the optical size masters; full design control without data duplication.
+
+[^fn1]: [https://simoncozens.github.io/userspace-and-designspace/](https://simoncozens.github.io/userspace-and-designspace/)
+
+[^fn2]: [https://www.lucasfonts.com/learn/interpolation-theory](https://www.lucasfonts.com/learn/interpolation-theory)
+
+[^fn3]: [https://www.youtube.com/watch?v=j7unMVZOcaw](https://www.youtube.com/watch?v=j7unMVZOcaw)
+
+[^fn4]: [https://github.com/lettersoup/Sofia-Sans](https://github.com/lettersoup/Sofia-Sans)
+
+[^fn5]: [https://www.youtube.com/watch?v=I75Efo7whrs](https://www.youtube.com/watch?v=I75Efo7whrs)
+
+
+# Features
+
+
+
+## Avar2 Features
+
+* Cross-axis mappings
+  * Support user-facing axes that control hidden parametric axes
+  * Officially support higher order interpolation with an axis that controls intermediate axes
+* Designspace distortion
+  * Support axis interdependence to improve interpolation and accurately match the type designer’s intentions
+  * Remove duplicate axes from non-orthogonal designspaces
+  * Remove duplicate blended masters from parametric fonts
+* Designspace fences
+  * Prevent users from choosing ugly or broken areas of the designspace
+* Smaller file sizes
+  * Avoid duplicate masters
+  * Increase space savings in parametric fonts
+
+
+# Fences
+
+
+
+
+
+
+
+import Image from "next/image";
+import notFound from "../../public/static/images/fonts.google.com_notfound.png";
+import historicalExample from "../../public/static/images/LFA_Type_0120_002.jpg";
+import brokenRobotoFlex from "../../public/static/images/fonts.google.com_specimen_Roboto+Flex_tester.png";
+
+When designing a font family, the type designer can choose from a wide range of options, from traditional font families with width and weight axes to parametric fonts with dozens of axes. The type designer must design and account for more areas in the designspace than ever before.
+
+Unfortunately, various areas in the font’s designspace fail to meet the type designer’s expectations during interpolation. Type designers may be unable to fix some areas or purposefully omit other areas of the designspace. In these cases, the designspace may have areas that look ugly or broken.
+
+## Fence Examples
+
+We will examine historical and modern examples of cases where fences are used to restrict portions of the designspace in order to maintain quality.
+
+### Historical Example
+
+<figure>
+  <Image
+    src={historicalExample}
+    alt="Historical type specimen of Frutiger’s
+Univers font family"
+  />
+
+  <figcaption>
+    This type specimen from the Letterform Archive and Internet Archive,
+    designed by Bruno Pfäffli and John de Cesare, shows how Adrian Frutiger’s
+    Univers font family omits areas of the designspace.
+  </figcaption>
+</figure>
+
+One of the most famous examples of designspace fences is Adrian Frutiger’s Univers font. He purposefully omits two corners of the designspace—condensed extra bold styles and expanded extra light styles.
+
+### Modern Example
+
+<figure>
+  <Image src={notFound} alt="Hoefler&Co.’s Knockout font family displayed in a type chart" />
+
+  <figcaption>
+    This chart, [provided](https://www.threads.com/@ohmgeez/post/C_s6k2VOcoA) by
+    Martin Gee, helps us understand Hoefler\&Co.’s Knockout font family.
+  </figcaption>
+</figure>
+
+Although the type foundry sold the font family in multiple series, their relationships within the font family may be unclear until visualized in this table. Here, we can see how the Knockout font family groups fonts into series and how each series relates to each other. Similarly, Hoefler\&Co. omitted portions of the designspace for the condensed extra bold styles.
+
+## Broken Designspaces
+
+<figure>
+  <Image src={brokenRobotoFlex} alt="A broken area of Roboto Flex’s designspace" />
+
+  <figcaption>
+    If you choose the maximum or minimum values for certain axis combinations,
+    you may discover portions of the designspace that appear to break.
+  </figcaption>
+</figure>
+
+Parametric fonts may have dozens of axes, and not all axes interpolate well together. Even the beautiful and groundbreaking Roboto Flex font[^fn1] by David Berlow has areas of the designspace that appear broken.
+
+## Avar2 Fences
+
+Type designers can easily omit areas of the designspace with static fonts. With variable fonts, it is now possible to restrict designspaces with avar2. For example, you can now restrict the area of the designspace for condensed extra bold styles. This method works well for both parametric and variable fonts.
+
+Here is an example of avar2 mappings that restrict the condensed extra bold corner of the designspace:
+
+```xml
+<?xml version='1.0' encoding='UTF-8'?>
+<designspace format="5.2">
+  <axes>
+    <axis tag="wght" name="Weight" minimum="1" maximum="1000" default="400"/>
+    <axis tag="wdth" name="Width" minimum="50" maximum="150" default="100"/>
+    <axis tag="opsz" name="Optical size" minimum="6" maximum="144" default="16"/>
+    <mappings>
+      <mapping>
+        <input>
+          <dimension name="Weight" xvalue="1000"/>
+          <dimension name="Width" xvalue="50"/>
+        </input>
+        <output>
+          <dimension name="Weight" xvalue="700"/>
+          <dimension name="Width" xvalue="50"/>
+        </output>
+      </mapping>
+      <mapping>
+        <input>
+          <dimension name="Weight" xvalue="1000"/>
+          <dimension name="Width" xvalue="75"/>
+        </input>
+        <output>
+          <dimension name="Weight" xvalue="700"/>
+          <dimension name="Width" xvalue="75"/>
+        </output>
+      </mapping>
+      <mapping>
+        <input>
+          <dimension name="Weight" xvalue="700"/>
+          <dimension name="Width" xvalue="50"/>
+        </input>
+        <output>
+          <dimension name="Weight" xvalue="700"/>
+          <dimension name="Width" xvalue="50"/>
+        </output>
+      </mapping>
+      <mapping>
+        <input>
+          <dimension name="Weight" xvalue="700"/>
+          <dimension name="Width" xvalue="75"/>
+        </input>
+        <output>
+          <dimension name="Weight" xvalue="700"/>
+          <dimension name="Width" xvalue="75"/>
+        </output>
+      </mapping>
+      <mapping>
+        <input>
+          <dimension name="Weight" xvalue="1000"/>
+          <dimension name="Width" xvalue="75.02"/>
+        </input>
+        <output>
+          <dimension name="Weight" xvalue="1000"/>
+          <dimension name="Width" xvalue="75.02"/>
+        </output>
+      </mapping>
+    </mappings>
+  </axes>
+</designspace>
+```
+
+<img alt="" src={__img0} placeholder="blur" />
+
+Setting only the first two mappings will fence off this corner of the designspace, but may unexpectedly distort other areas of the font’s designspace.
+
+<img alt="" src={__img1} placeholder="blur" />
+
+Setting all the mappings will fence off this corner of the designspace without distorting other areas.
+
+Experiment with the example mappings to see how they interact with the designspace using the Fencer app[^fn2]. In the latter example, some mappings have the same input and output to avoid distorting other areas in the designspace; these mappings are called pin mappings.
+
+The last mapping has a 0.02 difference because mappings cannot start at the same location. The smallest increment that is possible, also called the epsilon value, is 1 in normalized coordinates / 2^14^ or 1/16384. In this example, we arbitrarily chose 0.02 instead.
+
+The order of the mappings within the XML code does not matter. Finally, if you have other designspace distortions, you will need to add additional mappings to avoid unexpected distortions around the fences.
+
+The Python3 library fontTools can merge[^fn3] your designspace definitions into your font with a post-build script, if your type design app does not yet support avar2.
+
+[^fn1]: [https://github.com/googlefonts/roboto-flex](https://github.com/googlefonts/roboto-flex)
+
+[^fn2]: [https://github.com/Lorp/fencer](https://github.com/Lorp/fencer)
+
+[^fn3]: [https://github.com/googlefonts/how2avar2/blob/main/Makefile](https://github.com/googlefonts/how2avar2/blob/main/Makefile)
+
+
+# Higher Order Interpolation
+
+
+
+import Image from "next/image";
+import interpolationComparison from "../../public/static/images/interpolation-comparison.jpg";
+import linearRotation from "../../public/static/images/image8-LinearRotation.png";
+import quadraticRotation from "../../public/static/images/image8-QuadraticRotation.png";
+
+Higher Order Interpolation (HOI), also called non-linear interpolation (NLI), is a technique pioneered by the Underware[^fn1] font foundry.
+
+With avar1 and avar2, type designers can control the interpolation between masters in variable fonts. Even if they change the rate of interpolation or distort the designspace, the interpolation between masters is still linear. The points drawn between the masters always follow a straight line on the shortest path. That makes some operations, like rotations or animations, difficult to achieve. Even with many duplicate masters, the linear rotation will still be noticeably off to the human eye.
+
+Enter HOI. In the same way that type designers draw Bézier curves to shape letters, HOI can interpolate fonts with Bézier curves. The best way to understand it is to show it.
+
+<figure>
+  <Image src={interpolationComparison} alt="Comparison of linear interpolation and higher order interpolation" />
+
+  <figcaption>
+    While linear interpolation follows straight lines on the shortest path, HOI
+    follows defined curves for better rotations and animations.
+  </figcaption>
+</figure>
+
+<figure>
+  <Image src={linearRotation} alt="Letter H rotation with linear interpolation" />
+
+  <figcaption>
+    Linear interpolation with rotation causes the H to shrink significantly.
+  </figcaption>
+</figure>
+
+<figure>
+  <Image src={quadraticRotation} alt="Letter H rotation with quadratic interpolation" />
+
+  <figcaption>
+    Quadratic interpolation with rotation causes the H to shrink only slightly.
+    Using cubic curves, of an order higher than quadratic curves, will produce
+    even smoother rotations.
+  </figcaption>
+</figure>
+
+As shown in these examples, linear interpolation is insufficient for use cases like rotation and animation. Quadratic interpolation is a major improvement, and cubic interpolation is even better. It is possible to draw with curves of a higher order than cubic as well.
+
+To implement quadratic interpolation, type designers need additional axes. In the same way that Bézier curves use multiple points, higher order interpolation uses multiple axes.
+
+With avar1, higher order interpolation worked through a quirk that occurred in most font renderers. By naming axes the same name, renderers would interpolate them at the same time. With two axes named the same and interpolating together, type designers can implement quadratic interpolation (or cubic with three axes).
+
+With avar2, an axis can now control multiple axes. Type designers can name the axes differently for organization and better font editor support, and then use a virtual axis like ZROT Rotation in Z to control the other two axes at the same time to implement quadratic interpolation (or cubic with three axes). An additional benefit is that this behavior is now defined and expected with avar2.
+
+To implement cubic interpolation, type designers must add a third axis with masters on off-curve points to animate between them. They use Python3 scripts to generate these masters, since it is unclear how to draw them by hand.
+
+For an example of how to implement quadratic rotation, visit the demo font[^fn2] in this GitHub repository, and review the build script[^fn3]. The ArrowType font foundry provides more examples in its HOI-test[^fn4] repository. Also, there are scripts for HOI written for FontForge[^fn5], Fontra, and RoboFont[^fn6].
+
+If you are hoping to create animations with axes like Flow similar to the Underware font foundry, you will have to write the scripts yourself. None of Underware’s implementations is open-source.
+
+[^fn1]: [https://underware.nl/case-studies/hoi/](https://underware.nl/case-studies/hoi/)
+
+[^fn2]: [https://github.com/googlefonts/how2avar2/tree/main/sources/QuadraticRotation.glyphspackage](https://github.com/googlefonts/how2avar2/tree/main/sources/QuadraticRotation.glyphspackage)
+
+[^fn3]: [https://github.com/googlefonts/how2avar2/blob/main/Makefile](https://github.com/googlefonts/how2avar2/blob/main/Makefile)
+
+[^fn4]: [https://github.com/arrowtype/HOI-test/tree/main](https://github.com/arrowtype/HOI-test/tree/main)
+
+[^fn5]: [https://github.com/ctrlcctrlv/FontForge-Higher-Order-Interpolation](https://github.com/ctrlcctrlv/FontForge-Higher-Order-Interpolation)
+
+[^fn6]: [https://github.com/JeremieHornus/bezier-interpolation](https://github.com/JeremieHornus/bezier-interpolation)
+
+
+# History
+
+
+
+import Image from "next/image";
+import notFound from "../../public/static/images/fonts.google.com_notfound.png";
+import calligraphy from "../../public/static/images/English_-_Rochester_Bible_-_Walters_W18_-_Reverse_Detail.jpg";
+import punchCutting from "../../public/static/images/punch-and-matrix-e1733771960396.jpg";
+import metafont from "../../public/static/images/cmr10_capR_contour_wo_cull.png";
+import mm from "../../public/static/images/localhost_4321_mm-regular.png";
+import gx from "../../public/static/images/localhost_4321_gx-regular.png";
+import linearInterpolation from "../../public/static/images/localhost_4321_no-avar.png";
+import opticalInterpolation from "../../public/static/images/localhost_4321_avar.png";
+
+Avar2 extends the OpenType[^fn1] format for variable fonts[^fn2]. To better understand avar2, we need to learn more about the history and evolution of variable fonts.
+
+While we focus on the pieces related to variable fonts, I encourage you to read additional articles and books to learn more about other aspects of type design history, such as the foundations of calligraphy, the making of metal type, phototypesetting, and more.
+
+## Calligraphy
+
+<figure>
+  <Image src={calligraphy} alt="Beautiful example of medieval biblical calligraphy" />
+
+  <figcaption>
+    This leaf from the Rochester Bible circa 1135AD is a beautiful example of
+    calligraphy in multiple styles, colors, sizes, and layouts.
+  </figcaption>
+</figure>
+
+Type design originated from calligraphy. Unlike type designers, calligraphers have full control over the size, spacing, and shape of every letter. Although calligraphers draw each letter with slight differences, they have full control over the entire layout and design. Even today, OpenType fonts can only try to mimic the art of calligraphy and lettering styles.
+
+## Punch Cutting
+
+<figure>
+  <Image src={punchCutting} alt="The instruments of metal type design" />
+
+  <figcaption>
+    A steel punch and the copper matrix from the Library of Congress’[^fn3]
+    Rosenwald Collection[^fn4].
+  </figcaption>
+</figure>
+
+For centuries[^fn5], type designers worked with punch cutters to create metal type. The design of metal type mimicked calligraphy to ease the transition to printing, while still being familiar to readers. Because the craftsmen created each metal letter in a specific size, weight, and style, they fine-tuned each letter for its particular use. Punch cutters often improved type designers’ original drawings for small sizes and printing.
+
+## The Pantograph
+
+<figure>
+  <Image src={notFound} alt="The first recorded diagram of a pantograph" />
+
+  <figcaption>
+    A diagram of Christopher Scheiner’s pantograph,
+    [provided](https://thonyc.wordpress.com/2013/07/25/apelles-hiding-behind-the-painting/)
+    by Thony Christie and The Renaissance Mathematicus.
+  </figcaption>
+</figure>
+
+Christopher Scheiner[^fn6] was a Catholic German Jesuit priest, physicist, and astronomer. In 1603, he invented the first copying machine, which he coined the pantograph[^fn7]. By tracing the original composition with a pen, the machine would mirror the movements with a second pen to create a copy.
+
+<figure>
+  <Image src={notFound} alt="An image of the large Benton Pantograph model" />
+
+  <figcaption>
+    A photo of the Benton Pantograph,
+    [provided](https://swamppress.com/benton-matrix-engraving.htmlhttps://swamppress.com/benton-matrix-engraving.html)
+    by Ed Rayher and Swamp Press.
+  </figcaption>
+</figure>
+
+Linn Boyd Benton was an American typeface designer and inventor. In 1884, he invented the Benton Pantograph[^fn8], which traced large type design drawings and engraved matrices for metal type for printing. While the invention revolutionized type design and made the skill of the punch cutter obsolete[^fn9], it was difficult to predict how a letter would look in small sizes.
+
+The pantograph did more than just trace a letter. It could change the size of the letter. It could compress or expand the width and height of the letter. It could slant the letter at an angle. Depending on the engraving tip, the pantograph could give the letter a stroke to make it slightly bolder. Type designers used the pantograph to create font families from a single source for most letters. Eventually, hot metal type took over by automatically casting and typesetting new metal type for each print job.
+
+## Phototypesetting
+
+<figure>
+  <Image src={notFound} alt="An image of the Akzidenz-Grotesk disc for phototypesetting" />
+
+  <figcaption>
+    A photo of the Akzidenz-Grotesk disc used in phototypesetting,
+    [provided](https://blog.sbb.berlin/filmreihe/) by Dr. Christian Mathieu,
+    Kerstin Wallbach, Dr. Dan Reynolds and the Berlin State Library.
+  </figcaption>
+</figure>
+
+For a short period, phototypesetting[^fn10], or cold type, was faster, cheaper, and offered more options. Its smaller size meant it could fit in offices[^fn11]. Phototypesetting[^fn12] projected light through letters onto photosensitive paper, which was used in offset printing[^fn13]. Early machines stored letters on font discs or filmstrips; they came in multiple styles, like italic and bold. Lenses were used to change the size of fonts. Later, Cathode Ray Tube (CRT) and Laser typesetting stored fonts as digital data on floppy discs and offered a continuous range of font sizes. Phototypesetting saved money and time by avoiding size-specific adjustments in fonts[^fn14]. Similar to the pantograph, phototypesetters could transform fonts, such as creating fake italics[^fn15]. Shortly afterwards, digital type design took over.
+
+## Ikarus
+
+<figure>
+  <Image src={notFound} alt="Screenshot of the Ikarus system, which still works on UNIX" />
+
+  <figcaption>
+    Screenshot of the Ikarus system,
+    [provided](https://www.fontmaster.nl/history.html) by the Dutch Type
+    Library.
+  </figcaption>
+</figure>
+
+In 1972[^fn16], Dr. Peter Karow[^fn17], co-founder of the URW company in Germany[^fn18], developed the Ikarus system and format. Ikarus contributed many advancements to digital font technology[^fn19].
+
+Ikarus was the first industry standard for digital font data, based on curves instead of pixels. In addition, it could interpolate between light and bold letters with the same number of points. Ikarus could also use “antiquing[^fn20]” to add effects like shadows, outlines, and distortions.
+
+## Metafont
+
+<figure>
+  <Image src={metafont} alt="Screenshot of Metafont showing Bézier curves" />
+
+  <figcaption>
+    Metafont letter R
+    [provided](https://github.com/mf2vec-dev/mf2ff/blob/main/img/examples/cmr10/cmr10_capR_contour_wo_cull.png)
+    from the mf2ff GitHub repository.
+  </figcaption>
+</figure>
+
+Also in 1972, Dr. Don Knuth, a Stanford University professor, developed Metafont[^fn21]. Rather than defining a letter using its shapes and outlines, he used computer code to change letters depending on the input design parameters. By writing these instructions, it is possible to generate many variations from a single letter specification. The goal is that the letter will adapt to the inputs appropriately according to the equations in the code.
+
+Unfortunately, Metafont failed[^fn22] to become mainstream since it required artists to become computer programmers and mathematicians as well. In addition, Metafont operated on the assumption that letters have skeletal forms that are filled out by pen strokes, which is not the case for all fonts. Nonetheless, Metafont’s concepts apply to modern parametric fonts and variable fonts.
+
+## Adobe Multiple Master (MM)
+
+<figure>
+  <Image src={mm} alt="Designspace visualized by a grid, with each cell containing the letter H" />
+
+  <figcaption>
+    Multiple Master example where the red and blue letters are masters in the
+    extremes of the designspace that the type designer draws.
+  </figcaption>
+</figure>
+
+In 1991, Adobe announced Multiple Master fonts as an extension of its PostScript font format. Similar to Ikarus, Multiple Master fonts interpolate between masters. By drawing masters at the extremes of the designspace, type designers and their customers can interpolate between them using Multiple Master technology.
+
+For example, a Multiple Master font may have two masters, one for the light weight and another for the bold weight. These masters are at the two extremes of the weight axis. Everything in between is the designspace. Using interpolation, the computer could average them together to create any desired weight (e.g. instances such as Regular, Medium, Semi-bold) in between the extremes. Multiple Master fonts never caught on for several reasons.
+
+First, the font instances usually had to be generated from the masters using a separate application[^fn23], like Adobe Type Manager. These generated fonts often had the axis values embedded in their filenames[^fn24] (e.g. GaramMM Bol\_700 wt 470 wd 24 op). During the Font Wars, Apple and Microsoft developed their own TrueType fonts as an alternative to Adobe’s PostScript fonts. As a result, computer operating systems never fully supported Multiple Master PostScript fonts.
+
+Second, Multiple Master fonts required a master to be designed for each corner or extreme of the designspace. For each axis in the design, the number of masters has to be squared, also known as the n^2^ problem. For a font with weight and width axes, Multiple Master fonts required 4 masters (or, if including the regular weight, 9 masters). The maximum[^fn25] number of masters was 16, limiting the number of axes to 4. Today, designers may end up with 81 masters[^fn26] (3^2^^2^), if they use this approach to design masters for the regular weight and all corners of their designspace for width, weight, and optical size axes.
+
+Ultimately, as the Font Wars ended, Adobe focused on its collaboration with Microsoft on OpenType fonts. The complexity of Multiple Master fonts meant that including them in the OpenType specification would hinder OpenType font adoption[^fn27]. Outside of Adobe’s apps, developers rarely used Multiple Master technology, as third-party app competition limited Adobe’s outreach. With low adoption of Multiple Master fonts, Adobe eventually deprecated and abandoned the format to focus on other technologies.
+
+## Apple TrueType GX
+
+<figure>
+  <Image src={gx} alt="Designspace visualized by a grid, with each cell containing the letter H" />
+
+  <figcaption>
+    Variable font example where the red and blue letters are masters that the
+    type designer draws, while the green letters are masters that the computer
+    automatically generates with interpolations.
+  </figcaption>
+</figure>
+
+In 1991, Apple introduced TrueType GX variations as part of its overhaul[^fn28] of the Mac graphics system. While Apple developed TrueType GX fonts independently[^fn29] at the same time as Adobe’s Multiple Master fonts, Apple used a different approach.
+
+First, there was no limit on the number of masters or axes. Type designers could choose any number and type of axes they wanted, so long as they were interpolable.
+
+Second, the interpolations were based on deltas[^fn30], which are the mathematical instructions of where to move the glyph outline’s points relative to the base glyph. The font stored a single set of base glyph outlines and the deltas of the other masters. For example, the font may store the light weight’s glyphs, and the deltas of where to move the points for the bold weight. By using deltas, type designers no longer had to design all the corners of a designspace, and the font’s file size was smaller. Given separate condensed and bold versions of a font, TrueType GX could automatically interpolate the condensed bold version. Unlike Multiple Master fonts, type designers did not need to draw and include a condensed bold master. Potentially, this approach would reduce the workload to create font families and save type designers time and money.
+
+Ultimately, Apple’s TrueType GX technology never caught on. Since TrueType GX was Mac-only, developers were worried about compatibility and concerned that their apps would become Mac-only. Implementing the technology in apps would have also required rewriting code. Some apps, like Adobe, had competing alternatives. Finally, type design apps never supported the format. Though later rebranded[^fn31] as Apple Advanced Typography, the technology did not catch on because of low usage.
+
+## OpenType Variable Fonts (VF)
+
+In 2016, Microsoft announced OpenType 1.8[^fn32], which added support for variable fonts. Variable fonts are also called font variations. The technology behind OpenType variable fonts is based[^fn33] on Apple’s TrueType GX. Although the underlying implementation and tables changed from Apple’s TrueType GX technology, many of the fundamental ideas remain the same.
+
+In particular, OpenType variable fonts interpolate with deltas instead of masters. By using deltas, it is possible to interpolate the extremes of a designspace, rather than having to draw them by hand. Type designers can add intermediate masters and switch shapes for fine-grained control. In addition, deltas are significantly smaller than the equivalent static fonts, allowing them to load significantly faster on the web. These benefits for the web and the collaboration of major companies and type foundries propelled[^fn34] OpenType variable fonts to success with wide support.
+
+## Avar1 and its Limitations
+
+When designing a variable font, axes interpolate linearly by default.
+
+<figure>
+  <Image src={linearInterpolation} alt="Poor linear interpolation of the letter H" />
+
+  <figcaption>
+    Linear Interpolation
+  </figcaption>
+</figure>
+
+However, linear interpolation is often undesirable[^fn35]. For weight, optical interpolation means that the bolder the weight, the greater the change in boldness. Conversely, the lighter the weight, the smaller the change in boldness. Notice how the bold weights blend together in linear interpolation, while noticeably growing bolder in the optical interpolation.
+
+<figure>
+  <Image src={opticalInterpolation} alt="Improved optical interpolation of the letter H" />
+
+  <figcaption>
+    Optical Interpolation
+  </figcaption>
+</figure>
+
+The Axis Variations Table, or avar table, is the optional table for variable fonts to define how an axis interpolates across its designspace.
+
+In addition, avar1 supports[^fn36] mapping the designspace to the userspace. The most common example is when type designers base the weight axis in the designspace on the letters’ stem width, while exposing common units like 400 Regular or 700 Bold to the userspace for website styling and desktop applications.
+
+While the avar1 table is perfect for fonts with a single axis, it becomes problematic for fonts with more than one axis. When you have width and weight, you may want the change in weight to interpolate differently based on the width. For example, you may need special treatment for the condensed bold weights. For the best interpolation resolutions, axes need to interact[^fn37] and be interdependent with each other. Unfortunately, that is not possible with avar1.
+
+## Previous Proposals
+
+Although the limitations of the avar1 table were known before variable fonts were released, subsequent proposals failed to add support. All proposals, including Avar2, use OpenType Variations math.
+
+### XVAR
+
+In 2016, Microsoft engineer Rob McKaughan proposed[^fn38] the xvar table. It introduced a major new table format, which would have required significant effort to implement[^fn39]. Without demo fonts or implementations, this proposal did not move forward.
+
+### ZVAR
+
+In 2018, Microsoft engineer Renzhi Li proposed[^fn40] the zvar table. Because of its new terminology and new format requirements, this proposal did not move forward either.
+
+## Boring Expansion
+
+The Boring Expansion[^fn41] specification is a collection of changes and expansions to font formats. It addresses limitations that have existed for decades and adds desired features. Despite the breaking changes, the fonts are generally backward compatible. The Boring Expansion authors proposed these changes to the ISO OpenFontFormat[^fn42], and if accepted, will add them to the OpenType[^fn43] specification. We will focus on the proposed avar2 table changes.
+
+### Avar2 Proposal
+
+The avar2 table[^fn44] improves font variations by supporting cross-axis mapping between hidden and user-facing axes, higher order interpolation, and file size reductions. Google engineer Behdad Esfahbod originally devised the avar2 changes in 2017, formally proposed them in 2019, and demonstrated them in 2022. [Support](./support.mdx) for avar2 continues to grow.
+
+Avar2 is not a separate table; it refers to the avar table format 2. Designspace[^fn45] files have added support for avar2 mappings[^fn46] as well. On one hand, avar1 mappings only affect a single axis:
+
+```xml
+<axes>
+  <axis tag="wght" name="Weight" minimum="100" maximum="900" default="400">
+    <map input="110" output="120"/>
+    <map input="600" output="650"/>
+    <map input="800" output="780"/>
+  </axis>
+  <axis tag="wdth" name="Width" minimum="50" maximum="200" default="100">
+    <map input="70" output="75"/>
+    <map input="120" output="135"/>
+  </axis>
+</axes>
+```
+
+On the other hand, avar2 mappings can affect multiple axes on both input and output:
+
+```xml
+<mappings>
+  <mapping>
+    <input>
+      <dimension tag="AX_0" xvalue="800" />
+      <dimension tag="AX_1" xvalue="150" />
+      <dimension tag="AX_2" xvalue="75" />
+    </input>
+    <output>
+      <dimension tag="AX_0" xvalue="750" />
+      <dimension tag="AX_2" xvalue="140" />
+      <dimension tag="AX_4" xvalue="140" />
+    </output>
+  </mapping>
+</mappings>
+```
+
+While these examples are in XML, you can visualize them in the Fencer app[^fn47] and test their demos[^fn48].
+
+This website documents the new avar2 format, showcases avar2 features, and provides examples of how to implement avar2 in your own fonts. For more information on the other features, please see the Boring Expansion specification.
+
+## Conclusion
+
+Ultimately, multi-axis font families existed long before digital variable fonts. Avar2 is an important step forward in the digital OpenType format, enabling type designers to [enhance](./features.mdx) their fonts.
+
+[^fn1]: [https://learn.microsoft.com/en-us/typography/opentype/spec/](https://learn.microsoft.com/en-us/typography/opentype/spec/)
+
+[^fn2]: [https://medium.com/variable-fonts/https-medium-com-tiro-introducing-opentype-variable-fonts-12ba6cd2369](https://medium.com/variable-fonts/https-medium-com-tiro-introducing-opentype-variable-fonts-12ba6cd2369)
+
+[^fn3]: [https://blogs.loc.gov/bibliomania/2024/12/17/just-my-type-making-letters-at-the-type-foundry/](https://blogs.loc.gov/bibliomania/2024/12/17/just-my-type-making-letters-at-the-type-foundry/)
+
+[^fn4]: [https://www.loc.gov/collections/lessing-j-rosenwald/about-this-collection/](https://www.loc.gov/collections/lessing-j-rosenwald/about-this-collection/)
+
+[^fn5]: [https://www.aepm.eu/publications/conference-proceedings-2/safeguarding-intangible-heritage-passing-on-printing-techniques-to-future-generations/monotype-punchcutting/](https://www.aepm.eu/publications/conference-proceedings-2/safeguarding-intangible-heritage-passing-on-printing-techniques-to-future-generations/monotype-punchcutting/)
+
+[^fn6]: [https://thonyc.wordpress.com/2013/07/25/apelles-hiding-behind-the-painting/](https://thonyc.wordpress.com/2013/07/25/apelles-hiding-behind-the-painting/)
+
+[^fn7]: [https://historyofinformation.com/detail.php?id=1259](https://historyofinformation.com/detail.php?id=1259)
+
+[^fn8]: [http://www.designhistory.org/Type\\\_milestones\\\_pages/Panatograph.html](http://www.designhistory.org/Type\\_milestones\\_pages/Panatograph.html)
+
+[^fn9]: [https://www.aepm.eu/publications/conference-proceedings-2/safeguarding-intangible-heritage-passing-on-printing-techniques-to-future-generations/monotype-punchcutting/](https://www.aepm.eu/publications/conference-proceedings-2/safeguarding-intangible-heritage-passing-on-printing-techniques-to-future-generations/monotype-punchcutting/)
+
+[^fn10]: [https://www.dsource.in/course/digital-typography-1/phototypesetting](https://www.dsource.in/course/digital-typography-1/phototypesetting)
+
+[^fn11]: [https://graficnotes.blogspot.com/2017/01/phototypesetting.html](https://graficnotes.blogspot.com/2017/01/phototypesetting.html)
+
+[^fn12]: [https://pressinspection.com/2024/08/18/photocomposer/](https://pressinspection.com/2024/08/18/photocomposer/)
+
+[^fn13]: [https://www.youtube.com/watch?v=phT9fXtFjvM](https://www.youtube.com/watch?v=phT9fXtFjvM)
+
+[^fn14]: [https://fonts.google.com/knowledge/choosing\\\_type/choosing\\\_typefaces\\\_that\\\_have\\\_optical\\\_sizes](https://fonts.google.com/knowledge/choosing\\_type/choosing\\_typefaces\\_that\\_have\\_optical\\_sizes)
+
+[^fn15]: [https://vimeo.com/75532294](https://vimeo.com/75532294)
+
+[^fn16]: [https://www.historyofinformation.com/detail.php?id=5522](https://www.historyofinformation.com/detail.php?id=5522)
+
+[^fn17]: [https://www.fontmaster.nl/history.html](https://www.fontmaster.nl/history.html)
+
+[^fn18]: [https://www.slanted.de/story/type-essentials-for-graphic-designers-part-ii/](https://www.slanted.de/story/type-essentials-for-graphic-designers-part-ii/)
+
+[^fn19]: [https://www.typefaces.nl/Temporary/Downloads/Twitter/28042019/ATypI\\\_2004\\\_IK-FM.pdf](https://www.typefaces.nl/Temporary/Downloads/Twitter/28042019/ATypI\\_2004\\_IK-FM.pdf)
+
+[^fn20]: [https://simoncozens.github.io/fonts-and-layout/history.html](https://simoncozens.github.io/fonts-and-layout/history.html)
+
+[^fn21]: [https://archive.org/details/the-concept-of-metafont](https://archive.org/details/the-concept-of-metafont)
+
+[^fn22]: [https://simoncozens.github.io/fonts-and-layout/history.html](https://simoncozens.github.io/fonts-and-layout/history.html)
+
+[^fn23]: [https://www.prepressure.com/fonts/basics/multiple-master](https://www.prepressure.com/fonts/basics/multiple-master)
+
+[^fn24]: Font Naming Issues
+
+[^fn25]: [https://www.prepressure.com/fonts/basics/multiple-master](https://www.prepressure.com/fonts/basics/multiple-master)
+
+[^fn26]: [https://lwn.net/Articles/987176/](https://lwn.net/Articles/987176/)
+
+[^fn27]: [https://blog.typekit.com/2014/07/30/the-adobe-originals-silver-anniversary-story-how-the-originals-endured-in-an-ever-changing-industry/](https://blog.typekit.com/2014/07/30/the-adobe-originals-silver-anniversary-story-how-the-originals-endured-in-an-ever-changing-industry/)
+
+[^fn28]: [https://www.axis-praxis.org/blog/2016-11-14/6/article-gx-variations-a-typographic-revival](https://www.axis-praxis.org/blog/2016-11-14/6/article-gx-variations-a-typographic-revival)
+
+[^fn29]: [https://www.thomasphinney.com/tag/multiple-master/](https://www.thomasphinney.com/tag/multiple-master/)
+
+[^fn30]: [https://www.monotype.com/resources/articles/part-1-from-truetype-gx-to-variable-fonts](https://www.monotype.com/resources/articles/part-1-from-truetype-gx-to-variable-fonts)
+
+[^fn31]: [https://www.bzylman.com/font-creation](https://www.bzylman.com/font-creation)
+
+[^fn32]: [https://learn.microsoft.com/en-us/typography/opentype/otspec180/](https://learn.microsoft.com/en-us/typography/opentype/otspec180/)
+
+[^fn33]: [https://learn.microsoft.com/en-us/typography/opentype/spec/otvaroverview\\#introduction](https://learn.microsoft.com/en-us/typography/opentype/spec/otvaroverview\\#introduction)
+
+[^fn34]: [https://medium.com/variable-fonts/https-medium-com-tiro-introducing-opentype-variable-fonts-12ba6cd2369](https://medium.com/variable-fonts/https-medium-com-tiro-introducing-opentype-variable-fonts-12ba6cd2369)
+
+[^fn35]: [https://www.lucasfonts.com/learn/interpolation-theory](https://www.lucasfonts.com/learn/interpolation-theory)
+
+[^fn36]: [https://simoncozens.github.io/userspace-and-designspace/](https://simoncozens.github.io/userspace-and-designspace/)
+
+[^fn37]: [https://www.youtube.com/watch?v=j7unMVZOcaw](https://www.youtube.com/watch?v=j7unMVZOcaw)
+
+[^fn38]: [https://github.com/microsoft/OpenType-XVAR-proposal](https://github.com/microsoft/OpenType-XVAR-proposal)
+
+[^fn39]: [https://www.youtube.com/watch?v=j7unMVZOcaw](https://www.youtube.com/watch?v=j7unMVZOcaw)
+
+[^fn40]: [https://github.com/be5invis/OTVAR-ZVAR-Table](https://github.com/be5invis/OTVAR-ZVAR-Table)
+
+[^fn41]: [https://github.com/harfbuzz/boring-expansion-spec](https://github.com/harfbuzz/boring-expansion-spec)
+
+[^fn42]: [https://www.iso.org/standard/74461.html](https://www.iso.org/standard/74461.html)
+
+[^fn43]: [https://learn.microsoft.com/en-us/typography/opentype/spec/](https://learn.microsoft.com/en-us/typography/opentype/spec/)
+
+[^fn44]: [https://github.com/harfbuzz/boring-expansion-spec/blob/main/avar2.md](https://github.com/harfbuzz/boring-expansion-spec/blob/main/avar2.md)
+
+[^fn45]: [https://github.com/fonttools/fonttools/tree/main/Doc/source/designspaceLib](https://github.com/fonttools/fonttools/tree/main/Doc/source/designspaceLib)
+
+[^fn46]: [https://fonttools.readthedocs.io/en/latest/designspaceLib/xml.html\\#mappings-element](https://fonttools.readthedocs.io/en/latest/designspaceLib/xml.html\\#mappings-element)
+
+[^fn47]: [https://lorp.github.io/fencer/src/fencer.html](https://lorp.github.io/fencer/src/fencer.html)
+
+[^fn48]: [https://github.com/Lorp/fencer/tree/main/demos](https://github.com/Lorp/fencer/tree/main/demos)
+
+
+# Optical Size
+
+
+
+import Image from "next/image";
+import opticalSize from "../../public/static/images/bodoni-moda-optical-size.jpg";
+
+<figure>
+  <Image src={opticalSize} alt="Comparison of the extreme differences of optical sizes in the same font" />
+
+  <figcaption>
+    Both words use the same font—Bodoni Moda. The top word has an optical size
+    value of 96, while the bottom word has a value of 6.
+  </figcaption>
+</figure>
+
+One of the most important changes you can make to a font is its size. While less common today, type designers employed size-specific adjustments for metal type. When designing and punch cutting the metal type, refining the design for a different size was inherent to the process and free, so to speak. Later technologies like the Benton Pantograph allowed type designers to tweak the width, weight, and stroke of a font that originated from a single master to create optical sizes.
+
+Depending on the approach, adding an optical size or opsz axis may multiply the amount of work for type designers. For example, the traditional Multiple Master approach requires 81 masters[^fn1] for width, weight, and optical size. In variable fonts, you can use fewer masters if you are willing to interpolate areas of your designspace. For example, the variable font approach allows designing the bold and condensed masters and interpolating the deltas together for the condensed bold instance, without having to draw it. However, some type designers prefer to design the corners of the designspace for more control.
+
+## Avar2 “Cheap” Optical Size
+
+Similar to interpolating parts of the designspace, you can shortcut designing the optical size axis for sans serif fonts by using avar2. With avar2, you can map the optical size axis to control the weight and width axes. For example, you can make larger optical sizes lighter and more condensed, while you can make smaller optical sizes look bolder and more expanded. This method works best for fonts with low to no contrast.
+
+Here is an example avar2 mapping for a virtual optical size axis:
+
+```xml
+<?xml version='1.0' encoding='UTF-8'?>
+<designspace format="5.2">
+  <axes>
+    <axis tag="wght" name="Weight" minimum="1" maximum="1000" default="400"/>
+    <axis tag="wdth" name="Width" minimum="50" maximum="150" default="100"/>
+    <axis tag="opsz" name="Optical size" minimum="6" maximum="144" default="16"/>
+    <mappings>
+      <mapping>
+        <input>
+          <dimension name="Optical size" xvalue="6"/>
+          <dimension name="Weight" xvalue="400"/>
+          <dimension name="Width" xvalue="100"/>
+        </input>
+        <output>
+          <dimension name="Weight" xvalue="500"/>
+          <dimension name="Width" xvalue="115"/>
+        </output>
+      </mapping>
+      <mapping>
+        <input>
+          <dimension name="Optical size" xvalue="144"/>
+          <dimension name="Weight" xvalue="400"/>
+          <dimension name="Width" xvalue="100"/>
+        </input>
+        <output>
+          <dimension name="Weight" xvalue="300"/>
+          <dimension name="Width" xvalue="85"/>
+        </output>
+      </mapping>
+    </mappings>
+  </axes>
+</designspace>
+```
+
+Depending on your type design app, you may need a custom script to fix[^fn2] the optical size bounds. Finally, the Python3 library fontTools can merge[^fn3] your designspace definitions into your font with a post-build script, if your type design app does not yet support avar2.
+
+## True Optical Size
+
+For learning more about optical size, the best option is to read Tim Ahren’s *Size-specific Adjustments to Type Designs* book[^fn4]. True optical size has more refinements than just width and weight, especially for serif fonts. Or, if you prefer a high-level overview, Simon’s “Measuring Optical Sizes” article[^fn5] summarizes and compares the attributes across open-source fonts.
+
+[Parametric fonts](./parametric-fonts.mdx) can also use avar2 to map their internal axes to an optical size axis, giving a higher quality result with fewer masters.
+
+[^fn1]: [https://lwn.net/Articles/987176/](https://lwn.net/Articles/987176/)
+
+[^fn2]: [https://github.com/googlefonts/how2avar2/blob/main/scripts/fix-axis-bounds.py](https://github.com/googlefonts/how2avar2/blob/main/scripts/fix-axis-bounds.py)
+
+[^fn3]: [https://github.com/googlefonts/how2avar2/blob/main/Makefile](https://github.com/googlefonts/how2avar2/blob/main/Makefile)
+
+[^fn4]: [https://justanotherfoundry.com/size-specific-adjustments-to-type-designs](https://justanotherfoundry.com/size-specific-adjustments-to-type-designs)
+
+[^fn5]: [https://simoncozens.github.io/optical-size/](https://simoncozens.github.io/optical-size/)
+
+
+# Parametric Fonts
+
+
+
+import Image from "next/image";
+import xtra from "../../public/static/images/localhost_4321_xtra.png";
+import yopq from "../../public/static/images/localhost_4321_yopq.png";
+import xopq from "../../public/static/images/localhost_4321_xopq.png";
+
+Parametric fonts benefit the most from the new avar2 features. Before we dive into the features, let’s learn more about what a parametric font actually is. According to the Google Fonts knowledge glossary[^fn1], “A parametric font is a variable font where one or more of its axes are parametric axes.”
+
+Let’s try that again. A parametric font has axes that control different aspects of the font. Essential parametric axes control the stroke widths and counter widths. Type designers can scope parametric axes to lowercase or uppercase letters, or even a single letter. Parametric axes can control a single feature like ink traps or roundness. You can use existing conventions to define parametric axes or create your own.
+
+Why would you choose parametric variable fonts over Multiple Master or traditional variable font designs? Let’s focus on the benefits for the type designer. First, you do not need as many masters to create a parametric font family with an optical size axis. Second, parametric fonts easily adapt to client requests for lighter fonts, thinner fonts, etc. Third, parametric fonts can mimic other fonts; for example, you can adjust the parameters if your client requests your font look more like Roboto. Fourth, it is possible to have a different font style for the text size versus the cinema size in the optical size axis. Fifth, you have a much larger and expressive designspace for users to pick from, while having a small file size.
+
+While parametric fonts have many benefits, there are some downsides too. First, there aren’t many parametric fonts or type designers who create them. The limited community makes support difficult if you run into problems with your font. Second, with dozens of axes, it can take time to get into the headspace to understand and modify parametric fonts or understand the designspace and how the axes interpolate together. Third, some axes like SPAC or GRAD require Python3 scripting to be generated. Fourth, support for parametric font technologies is in development, so some environments may not support the fonts yet. Depending on the font, Python3 scripting may be able to generate avar1 fallback fonts. Fifth, generating fonts from parameters can make them look more mechanical and less natural than a static font revival, especially when designing masters.
+
+## Parametric Fonts with Avar2
+
+Now that we understand more about what a parametric font is, let’s dive into how avar2 features benefit parametric fonts.
+
+First, parametric fonts benefit from cross-axis mapping. Cross-axis mapping allows parametric fonts to expose common user axes like width, weight, and optical size, while using parametric axes internally. Previously, these axes had to be blended together to generate duplicate masters for avar1 interpolation. With avar2, type designers can remove these duplicate blended masters.
+
+Second, parametric axes benefit from reduced file sizes. Not only can parametric fonts avoid duplicated blended masters, but masters that use deltas to only move points in a single direction are also very small. In fact, even if you have dozens of axes and masters in parametric fonts, they can still end up being smaller than traditional fonts by grouping these singular movements together.
+
+Third, parametric axes benefit from designspace fences. When areas of the designspace appear ugly or broken in variable fonts, avar2 allows type designers to restrict users from accessing them. With dozens of axes, it is no surprise that some areas of the designspace do not meet the type designer’s standards. Using avar2 to fence off those areas and prevent users from accessing them is very helpful when using parametric variable fonts.
+
+## Parametric Axes
+
+Time for a quiz show: which of these four-letter abbreviations are parametric axes and which are Pokémon?
+
+`ABRA`, `BARS`, `BDSZ`, `GRAD`, `JCTN`, `NATU`, `ONIX`, `OPNA`, `opsz`, `ROND`, `slnt`, `SPAC`, `STLI`, `STLO`, `STUI`, `STUO`, `UXIE`, `VANG`, `VROT`, `WDSP`, `wdth`, `wght`, `XATU`, `XHGT`, `XOFI`, `XOLC`, `XOPQ`, `XOUC`, `XTFI`, `XTLC`, `XTRA`, `XTSP`, `XTTW`, `XTUC`, `XTUD`, `XTUR`, `YOFI`, `YOLB`, `YOLC`, `YOPE`, `YOPQ`, `YOUC`, `YTAS`, `YTDE`, `YTFI`, `YTLC`, `YTOS`, `YTTL`, `YTUC`
+
+The Pokémon are:
+
+`ABRA`, `NATU`, `ONIX`, `UXIE`, `XATU`
+
+It’s so easy to feel overwhelmed by this list. Instead, just focus on these three axes:
+
+<figure>
+  <Image src={xtra} alt="Range of the XTRA axis shown by the letter H" />
+
+  <figcaption>
+    `XTRA`
+
+     Parametric Counter Width
+  </figcaption>
+</figure>
+
+<figure>
+  <Image src={yopq} alt="Range of the YOPQ axis shown by the letter H" />
+
+  <figcaption>
+    `YOPQ`
+
+     Parametric Thin Stroke
+  </figcaption>
+</figure>
+
+<figure>
+  <Image src={xopq} alt="Range of the XOPQ axis shown by the letter H" />
+
+  <figcaption>
+    `XOPQ`
+
+     Parametric Thick Stroke
+  </figcaption>
+</figure>
+
+I recommend these three axes when you start designing a parametric font. All the other axes are optional. You can stick with the main axes, or you can scope them to lowercase letters, ascenders, ink traps, etc. Remember, the main takeaway is that a parametric axis controls some aspect of the font.
+
+When you are ready to learn more axes, continue[^fn2] with `YTUC`, `YTLC`, `YTAS`, `YTDE`, and `YTFI`. Finally, explore Type Network’s Variation Guide[^fn3] when you are no longer afraid of four-letter acronyms.
+
+You can create and name your own custom parametric axes. Just remember, custom axis tags must start with an uppercase letter, use only uppercase letters or numbers, and be exactly four characters long.
+
+With these parametric axes and avar2, you can build common user-facing axes like width, weight, and optical size that are derived from your combinations of parametric axes.
+
+## Approaches
+
+### David Berlow
+
+David Berlow is the godfather of variable fonts and pioneered the technique. For a deeper dive, watch his conference talks about parametric fonts on YouTube. His approach uses dozens of fine-grained axes to create parametric fonts. David has documented the axes he uses in Type Network’s Variation Guide[^fn4]; you can see the actual masters in the sources of fonts like Roboto Flex[^fn5]. For reference, univars are sources that only cover single-axis extremes, duovars dual-axis extremes, and so on. With parametric fonts, it is best to stick with univars when possible. Often, designspace fences restrict ugly or broken areas. By using many axes, the font is extremely expressive, and designers can select options that are normally the purview of the type designer.
+
+### Marc Foley
+
+Marc Foley updated the Crispy font[^fn6] to use avar2 and employs his own techniques for designing parametric fonts. Rather than having dozens of axes, Marc focuses only on the `XTRA`, `YOPQ`, and `XOPQ` axes. He uses eight masters at the corners of the designspace. This approach requires drawing more corner masters rather than interpolating them; more masters means a larger file size. However, drawing the corner masters ensures that all the designspace interpolates well; good interpolation means no need for designspace fences.
+
+### Conclusion
+
+There is no right or wrong approach to parametric variable fonts. Use whichever method works best for you, or create your own.
+
+[^fn1]: [https://fonts.google.com/knowledge/glossary/parametric\\\_font](https://fonts.google.com/knowledge/glossary/parametric\\_font)
+
+[^fn2]: [https://fonts.google.com/knowledge/using\\\_type/introducing\\\_parametric\\\_axes](https://fonts.google.com/knowledge/using\\_type/introducing\\_parametric\\_axes)
+
+[^fn3]: [https://variationsguide.typenetwork.com/](https://variationsguide.typenetwork.com/)
+
+[^fn4]: [https://variationsguide.typenetwork.com/](https://variationsguide.typenetwork.com/)
+
+[^fn5]: [https://github.com/googlefonts/roboto-flex/tree/main/sources/1A-drawings/Parametric%20Axes](https://github.com/googlefonts/roboto-flex/tree/main/sources/1A-drawings/Parametric%20Axes)
+
+[^fn6]: [https://github.com/agyeiagyeiagyei/Crispy](https://github.com/agyeiagyeiagyei/Crispy)
+
+
+# Sponsorship
+
+
+
+This project has two goals:
+
+1. Create test fonts for the Chrome implementation
+2. Document the steps for type designers to use avar2 in their fonts
+
+By spearheading avar2, Google Fonts achieves its motto of “Beautiful text, Google scale” and reflects its values of Compression, Expression, Automation, and Animation.
+
+
+# Support
+
+
+
+## Key
+
+* ✅ Supported
+* ⚠️ Planned or in progress
+* ❌ Unsupported
+
+## Operating Systems
+
+* ✅ [MacOS](https://lwn.net/Articles/987176/)
+* ❌ Windows
+* ⚠️ [Linux](https://lwn.net/Articles/987176/) (supported in HarfBuzz)
+
+## Browsers
+
+* ✅ [CSS tech()](https://github.com/w3c/csswg-drafts/issues/10599)
+* ⚠️ Chrome (in-progress)
+* ⚠️ Edge (based on Chromium)
+* ⚠️ Firefox (depends on the operating system)
+* ✅ [Safari](https://lwn.net/Articles/987176/)
+
+## Font Editors
+
+* ✅ [Fontra](https://docs.fontra.xyz/reference/menu/font/cross-axis-mapping)
+* ❌ Glyphs
+* ❌ Robofont
+* ❌ Fontlab
+
+The Python3 [fontTools](https://github.com/fonttools/fonttools) library supports avar2 and can programmatically add an avar2 table from a designspace file after you’ve exported your font from your design tool.
+
+## Are we ready for avar2?
+
+*Not yet*. But, the future of avar2 is promising with support planned or in progress. It’s a good time to test avar2 in your fonts. Because font development takes months or years, learning about the upcoming features now can inform your future font designs and implementations.
