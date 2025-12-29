@@ -15,7 +15,6 @@ export default function Layout({ children }: LayoutProps<"/">) {
       <body className="flex flex-col min-h-screen">
         <RootProvider
           search={{
-            enabled: false,
             options: {
               type: "static",
             },

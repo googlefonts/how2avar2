@@ -28,6 +28,7 @@ export default function DefaultSearchDialog(props: SharedProps) {
     type: "static",
     initOrama,
     locale,
+    from: "/how2avar2/api/search",
   });
 
   return (
