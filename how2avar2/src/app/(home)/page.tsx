@@ -28,6 +28,7 @@ export default function HomePage() {
         </div>
         <figure>
           <Image
+            loading="eager"
             src={sophiaSans}
             alt="2d graph visualization of the designspace of Sophia Sans with distortions"
           />
