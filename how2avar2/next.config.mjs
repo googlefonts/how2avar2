@@ -7,6 +7,8 @@ const config = {
   reactStrictMode: true,
   output: "export",
   trailingSlash: true,
+  basePath: "/how2avar2",
+  images: { unoptimized: true },
 };
 
 export default withMDX(config);

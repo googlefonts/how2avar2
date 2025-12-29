@@ -50,5 +50,6 @@ export async function generateMetadata(
     openGraph: {
       images: getPageImage(page).url,
     },
+    metadataBase: new URL("https://googlefonts.github.io/how2avar2"),
   };
 }
