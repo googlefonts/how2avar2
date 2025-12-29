@@ -254,6 +254,12 @@ The order of the mappings within the XML code does not matter. Finally, if you h
 
 The Python3 library fontTools can merge[^fn3] your designspace definitions into your font with a post-build script, if your type design app does not yet support avar2.
 
+## Screencast
+
+<div className="embed-container">
+  <iframe src="https://www.youtube.com/embed/mVV9t_3Q5cQ" frameBorder="0" allowFullScreen />
+</div>
+
 [^fn1]: [https://github.com/googlefonts/roboto-flex](https://github.com/googlefonts/roboto-flex)
 
 [^fn2]: [https://github.com/Lorp/fencer](https://github.com/Lorp/fencer)
@@ -751,6 +757,12 @@ Depending on your type design app, you may need a custom script to fix[^fn2] the
 For learning more about optical size, the best option is to read Tim Ahren’s *Size-specific Adjustments to Type Designs* book[^fn4]. True optical size has more refinements than just width and weight, especially for serif fonts. Or, if you prefer a high-level overview, Simon’s “Measuring Optical Sizes” article[^fn5] summarizes and compares the attributes across open-source fonts.
 
 [Parametric fonts](./parametric-fonts.mdx) can also use avar2 to map their internal axes to an optical size axis, giving a higher quality result with fewer masters.
+
+## Screencast
+
+<div className="embed-container">
+  <iframe src="https://www.youtube.com/embed/NfIruX9H-F8" frameBorder="0" allowFullScreen />
+</div>
 
 [^fn1]: [https://lwn.net/Articles/987176/](https://lwn.net/Articles/987176/)
 
