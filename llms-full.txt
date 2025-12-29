@@ -321,7 +321,7 @@ To implement cubic interpolation, type designers must add a third axis with mast
 
 For an example of how to implement quadratic rotation, visit the demo font[^fn2] in this GitHub repository, and review the build script[^fn3]. The ArrowType font foundry provides more examples in its HOI-test[^fn4] repository. Also, there are scripts for HOI written for FontForge[^fn5], Fontra, and RoboFont[^fn6].
 
-If you are hoping to create animations with axes like Flow similar to the Underware font foundry, you will have to write the scripts yourself. None of Underware’s implementations is open-source.
+If you are hoping to create animations with axes like Flow similar to the Underware font foundry, you will have to write the scripts yourself. None of Underware’s implementations are open-source.
 
 [^fn1]: [https://underware.nl/case-studies/hoi/](https://underware.nl/case-studies/hoi/)
 
