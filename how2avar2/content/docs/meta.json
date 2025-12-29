@@ -1,0 +1,15 @@
+{
+  "title": "Display Name",
+  "pages": [
+    "features",
+    "support",
+    "history",
+    "designspace-distortion",
+    "parametric-fonts",
+    "optical-size",
+    "higher-order-interpolation",
+    "fences",
+    "sponsorship"
+  ],
+  "root": true
+}

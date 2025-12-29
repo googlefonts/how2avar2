@@ -1,0 +1,82 @@
+---
+title: Designspace Distortion
+description: Support axis interdependence for better interpolation to accurately match the type designer’s intentions and remove duplicated axes.
+---
+
+import Image from "next/image";
+import notFound from "../../public/static/images/fonts.google.com_notfound.png";
+import linearInterpolation from "../../public/static/images/localhost_4321_no-avar.png";
+import opticalInterpolation from "../../public/static/images/localhost_4321_avar.png";
+import sophiaSans from "../../public/static/images/sophia-sans.png";
+
+## Designspace Mapping to Userspace
+
+Avar1 supports[^fn1] mapping values from the designspace to the userspace. The designspace is the range between the two extremes of an axis, e.g. light and bold weights. The designspace coordinates can be set to any values the type designer chooses. For example, many type designers select the letters’ stem width as the values for the weight axis in their designspace. However, websites and applications have expectations that the Regular weight is 400, Bold is 700, etc. Type designers use the avar1 table to map the userspace values, like 400 and 700, to designspace values in their source files.
+
+## Axis Distortions
+
+Variable fonts use linear interpolation for their axes by default.
+
+<figure>
+  <Image
+    src={linearInterpolation}
+    alt="Poor linear interpolation of the letter H"
+  />
+  <figcaption>Linear Interpolation</figcaption>
+</figure>
+
+However, linear interpolation is often undesirable[^fn2]. For weight, optical interpolation means that the bolder the weight, the greater the change in boldness. Conversely, the lighter the weight, the smaller the change in boldness.
+
+<figure>
+  <Image
+    src={opticalInterpolation}
+    alt="Improved optical interpolation of the letter H"
+  />
+  <figcaption>Optical Interpolation</figcaption>
+</figure>
+
+Type designers use the avar1 table to define how an axis should interpolate across the designspace.
+
+## Avar1 Limitations
+
+While the avar1 table is perfect for fonts with a single axis, it becomes problematic in fonts with more than one axis. For example, when you have width and weight, you may want the change in weight to interpolate differently based on the width. Also, you may need special treatment for the condensed bold weights. For the best interpolation resolutions, axes need to interact[^fn3] and be interdependent with each other. Unfortunately, this is not possible with avar1.
+
+## Real-world Examples
+
+### Sophia Sans
+
+The Sophia Sans[^fn4] font family has weight and width axes. The type designers chose specific points in the designspace for each named instance, like ExtraCondensedBold or SemiCondensedLight. However, when it came time to make a variable font, it was not possible to map those named instances to points that would interpolate on both axes.
+
+As a workaround, the type designers split the font into four variable fonts, so they could align the weight axis specifically for each width. With avar2, the type designers no longer need to split the font, and they can set the distortions directly in the avar2 table.
+
+<figure>
+  <Image
+    src={sophiaSans}
+    alt="2d graph visualization of the designspace of Sophia Sans with distortions"
+  />
+  <figcaption>
+    Visualization of the designspace distortions in Sophia Sans
+  </figcaption>
+</figure>
+
+### Calibre
+
+Luc(as) de Groot[^fn5] designed the Calibre font family. Microsoft commissioned him to add optical sizes to his font family for the regular weight. Ideally, he would add two additional masters. However, with variable fonts, those optical size masters and their deltas affected the interpolation of his existing designspace. Without avar2, the designspace must be orthogonal, and the only solution was to duplicate 16 masters—“outch”!
+
+<figure>
+  <Image src={notFound} alt="Designspace comparisons for Calibre" />
+  <figcaption>
+    Slide from Luc(as) de Groot’s
+    [presentation](https://youtu.be/I75Efo7whrs?si=khc_KlgFL3_hGJEm&t=2320)
+    overlaying the duplicate axes of the orthogonal designspace overtop the
+    designspace he was trying to implement.
+  </figcaption>
+</figure>
+
+With avar2, he can distort the designspace to be non-orthogonal with the points converging towards the optical size masters; full design control without data duplication.
+
+[^fn1]: https://simoncozens.github.io/userspace-and-designspace/
+[^fn2]: https://www.lucasfonts.com/learn/interpolation-theory
+[^fn3]: https://www.youtube.com/watch?v=j7unMVZOcaw
+[^fn4]: https://github.com/lettersoup/Sofia-Sans
+[^fn5]: https://www.youtube.com/watch?v=I75Efo7whrs

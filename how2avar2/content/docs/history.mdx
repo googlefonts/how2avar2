@@ -1,0 +1,311 @@
+---
+title: History
+description: To better understand avar2, we need to learn more about the history and evolution of variable fonts.
+---
+
+import Image from "next/image";
+import notFound from "../../public/static/images/fonts.google.com_notfound.png";
+import calligraphy from "../../public/static/images/English_-_Rochester_Bible_-_Walters_W18_-_Reverse_Detail.jpg";
+import punchCutting from "../../public/static/images/punch-and-matrix-e1733771960396.jpg";
+import metafont from "../../public/static/images/cmr10_capR_contour_wo_cull.png";
+import mm from "../../public/static/images/localhost_4321_mm-regular.png";
+import gx from "../../public/static/images/localhost_4321_gx-regular.png";
+import linearInterpolation from "../../public/static/images/localhost_4321_no-avar.png";
+import opticalInterpolation from "../../public/static/images/localhost_4321_avar.png";
+
+Avar2 extends the OpenType[^fn1] format for variable fonts[^fn2]. To better understand avar2, we need to learn more about the history and evolution of variable fonts.
+
+While we focus on the pieces related to variable fonts, I encourage you to read additional articles and books to learn more about other aspects of type design history, such as the foundations of calligraphy, the making of metal type, phototypesetting, and more.
+
+## Calligraphy
+
+<figure>
+  <Image
+    src={calligraphy}
+    alt="Beautiful example of medieval biblical calligraphy"
+  />
+  <figcaption>
+    This leaf from the Rochester Bible circa 1135AD is a beautiful example of
+    calligraphy in multiple styles, colors, sizes, and layouts.
+  </figcaption>
+</figure>
+
+Type design originated from calligraphy. Unlike type designers, calligraphers have full control over the size, spacing, and shape of every letter. Although calligraphers draw each letter with slight differences, they have full control over the entire layout and design. Even today, OpenType fonts can only try to mimic the art of calligraphy and lettering styles.
+
+## Punch Cutting
+
+<figure>
+  <Image src={punchCutting} alt="The instruments of metal type design" />
+  <figcaption>
+    A steel punch and the copper matrix from the Library of Congress’[^fn3]
+    Rosenwald Collection[^fn4].
+  </figcaption>
+</figure>
+
+For centuries[^fn5], type designers worked with punch cutters to create metal type. The design of metal type mimicked calligraphy to ease the transition to printing, while still being familiar to readers. Because the craftsmen created each metal letter in a specific size, weight, and style, they fine-tuned each letter for its particular use. Punch cutters often improved type designers’ original drawings for small sizes and printing.
+
+## The Pantograph
+
+<figure>
+  <Image src={notFound} alt="The first recorded diagram of a pantograph" />
+  <figcaption>
+    A diagram of Christopher Scheiner’s pantograph,
+    [provided](https://thonyc.wordpress.com/2013/07/25/apelles-hiding-behind-the-painting/)
+    by Thony Christie and The Renaissance Mathematicus.
+  </figcaption>
+</figure>
+
+Christopher Scheiner[^fn6] was a Catholic German Jesuit priest, physicist, and astronomer. In 1603, he invented the first copying machine, which he coined the pantograph[^fn7]. By tracing the original composition with a pen, the machine would mirror the movements with a second pen to create a copy.
+
+<figure>
+  <Image src={notFound} alt="An image of the large Benton Pantograph model" />
+  <figcaption>
+    A photo of the Benton Pantograph,
+    [provided](https://swamppress.com/benton-matrix-engraving.htmlhttps://swamppress.com/benton-matrix-engraving.html)
+    by Ed Rayher and Swamp Press.
+  </figcaption>
+</figure>
+
+Linn Boyd Benton was an American typeface designer and inventor. In 1884, he invented the Benton Pantograph[^fn8], which traced large type design drawings and engraved matrices for metal type for printing. While the invention revolutionized type design and made the skill of the punch cutter obsolete[^fn9], it was difficult to predict how a letter would look in small sizes.
+
+The pantograph did more than just trace a letter. It could change the size of the letter. It could compress or expand the width and height of the letter. It could slant the letter at an angle. Depending on the engraving tip, the pantograph could give the letter a stroke to make it slightly bolder. Type designers used the pantograph to create font families from a single source for most letters. Eventually, hot metal type took over by automatically casting and typesetting new metal type for each print job.
+
+## Phototypesetting
+
+<figure>
+  <Image
+    src={notFound}
+    alt="An image of the Akzidenz-Grotesk disc for phototypesetting"
+  />
+  <figcaption>
+    A photo of the Akzidenz-Grotesk disc used in phototypesetting,
+    [provided](https://blog.sbb.berlin/filmreihe/) by Dr. Christian Mathieu,
+    Kerstin Wallbach, Dr. Dan Reynolds and the Berlin State Library.
+  </figcaption>
+</figure>
+
+For a short period, phototypesetting[^fn10], or cold type, was faster, cheaper, and offered more options. Its smaller size meant it could fit in offices[^fn11]. Phototypesetting[^fn12] projected light through letters onto photosensitive paper, which was used in offset printing[^fn13]. Early machines stored letters on font discs or filmstrips; they came in multiple styles, like italic and bold. Lenses were used to change the size of fonts. Later, Cathode Ray Tube (CRT) and Laser typesetting stored fonts as digital data on floppy discs and offered a continuous range of font sizes. Phototypesetting saved money and time by avoiding size-specific adjustments in fonts[^fn14]. Similar to the pantograph, phototypesetters could transform fonts, such as creating fake italics[^fn15]. Shortly afterwards, digital type design took over.
+
+## Ikarus
+
+<figure>
+  <Image
+    src={notFound}
+    alt="Screenshot of the Ikarus system, which still works on UNIX"
+  />
+  <figcaption>
+    Screenshot of the Ikarus system,
+    [provided](https://www.fontmaster.nl/history.html) by the Dutch Type
+    Library.
+  </figcaption>
+</figure>
+
+In 1972[^fn16], Dr. Peter Karow[^fn17], co-founder of the URW company in Germany[^fn18], developed the Ikarus system and format. Ikarus contributed many advancements to digital font technology[^fn19].
+
+Ikarus was the first industry standard for digital font data, based on curves instead of pixels. In addition, it could interpolate between light and bold letters with the same number of points. Ikarus could also use “antiquing[^fn20]” to add effects like shadows, outlines, and distortions.
+
+## Metafont
+
+<figure>
+  <Image src={metafont} alt="Screenshot of Metafont showing Bézier curves" />
+  <figcaption>
+    Metafont letter R
+    [provided](https://github.com/mf2vec-dev/mf2ff/blob/main/img/examples/cmr10/cmr10_capR_contour_wo_cull.png)
+    from the mf2ff GitHub repository.
+  </figcaption>
+</figure>
+
+Also in 1972, Dr. Don Knuth, a Stanford University professor, developed Metafont[^fn21]. Rather than defining a letter using its shapes and outlines, he used computer code to change letters depending on the input design parameters. By writing these instructions, it is possible to generate many variations from a single letter specification. The goal is that the letter will adapt to the inputs appropriately according to the equations in the code.
+
+Unfortunately, Metafont failed[^fn22] to become mainstream since it required artists to become computer programmers and mathematicians as well. In addition, Metafont operated on the assumption that letters have skeletal forms that are filled out by pen strokes, which is not the case for all fonts. Nonetheless, Metafont’s concepts apply to modern parametric fonts and variable fonts.
+
+## Adobe Multiple Master (MM)
+
+<figure>
+  <Image
+    src={mm}
+    alt="Designspace visualized by a grid, with each cell containing the letter H"
+  />
+  <figcaption>
+    Multiple Master example where the red and blue letters are masters in the
+    extremes of the designspace that the type designer draws.
+  </figcaption>
+</figure>
+
+In 1991, Adobe announced Multiple Master fonts as an extension of its PostScript font format. Similar to Ikarus, Multiple Master fonts interpolate between masters. By drawing masters at the extremes of the designspace, type designers and their customers can interpolate between them using Multiple Master technology.
+
+For example, a Multiple Master font may have two masters, one for the light weight and another for the bold weight. These masters are at the two extremes of the weight axis. Everything in between is the designspace. Using interpolation, the computer could average them together to create any desired weight (e.g. instances such as Regular, Medium, Semi-bold) in between the extremes. Multiple Master fonts never caught on for several reasons.
+
+First, the font instances usually had to be generated from the masters using a separate application[^fn23], like Adobe Type Manager. These generated fonts often had the axis values embedded in their filenames[^fn24] (e.g. GaramMM Bol_700 wt 470 wd 24 op). During the Font Wars, Apple and Microsoft developed their own TrueType fonts as an alternative to Adobe’s PostScript fonts. As a result, computer operating systems never fully supported Multiple Master PostScript fonts.
+
+Second, Multiple Master fonts required a master to be designed for each corner or extreme of the designspace. For each axis in the design, the number of masters has to be squared, also known as the n^2^ problem. For a font with weight and width axes, Multiple Master fonts required 4 masters (or, if including the regular weight, 9 masters). The maximum[^fn25] number of masters was 16, limiting the number of axes to 4. Today, designers may end up with 81 masters[^fn26] (3^2^^2^), if they use this approach to design masters for the regular weight and all corners of their designspace for width, weight, and optical size axes.
+
+Ultimately, as the Font Wars ended, Adobe focused on its collaboration with Microsoft on OpenType fonts. The complexity of Multiple Master fonts meant that including them in the OpenType specification would hinder OpenType font adoption[^fn27]. Outside of Adobe’s apps, developers rarely used Multiple Master technology, as third-party app competition limited Adobe’s outreach. With low adoption of Multiple Master fonts, Adobe eventually deprecated and abandoned the format to focus on other technologies.
+
+## Apple TrueType GX
+
+<figure>
+  <Image
+    src={gx}
+    alt="Designspace visualized by a grid, with each cell containing the letter H"
+  />
+  <figcaption>
+    Variable font example where the red and blue letters are masters that the
+    type designer draws, while the green letters are masters that the computer
+    automatically generates with interpolations.
+  </figcaption>
+</figure>
+
+In 1991, Apple introduced TrueType GX variations as part of its overhaul[^fn28] of the Mac graphics system. While Apple developed TrueType GX fonts independently[^fn29] at the same time as Adobe’s Multiple Master fonts, Apple used a different approach.
+
+First, there was no limit on the number of masters or axes. Type designers could choose any number and type of axes they wanted, so long as they were interpolable.
+
+Second, the interpolations were based on deltas[^fn30], which are the mathematical instructions of where to move the glyph outline’s points relative to the base glyph. The font stored a single set of base glyph outlines and the deltas of the other masters. For example, the font may store the light weight’s glyphs, and the deltas of where to move the points for the bold weight. By using deltas, type designers no longer had to design all the corners of a designspace, and the font’s file size was smaller. Given separate condensed and bold versions of a font, TrueType GX could automatically interpolate the condensed bold version. Unlike Multiple Master fonts, type designers did not need to draw and include a condensed bold master. Potentially, this approach would reduce the workload to create font families and save type designers time and money.
+
+Ultimately, Apple’s TrueType GX technology never caught on. Since TrueType GX was Mac-only, developers were worried about compatibility and concerned that their apps would become Mac-only. Implementing the technology in apps would have also required rewriting code. Some apps, like Adobe, had competing alternatives. Finally, type design apps never supported the format. Though later rebranded[^fn31] as Apple Advanced Typography, the technology did not catch on because of low usage.
+
+## OpenType Variable Fonts (VF)
+
+In 2016, Microsoft announced OpenType 1.8[^fn32], which added support for variable fonts. Variable fonts are also called font variations. The technology behind OpenType variable fonts is based[^fn33] on Apple’s TrueType GX. Although the underlying implementation and tables changed from Apple’s TrueType GX technology, many of the fundamental ideas remain the same.
+
+In particular, OpenType variable fonts interpolate with deltas instead of masters. By using deltas, it is possible to interpolate the extremes of a designspace, rather than having to draw them by hand. Type designers can add intermediate masters and switch shapes for fine-grained control. In addition, deltas are significantly smaller than the equivalent static fonts, allowing them to load significantly faster on the web. These benefits for the web and the collaboration of major companies and type foundries propelled[^fn34] OpenType variable fonts to success with wide support.
+
+## Avar1 and its Limitations
+
+When designing a variable font, axes interpolate linearly by default.
+
+<figure>
+  <Image
+    src={linearInterpolation}
+    alt="Poor linear interpolation of the letter H"
+  />
+  <figcaption>Linear Interpolation</figcaption>
+</figure>
+
+However, linear interpolation is often undesirable[^fn35]. For weight, optical interpolation means that the bolder the weight, the greater the change in boldness. Conversely, the lighter the weight, the smaller the change in boldness. Notice how the bold weights blend together in linear interpolation, while noticeably growing bolder in the optical interpolation.
+
+<figure>
+  <Image
+    src={opticalInterpolation}
+    alt="Improved optical interpolation of the letter H"
+  />
+  <figcaption>Optical Interpolation</figcaption>
+</figure>
+
+The Axis Variations Table, or avar table, is the optional table for variable fonts to define how an axis interpolates across its designspace.
+
+In addition, avar1 supports[^fn36] mapping the designspace to the userspace. The most common example is when type designers base the weight axis in the designspace on the letters’ stem width, while exposing common units like 400 Regular or 700 Bold to the userspace for website styling and desktop applications.
+
+While the avar1 table is perfect for fonts with a single axis, it becomes problematic for fonts with more than one axis. When you have width and weight, you may want the change in weight to interpolate differently based on the width. For example, you may need special treatment for the condensed bold weights. For the best interpolation resolutions, axes need to interact[^fn37] and be interdependent with each other. Unfortunately, that is not possible with avar1.
+
+## Previous Proposals
+
+Although the limitations of the avar1 table were known before variable fonts were released, subsequent proposals failed to add support. All proposals, including Avar2, use OpenType Variations math.
+
+### XVAR
+
+In 2016, Microsoft engineer Rob McKaughan proposed[^fn38] the xvar table. It introduced a major new table format, which would have required significant effort to implement[^fn39]. Without demo fonts or implementations, this proposal did not move forward.
+
+### ZVAR
+
+In 2018, Microsoft engineer Renzhi Li proposed[^fn40] the zvar table. Because of its new terminology and new format requirements, this proposal did not move forward either.
+
+## Boring Expansion
+
+The Boring Expansion[^fn41] specification is a collection of changes and expansions to font formats. It addresses limitations that have existed for decades and adds desired features. Despite the breaking changes, the fonts are generally backward compatible. The Boring Expansion authors proposed these changes to the ISO OpenFontFormat[^fn42], and if accepted, will add them to the OpenType[^fn43] specification. We will focus on the proposed avar2 table changes.
+
+### Avar2 Proposal
+
+The avar2 table[^fn44] improves font variations by supporting cross-axis mapping between hidden and user-facing axes, higher order interpolation, and file size reductions. Google engineer Behdad Esfahbod originally devised the avar2 changes in 2017, formally proposed them in 2019, and demonstrated them in 2022. [Support](./support.mdx) for avar2 continues to grow.
+
+Avar2 is not a separate table; it refers to the avar table format 2. Designspace[^fn45] files have added support for avar2 mappings[^fn46] as well. On one hand, avar1 mappings only affect a single axis:
+
+```xml
+<axes>
+  <axis tag="wght" name="Weight" minimum="100" maximum="900" default="400">
+    <map input="110" output="120"/>
+    <map input="600" output="650"/>
+    <map input="800" output="780"/>
+  </axis>
+  <axis tag="wdth" name="Width" minimum="50" maximum="200" default="100">
+    <map input="70" output="75"/>
+    <map input="120" output="135"/>
+  </axis>
+</axes>
+```
+
+On the other hand, avar2 mappings can affect multiple axes on both input and output:
+
+```xml
+<mappings>
+  <mapping>
+    <input>
+      <dimension tag="AX_0" xvalue="800" />
+      <dimension tag="AX_1" xvalue="150" />
+      <dimension tag="AX_2" xvalue="75" />
+    </input>
+    <output>
+      <dimension tag="AX_0" xvalue="750" />
+      <dimension tag="AX_2" xvalue="140" />
+      <dimension tag="AX_4" xvalue="140" />
+    </output>
+  </mapping>
+</mappings>
+```
+
+While these examples are in XML, you can visualize them in the Fencer app[^fn47] and test their demos[^fn48].
+
+This website documents the new avar2 format, showcases avar2 features, and provides examples of how to implement avar2 in your own fonts. For more information on the other features, please see the Boring Expansion specification.
+
+## Conclusion
+
+Ultimately, multi-axis font families existed long before digital variable fonts. Avar2 is an important step forward in the digital OpenType format, enabling type designers to [enhance](./features.mdx) their fonts.
+
+[^fn1]: https://learn.microsoft.com/en-us/typography/opentype/spec/
+[^fn2]: https://medium.com/variable-fonts/https-medium-com-tiro-introducing-opentype-variable-fonts-12ba6cd2369
+[^fn3]: https://blogs.loc.gov/bibliomania/2024/12/17/just-my-type-making-letters-at-the-type-foundry/
+[^fn4]: https://www.loc.gov/collections/lessing-j-rosenwald/about-this-collection/
+[^fn5]: https://www.aepm.eu/publications/conference-proceedings-2/safeguarding-intangible-heritage-passing-on-printing-techniques-to-future-generations/monotype-punchcutting/
+[^fn6]: https://thonyc.wordpress.com/2013/07/25/apelles-hiding-behind-the-painting/
+[^fn7]: https://historyofinformation.com/detail.php?id=1259
+[^fn8]: http://www.designhistory.org/Type\_milestones\_pages/Panatograph.html
+[^fn9]: https://www.aepm.eu/publications/conference-proceedings-2/safeguarding-intangible-heritage-passing-on-printing-techniques-to-future-generations/monotype-punchcutting/
+[^fn10]: https://www.dsource.in/course/digital-typography-1/phototypesetting
+[^fn11]: https://graficnotes.blogspot.com/2017/01/phototypesetting.html
+[^fn12]: https://pressinspection.com/2024/08/18/photocomposer/
+[^fn13]: https://www.youtube.com/watch?v=phT9fXtFjvM
+[^fn14]: https://fonts.google.com/knowledge/choosing\_type/choosing\_typefaces\_that\_have\_optical\_sizes
+[^fn15]: https://vimeo.com/75532294
+[^fn16]: https://www.historyofinformation.com/detail.php?id=5522
+[^fn17]: https://www.fontmaster.nl/history.html
+[^fn18]: https://www.slanted.de/story/type-essentials-for-graphic-designers-part-ii/
+[^fn19]: https://www.typefaces.nl/Temporary/Downloads/Twitter/28042019/ATypI\_2004\_IK-FM.pdf
+[^fn20]: https://simoncozens.github.io/fonts-and-layout/history.html
+[^fn21]: https://archive.org/details/the-concept-of-metafont
+[^fn22]: https://simoncozens.github.io/fonts-and-layout/history.html
+[^fn23]: https://www.prepressure.com/fonts/basics/multiple-master
+[^fn24]: Font Naming Issues
+[^fn25]: https://www.prepressure.com/fonts/basics/multiple-master
+[^fn26]: https://lwn.net/Articles/987176/
+[^fn27]: https://blog.typekit.com/2014/07/30/the-adobe-originals-silver-anniversary-story-how-the-originals-endured-in-an-ever-changing-industry/
+[^fn28]: https://www.axis-praxis.org/blog/2016-11-14/6/article-gx-variations-a-typographic-revival
+[^fn29]: https://www.thomasphinney.com/tag/multiple-master/
+[^fn30]: https://www.monotype.com/resources/articles/part-1-from-truetype-gx-to-variable-fonts
+[^fn31]: https://www.bzylman.com/font-creation
+[^fn32]: https://learn.microsoft.com/en-us/typography/opentype/otspec180/
+[^fn33]: https://learn.microsoft.com/en-us/typography/opentype/spec/otvaroverview\#introduction
+[^fn34]: https://medium.com/variable-fonts/https-medium-com-tiro-introducing-opentype-variable-fonts-12ba6cd2369
+[^fn35]: https://www.lucasfonts.com/learn/interpolation-theory
+[^fn36]: https://simoncozens.github.io/userspace-and-designspace/
+[^fn37]: https://www.youtube.com/watch?v=j7unMVZOcaw
+[^fn38]: https://github.com/microsoft/OpenType-XVAR-proposal
+[^fn39]: https://www.youtube.com/watch?v=j7unMVZOcaw
+[^fn40]: https://github.com/be5invis/OTVAR-ZVAR-Table
+[^fn41]: https://github.com/harfbuzz/boring-expansion-spec
+[^fn42]: https://www.iso.org/standard/74461.html
+[^fn43]: https://learn.microsoft.com/en-us/typography/opentype/spec/
+[^fn44]: https://github.com/harfbuzz/boring-expansion-spec/blob/main/avar2.md
+[^fn45]: https://github.com/fonttools/fonttools/tree/main/Doc/source/designspaceLib
+[^fn46]: https://fonttools.readthedocs.io/en/latest/designspaceLib/xml.html\#mappings-element
+[^fn47]: https://lorp.github.io/fencer/src/fencer.html
+[^fn48]: https://github.com/Lorp/fencer/tree/main/demos

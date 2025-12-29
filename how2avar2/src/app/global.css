@@ -1,3 +1,10 @@
 @import 'tailwindcss';
 @import 'fumadocs-ui/css/neutral.css';
 @import 'fumadocs-ui/css/preset.css';
+
+.prose figcaption {
+  @apply text-center
+}
+.prose figure img {
+  @apply mx-auto
+}
