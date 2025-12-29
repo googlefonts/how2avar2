@@ -1,10 +1,13 @@
 [tools]
 node = "24.12"
 python = "3.13"
+uv = "0.9.18"
 "pipx:fontmake" = "latest"
 "pipx:fonttools" = "latest"
 "pipx:gftools" = "latest"
 "pipx:glyphsLib" = "latest"
+"pipx:afdko" = "latest"
+"pipx:silfont" = { version = "latest", pipx_args = "--preinstall 'setuptools<81'", uvx_args = "--with 'setuptools<81'" }
 "cargo:fontspector" = "latest"
 
 
