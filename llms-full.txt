@@ -922,6 +922,11 @@ By spearheading avar2, Google Fonts achieves its motto of “Beautiful text, Goo
 * ❌ Robofont
 * ❌ Fontlab
 
+## Font Source Formats
+
+* ✅ [Designspace](https://github.com/harfbuzz/boring-expansion-spec/blob/main/avar2-in-designspace.md)
+* ✅ [DSSketch](https://github.com/typedev/DSSketch?tab=readme-ov-file#avar2-support-opentype-19)
+
 The Python3 [fontTools](https://github.com/fonttools/fonttools) library supports avar2 and can programmatically add an avar2 table from a designspace file after you’ve exported your font from your design tool.
 
 ## Are we ready for avar2?
