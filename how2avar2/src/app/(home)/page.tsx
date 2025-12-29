@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
+import sophiaSans from "../../../public/static/images/sophia-sans.png";
 
 export default function HomePage() {
   return (
@@ -24,6 +26,15 @@ export default function HomePage() {
             Fencer App
           </Link>
         </div>
+        <figure>
+          <Image
+            src={sophiaSans}
+            alt="2d graph visualization of the designspace of Sophia Sans with distortions"
+          />
+          <figcaption>
+            Visualization of the avar2 designspace distortions in Sophia Sans
+          </figcaption>
+        </figure>
       </div>
     </>
   );
