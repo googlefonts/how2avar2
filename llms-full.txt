@@ -13,7 +13,7 @@ By spearheading avar2, Google Fonts achieves its motto of “Beautiful text, Goo
 
 ## Special Thanks
 
-I greatly appreciate the time and feedback of:
+I greatly appreciate the contribution of:
 
 * Dr. Dan Reynolds and Kerstin Wallbach for their in-depth explanations of phototypesetting and providing photos of diatype discs and diatonic plates.
 
