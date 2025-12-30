@@ -349,6 +349,7 @@ import mm from "../../public/static/images/localhost_4321_mm-regular.png";
 import gx from "../../public/static/images/localhost_4321_gx-regular.png";
 import linearInterpolation from "../../public/static/images/localhost_4321_no-avar.png";
 import opticalInterpolation from "../../public/static/images/localhost_4321_avar.png";
+import phototypesetting from "../../public/static/images/DR-0086-18.jpg";
 
 Avar2 extends the OpenType[^fn1] format for variable fonts[^fn2]. To better understand avar2, we need to learn more about the history and evolution of variable fonts.
 
@@ -411,12 +412,15 @@ The pantograph did more than just trace a letter. It could change the size of th
 ## Phototypesetting
 
 <figure>
-  <Image src={notFound} alt="An image of the Akzidenz-Grotesk disc for phototypesetting" />
+  <Image src={phototypesetting} alt="An image of the Akzidenz-Grotesk disc for phototypesetting" />
 
   <figcaption>
-    A photo of the Akzidenz-Grotesk disc used in phototypesetting,
-    [provided](https://blog.sbb.berlin/filmreihe/) by Dr. Christian Mathieu,
-    Kerstin Wallbach, Dr. Dan Reynolds and the Berlin State Library.
+    A photo of the Akzidenz-Grotesk phototype glass font used for
+    phototypesetting in the 1980s,
+    [provided](https://technikmuseum.berlin/en/exhibitions/permanent-exhibition/printing/)
+    by Dr. Christian Mathieu, Kerstin Wallbach, Dr. Dan Reynolds, C. Kirchner,
+    the German Museum of Technology Berlin Foundation (STDB), and the Berlin
+    State Library.
   </figcaption>
 </figure>
 
