@@ -350,6 +350,7 @@ import gx from "../../public/static/images/localhost_4321_gx-regular.png";
 import linearInterpolation from "../../public/static/images/localhost_4321_no-avar.png";
 import opticalInterpolation from "../../public/static/images/localhost_4321_avar.png";
 import phototypesetting from "../../public/static/images/DR-0086-18.jpg";
+import ikarus from "../../public/static/images/ikarus-combined-screenshot.jpg";
 
 Avar2 extends the OpenType[^fn1] format for variable fonts[^fn2]. To better understand avar2, we need to learn more about the history and evolution of variable fonts.
 
@@ -429,18 +430,19 @@ For a short period, phototypesetting[^fn10], or cold type, was faster, cheaper, 
 ## Ikarus
 
 <figure>
-  <Image src={notFound} alt="Screenshot of the Ikarus system, which still works on UNIX" />
+  <Image src={ikarus} alt="Screenshots of the Ikarus system, which still works on UNIX" />
 
   <figcaption>
-    Screenshot of the Ikarus system,
-    [provided](https://www.fontmaster.nl/history.html) by the Dutch Type
-    Library.
+    Screenshots of the Ikarus system showing “intelligent” interpolation on the
+    left and “antiquing” on the right.
+    [Provided](https://www.fontmaster.nl/history.html) by Frank E. Blokland and
+    the Dutch Type Library.
   </figcaption>
 </figure>
 
 In 1972[^fn16], Dr. Peter Karow[^fn17], co-founder of the URW company in Germany[^fn18], developed the Ikarus system and format. Ikarus contributed many advancements to digital font technology[^fn19].
 
-Ikarus was the first industry standard for digital font data, based on curves instead of pixels. In addition, it could interpolate between light and bold letters with the same number of points. Ikarus could also use “antiquing[^fn20]” to add effects like shadows, outlines, and distortions.
+Ikarus was the first industry standard for digital font data, based on curves instead of pixels. In addition, it could interpolate between light and bold letters with any number of points using “intelligent” interpolation. Ikarus could also use “antiquing[^fn20]” to add effects like shadows, outlines, and distortions.
 
 ## Metafont
 
