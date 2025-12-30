@@ -365,7 +365,7 @@ While we focus on the pieces related to variable fonts, I encourage you to read 
   </figcaption>
 </figure>
 
-Unlike type designers, calligraphers have full control over the size, spacing, and shape of every letter. Although calligraphers draw each letter with slight differences, they have full control over the entire layout and design. Even today, OpenType fonts cannot fully duplicate the art of calligraphy and lettering styles.
+Unlike type designers, calligraphers have full control over the size, spacing, and shape of every letter. Although calligraphers draw each letter with slight differences, they have full control over the entire layout and design. Even today, OpenType fonts cannot fully duplicate the art and flexibility of calligraphy and lettering styles.
 
 ## Punch Cutting
 
@@ -889,6 +889,14 @@ This project has two goals:
 2. Document the steps for type designers to use avar2 in their fonts
 
 By spearheading avar2, Google Fonts achieves its motto of “Beautiful text, Google scale” and reflects its values of Compression, Expression, Automation, and Animation.
+
+## Special Thanks
+
+I greatly appreciate the time and feedback of:
+
+* Dr. Dan Reynolds and Kerstin Wallbach for their in-depth explanations of phototypesetting and providing photos of diatype discs and diatonic plates.
+
+* Frank E. Blokland for his demonstration of the IKARUS software and screenshots of antiquing and “intelligent” interpolation and his feedback on the type design history section.
 
 
 # Support
