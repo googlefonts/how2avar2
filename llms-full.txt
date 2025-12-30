@@ -365,7 +365,7 @@ While we focus on the pieces related to variable fonts, I encourage you to read 
   </figcaption>
 </figure>
 
-Unlike type designers, calligraphers have full control over the size, spacing, and shape of every letter. Although calligraphers draw each letter with slight differences, they have full control over the entire layout and design. Even today, OpenType fonts cannot fully duplicate art of calligraphy and lettering styles.
+Unlike type designers, calligraphers have full control over the size, spacing, and shape of every letter. Although calligraphers draw each letter with slight differences, they have full control over the entire layout and design. Even today, OpenType fonts cannot fully duplicate the art of calligraphy and lettering styles.
 
 ## Punch Cutting
 
