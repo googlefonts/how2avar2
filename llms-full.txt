@@ -17,7 +17,7 @@ I greatly appreciate the time and feedback of:
 
 * Dr. Dan Reynolds and Kerstin Wallbach for their in-depth explanations of phototypesetting and providing photos of diatype discs and diatonic plates.
 
-* Frank E. Blokland for his demonstration of the IKARUS software and his feedback on the type design history section.
+* Frank E. Blokland for his demonstration of the Ikarus software and his feedback on the type design history section.
 
 
 # Designspace Distortion
