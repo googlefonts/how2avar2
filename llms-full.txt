@@ -1,3 +1,25 @@
+# Acknowledgments
+
+
+
+## Google Fonts Sponsorship
+
+This project has two goals:
+
+1. Create test fonts for the Chrome implementation
+2. Document the steps for type designers to use avar2 in their fonts
+
+By spearheading avar2, Google Fonts achieves its motto of “Beautiful text, Google scale” and reflects its values of Compression, Expression, Automation, and Animation.
+
+## Special Thanks
+
+I greatly appreciate the time and feedback of:
+
+* Dr. Dan Reynolds and Kerstin Wallbach for their in-depth explanations of phototypesetting and providing photos of diatype discs and diatonic plates.
+
+* Frank E. Blokland for his demonstration of the IKARUS software and his feedback on the type design history section.
+
+
 # Designspace Distortion
 
 
@@ -883,26 +905,6 @@ There is no right or wrong approach to parametric variable fonts. Use whichever 
 [^fn5]: [https://github.com/googlefonts/roboto-flex/tree/main/sources/1A-drawings/Parametric%20Axes](https://github.com/googlefonts/roboto-flex/tree/main/sources/1A-drawings/Parametric%20Axes)
 
 [^fn6]: [https://github.com/agyeiagyeiagyei/Crispy](https://github.com/agyeiagyeiagyei/Crispy)
-
-
-# Sponsorship
-
-
-
-This project has two goals:
-
-1. Create test fonts for the Chrome implementation
-2. Document the steps for type designers to use avar2 in their fonts
-
-By spearheading avar2, Google Fonts achieves its motto of “Beautiful text, Google scale” and reflects its values of Compression, Expression, Automation, and Animation.
-
-## Special Thanks
-
-I greatly appreciate the time and feedback of:
-
-* Dr. Dan Reynolds and Kerstin Wallbach for their in-depth explanations of phototypesetting and providing photos of diatype discs and diatonic plates.
-
-* Frank E. Blokland for his demonstration of the IKARUS software and screenshots of antiquing and “intelligent” interpolation and his feedback on the type design history section.
 
 
 # Support
