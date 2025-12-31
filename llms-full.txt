@@ -17,7 +17,7 @@ I greatly appreciate the contributions of:
 
 * Dr. Dan Reynolds and Kerstin Wallbach for their in-depth explanations of phototypesetting and providing photos of diatype discs and diatonic plates.
 
-* Frank E. Blokland for his demonstration and screenshots of the Ikarus software and his feedback on the type design history section.
+* Dr. Frank E. Blokland for his demonstration and screenshots of the Ikarus software and his feedback on the type design history section.
 
 
 # Designspace Distortion
@@ -389,7 +389,7 @@ While we focus on the pieces related to variable fonts, I encourage you to read 
   </figcaption>
 </figure>
 
-Unlike type designers, calligraphers have full control over the size, spacing, and shape of every letter. Although calligraphers draw each letter with slight differences, they have full control over the entire layout and design. Even today, OpenType fonts cannot fully duplicate the art and flexibility of calligraphy and lettering styles.
+Before the invention of metal type, calligraphy reigned over the written word. While type design requires creating consistent and predefined forms, calligraphy allows for adaptability in the overall layout and design. With the help of typographers and layout designers, type designers can easily and consistently create impressive work. Though even today, OpenType features cannot fully duplicate the art and flexibility of calligraphy and lettering styles.
 
 ## Punch Cutting
 
@@ -402,7 +402,7 @@ Unlike type designers, calligraphers have full control over the size, spacing, a
   </figcaption>
 </figure>
 
-For centuries[^fn5], type designers worked with punch cutters to create metal type. Gutenberg’s first metal type resembled calligraphy and was familiar to readers. Because the craftsmen created each metal letter in a specific size, weight, and style, they fine-tuned each letter for its particular use. Punch cutters often improved the metal type for small sizes and printing.
+For centuries[^fn5], type designers worked with punch cutters to create metal type. Gutenberg’s first metal type resembled calligraphy and was familiar to readers. Because the craftsmen created each metal letter in a specific size, weight, and style, they could fine-tune each letter for its particular use. For example, some punch cutters customized the metal type by shortening descenders and changing the x-height relative to the capital letters. However, some punch cutters did not significantly alter the metal type, and the only difference was the ink spread from printing.
 
 ## The Pantograph
 
@@ -457,8 +457,8 @@ For a short period, phototypesetting[^fn10], or cold type, was faster, cheaper, 
   <figcaption>
     Screenshots of the Ikarus system showing “intelligent” interpolation on the
     left and “antiquing” on the right.
-    [Provided](https://www.fontmaster.nl/history.html) by Frank E. Blokland and
-    the Dutch Type Library.
+    [Provided](https://www.fontmaster.nl/history.html) by Dr. Frank E. Blokland
+    and the Dutch Type Library.
   </figcaption>
 </figure>
 
