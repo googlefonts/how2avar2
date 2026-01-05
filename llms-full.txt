@@ -29,6 +29,7 @@ import notFound from "../../public/static/images/fonts.google.com_notfound.png";
 import linearInterpolation from "../../public/static/images/localhost_4321_no-avar.png";
 import opticalInterpolation from "../../public/static/images/localhost_4321_avar.png";
 import sophiaSans from "../../public/static/images/sophia-sans.png";
+import calibre from "../../public/static/images/vlcsnap-2025-12-21-05h26m26s505.png";
 
 ## Designspace Mapping to Userspace
 
@@ -83,7 +84,7 @@ As a workaround, the type designers split the font into four variable fonts, so 
 Luc(as) de Groot[^fn5] designed the Calibre font family. Microsoft commissioned him to add optical sizes to his font family for the regular weight. Ideally, he would add two additional masters. However, with variable fonts, those optical size masters and their deltas affected the interpolation of his existing designspace. Without avar2, the designspace must be orthogonal, and the only solution was to duplicate 16 masters—“outch”!
 
 <figure>
-  <Image src={notFound} alt="Designspace comparisons for Calibre" />
+  <Image src={calibre} alt="Designspace comparisons for Calibre" />
 
   <figcaption>
     Slide from Luc(as) de Groot’s
