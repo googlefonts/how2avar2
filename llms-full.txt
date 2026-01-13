@@ -413,9 +413,9 @@ Gutenberg's first metal type resembled the written textura quadrata, a style fam
   <Image src={scheinerPantograph} alt="The first recorded diagram of a pantograph" />
 
   <figcaption>
-    A diagram of Christopher Scheiner’s pantograph,
-    [provided](https://thonyc.wordpress.com/2013/07/25/apelles-hiding-behind-the-painting/)
-    by Thony Christie and The Renaissance Mathematicus.
+    A
+    [diagram](https://commons.wikimedia.org/wiki/File:Pantograph_by_Christoph_Scheiner.jpg)
+    of Christopher Scheiner’s pantograph.
   </figcaption>
 </figure>
 
