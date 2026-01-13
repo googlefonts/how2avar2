@@ -4,7 +4,6 @@ description: To better understand avar2, we need to learn more about the history
 ---
 
 import Image from "next/image";
-import notFound from "../../public/static/images/fonts.google.com_notfound.png";
 import calligraphy from "../../public/static/images/English_-_Rochester_Bible_-_Walters_W18_-_Reverse_Detail.jpg";
 import punchCutting from "../../public/static/images/punch-and-matrix-e1733771960396.jpg";
 import metafont from "../../public/static/images/cmr10_capR_contour_wo_cull.png";
@@ -14,6 +13,8 @@ import linearInterpolation from "../../public/static/images/localhost_4321_no-av
 import opticalInterpolation from "../../public/static/images/localhost_4321_avar.png";
 import phototypesetting from "../../public/static/images/DR-0086-18.jpg";
 import ikarus from "../../public/static/images/ikarus-combined-screenshot.jpg";
+import scheinerPantograph from "../../public/static/images/scheiner-pantograph-edited-cropped.png";
+import bentonPantograph from "../../public/static/images/BEN-154-SIL-copy.jpg";
 
 Avar2 extends the OpenType[^fn1] format for variable fonts[^fn2]. To better understand avar2, we need to learn more about the history and evolution of variable fonts.
 
@@ -27,8 +28,10 @@ While we focus on the pieces related to variable fonts, I encourage you to read 
     alt="Beautiful example of medieval biblical calligraphy"
   />
   <figcaption>
-    This leaf from the Rochester Bible circa 1135AD is a beautiful example of
-    calligraphy in multiple styles, colors, sizes, and layouts.
+    This
+    [leaf](https://en.wikipedia.org/wiki/File:English_-_Rochester_Bible_-_Walters_W18_-_Reverse_Detail.jpg)
+    from the Rochester Bible circa 1135AD is a beautiful example of calligraphy
+    in multiple styles, colors, sizes, and layouts.
   </figcaption>
 </figure>
 
@@ -51,18 +54,24 @@ Gutenberg's first metal type resembled the written textura quadrata, a style fam
 ## The Pantograph
 
 <figure>
-  <Image src={notFound} alt="The first recorded diagram of a pantograph" />
+  <Image
+    src={scheinerPantograph}
+    alt="The first recorded diagram of a pantograph"
+  />
   <figcaption>
-    A diagram of Christopher Scheiner’s pantograph,
-    [provided](https://thonyc.wordpress.com/2013/07/25/apelles-hiding-behind-the-painting/)
-    by Thony Christie and The Renaissance Mathematicus.
+    A
+    [diagram](https://commons.wikimedia.org/wiki/File:Pantograph_by_Christoph_Scheiner.jpg)
+    of Christopher Scheiner’s pantograph.
   </figcaption>
 </figure>
 
 Christopher Scheiner[^fn6] was a Catholic German Jesuit priest, physicist, and astronomer. In 1603, he invented the first copying machine, which he coined the pantograph[^fn7]. By tracing the original composition with a pen, the machine would mirror the movements with a second pen to create a copy.
 
 <figure>
-  <Image src={notFound} alt="An image of the large Benton Pantograph model" />
+  <Image
+    src={bentonPantograph}
+    alt="An image of the large Benton Pantograph model"
+  />
   <figcaption>
     A photo of the Benton Pantograph,
     [provided](https://swamppress.com/benton-matrix-engraving.htmlhttps://swamppress.com/benton-matrix-engraving.html)
