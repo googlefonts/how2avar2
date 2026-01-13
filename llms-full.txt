@@ -25,7 +25,6 @@ I greatly appreciate the contributions of:
 
 
 import Image from "next/image";
-import notFound from "../../public/static/images/fonts.google.com_notfound.png";
 import linearInterpolation from "../../public/static/images/localhost_4321_no-avar.png";
 import opticalInterpolation from "../../public/static/images/localhost_4321_avar.png";
 import sophiaSans from "../../public/static/images/sophia-sans.png";
@@ -364,7 +363,6 @@ If you are hoping to create animations with axes like Flow similar to the Underw
 
 
 import Image from "next/image";
-import notFound from "../../public/static/images/fonts.google.com_notfound.png";
 import calligraphy from "../../public/static/images/English_-_Rochester_Bible_-_Walters_W18_-_Reverse_Detail.jpg";
 import punchCutting from "../../public/static/images/punch-and-matrix-e1733771960396.jpg";
 import metafont from "../../public/static/images/cmr10_capR_contour_wo_cull.png";
@@ -374,6 +372,8 @@ import linearInterpolation from "../../public/static/images/localhost_4321_no-av
 import opticalInterpolation from "../../public/static/images/localhost_4321_avar.png";
 import phototypesetting from "../../public/static/images/DR-0086-18.jpg";
 import ikarus from "../../public/static/images/ikarus-combined-screenshot.jpg";
+import scheinerPantograph from "../../public/static/images/scheiner-pantograph-edited-cropped.png";
+import bentonPantograph from "../../public/static/images/BEN-154-SIL-copy.jpg";
 
 Avar2 extends the OpenType[^fn1] format for variable fonts[^fn2]. To better understand avar2, we need to learn more about the history and evolution of variable fonts.
 
@@ -410,7 +410,7 @@ Gutenberg's first metal type resembled the written textura quadrata, a style fam
 ## The Pantograph
 
 <figure>
-  <Image src={notFound} alt="The first recorded diagram of a pantograph" />
+  <Image src={scheinerPantograph} alt="The first recorded diagram of a pantograph" />
 
   <figcaption>
     A diagram of Christopher Scheiner’s pantograph,
@@ -422,7 +422,7 @@ Gutenberg's first metal type resembled the written textura quadrata, a style fam
 Christopher Scheiner[^fn6] was a Catholic German Jesuit priest, physicist, and astronomer. In 1603, he invented the first copying machine, which he coined the pantograph[^fn7]. By tracing the original composition with a pen, the machine would mirror the movements with a second pen to create a copy.
 
 <figure>
-  <Image src={notFound} alt="An image of the large Benton Pantograph model" />
+  <Image src={bentonPantograph} alt="An image of the large Benton Pantograph model" />
 
   <figcaption>
     A photo of the Benton Pantograph,
