@@ -136,7 +136,6 @@ With avar2, he can distort the designspace to be non-orthogonal with the points 
 
 
 import Image from "next/image";
-import notFound from "../../public/static/images/fonts.google.com_notfound.png";
 import historicalExample from "../../public/static/images/LFA_Type_0120_002.jpg";
 import brokenRobotoFlex from "../../public/static/images/fonts.google.com_specimen_Roboto+Flex_tester.png";
 import modernExample from "../../public/static/images/martin-gee-knockout-table.jpg";
@@ -170,7 +169,7 @@ One of the most famous examples of designspace fences is Adrian Frutiger’s Uni
 ### Modern Example
 
 <figure>
-  <Image src={notFound} alt="Hoefler&Co.’s Knockout font family displayed in a type chart" />
+  <Image src={modernExample} alt="Hoefler&Co.’s Knockout font family displayed in a type chart" />
 
   <figcaption>
     This chart, [provided](https://www.threads.com/@ohmgeez/post/C_s6k2VOcoA) by
