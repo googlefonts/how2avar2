@@ -9,6 +9,9 @@ const config = {
   trailingSlash: true,
   basePath: "/how2avar2",
   images: { unoptimized: true },
+  turbopack: {
+    root: import.meta.dirname,
+  },
 };
 
 export default withMDX(config);
