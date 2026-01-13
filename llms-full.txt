@@ -385,8 +385,10 @@ While we focus on the pieces related to variable fonts, I encourage you to read 
   <Image src={calligraphy} alt="Beautiful example of medieval biblical calligraphy" />
 
   <figcaption>
-    This leaf from the Rochester Bible circa 1135AD is a beautiful example of
-    calligraphy in multiple styles, colors, sizes, and layouts.
+    This
+    [leaf](https://en.wikipedia.org/wiki/File:English_-_Rochester_Bible_-_Walters_W18_-_Reverse_Detail.jpg)
+    from the Rochester Bible circa 1135AD is a beautiful example of calligraphy
+    in multiple styles, colors, sizes, and layouts.
   </figcaption>
 </figure>
 
