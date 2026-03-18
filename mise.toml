@@ -1,15 +1,17 @@
-[tools]
-node = "24.12"
-python = "3.13"
-uv = "0.9.18"
-"pipx:fontmake" = "latest"
-"pipx:fonttools" = "latest"
-"pipx:gftools" = "latest"
-"pipx:glyphsLib" = "latest"
-"pipx:afdko" = "latest"
-"pipx:silfont" = { version = "latest", pipx_args = "--preinstall 'setuptools<81'", uvx_args = "--with 'setuptools<81'" }
-"cargo:fontspector" = "latest"
+[settings]
+experimental = true
 
+[tools]
+python = "3.13.12"
+uv = "0.9.18"
+"pipx:uv-upx" = "0.4.3"
+"pipx:fontbakery" = "1.1.0"
+"pipx:glyphsLib" = "6.12.7"
+"pipx:afdko" = "4.0.3"
+"pipx:silfont" = { version = "1.8.0", pipx_args = "--preinstall 'setuptools<81'", uvx_args = "--with 'setuptools<81'" }
+
+rust = "1.93.1"
+"cargo:fontspector" = "1.6.0"
 
 [env]
 _.source = ["venv/bin/activate"]
