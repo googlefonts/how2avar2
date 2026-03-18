@@ -16,6 +16,7 @@ uv = "0.9.18"
 "pipx:fontbakery" = "1.1.0"
 "pipx:glyphsLib" = "6.12.7"
 "pipx:afdko" = "4.0.3"
+"pipx:diffenator2" = { version = "0.4.9", pipx_args = "--preinstall 'setuptools<81' --preinstall 'glyphsLib==6.12.7'", uvx_args = "--with 'setuptools<81' --with 'glyphsLib==6.12.7'" }
 "pipx:silfont" = { version = "1.8.0", pipx_args = "--preinstall 'setuptools<81'", uvx_args = "--with 'setuptools<81'" }
 
 rust = "1.93.1"
