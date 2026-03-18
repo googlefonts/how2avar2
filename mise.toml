@@ -28,3 +28,10 @@ _.path = ["how2avar2/node_modules/.bin", "infographics/node_modules/.bin"]
 
 UV_PREVIEW_FEATURES = "add-bounds"
 
+[tasks]
+
+[tasks.chmod]
+description = "Give mise shell scripts executable permissions"
+sources = ["mise/tasks/*.sh"]
+run = "chmod -R +x mise/tasks"
+
