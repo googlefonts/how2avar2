@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    @font-face {
+      font-family: "AdobeBlank2";
+      src: url("../../submodules/adobe-fonts/adobe-blank-2/AdobeBlank2.ttf");
+    }
+    @font-face {
+      font-family: "AlternateGlyphs";
+      src: url("../../fonts/variable/AlternateGlyphs[opsz\,wdth\,wght].ttf");
+      font-weight: 1 1000;
+      font-stretch: 50% 150%;
+    }
+    .AlternateGlyphs {
+      font-family: "AlternateGlyphs", "AdobeBlank2", sans-serif;
+    }
+    @font-face {
+      font-family: "AlternateGlyphsAvar1";
+      src: url("../../fonts/variable/AlternateGlyphsAvar1[opsz\,wdth\,wght].ttf");
+      font-weight: 1 1000;
+      font-stretch: 50% 150%;
+    }
+    .AlternateGlyphsAvar1 {
+      font-family: "AlternateGlyphsAvar1", "AdobeBlank2", sans-serif;
+    }
+    @font-face {
+      font-family: "AlternateGlyphsAvar2";
+      src: url("../../fonts/variable/AlternateGlyphsAvar2[opsz\,wdth\,wght].ttf");
+      font-weight: 1 1000;
+      font-stretch: 50% 150%;
+    }
+    .AlternateGlyphsAvar2 {
+      font-family: "AlternateGlyphsAvar2", "AdobeBlank2", sans-serif;
+    }
+    @font-face {
+      font-family: "AlternateGlyphsFencesAvar2";
+      src: url("../../fonts/variable/AlternateGlyphsFencesAvar2[opsz\,wdth\,wght].ttf");
+      font-weight: 1 1000;
+      font-stretch: 50% 150%;
+    }
+    .AlternateGlyphsFencesAvar2 {
+      font-family: "AlternateGlyphsFencesAvar2", "AdobeBlank2", sans-serif;
+    }
+    @font-face {
+      font-family: "AlternateGlyphsOpticalSizeAvar2";
+      src: url("../../fonts/variable/AlternateGlyphsOpticalSizeAvar2[opsz\,wdth\,wght].ttf");
+      font-weight: 1 1000;
+      font-stretch: 50% 150%;
+    }
+    .AlternateGlyphsOpticalSizeAvar2 {
+      font-family: "AlternateGlyphsOpticalSizeAvar2", "AdobeBlank2", sans-serif;
+    }
+    @font-face {
+      font-family: "TestFont";
+      src: url("../../fonts/variable/TestFont[opsz\,wdth\,wght].ttf");
+      font-weight: 1 1000;
+      font-stretch: 50% 150%;
+    }
+    .TestFont {
+      font-family: "TestFont", "AdobeBlank2", sans-serif;
+    }
+    @font-face {
+      font-family: "TestFontAvar1";
+      src: url("../../fonts/variable/TestFontAvar1[opsz\,wdth\,wght].ttf");
+      font-weight: 1 1000;
+      font-stretch: 50% 150%;
+    }
+    .TestFontAvar1 {
+      font-family: "TestFontAvar1", "AdobeBlank2", sans-serif;
+    }
+    @font-face {
+      font-family: "TestFontAvar2";
+      src: url("../../fonts/variable/TestFontAvar2[opsz\,wdth\,wght].ttf");
+      font-weight: 1 1000;
+      font-stretch: 50% 150%;
+    }
+    .TestFontAvar2 {
+      font-family: "TestFontAvar2", "AdobeBlank2", sans-serif;
+    }
+    @font-face {
+      font-family: "TestFontFencesAvar2";
+      src: url("../../fonts/variable/TestFontFencesAvar2[opsz\,wdth\,wght].ttf");
+      font-weight: 1 1000;
+      font-stretch: 50% 150%;
+    }
+    .TestFontFencesAvar2 {
+      font-family: "TestFontFencesAvar2", "AdobeBlank2", sans-serif;
+    }
+    @font-face {
+      font-family: "TestFontOpticalSizeAvar2";
+      src: url("../../fonts/variable/TestFontOpticalSizeAvar2[opsz\,wdth\,wght].ttf");
+      font-weight: 1 1000;
+      font-stretch: 50% 150%;
+    }
+    .TestFontOpticalSizeAvar2 {
+      font-family: "TestFontOpticalSizeAvar2", "AdobeBlank2", sans-serif;
+    }
+    .otf {
+      font-size: 64px;
+      font-weight: 1000;
+      font-stretch: 90%;
+    }
+  </style>
+</head>
+<body>
+  <form>
+    <!-- display value https://stackoverflow.com/a/18936328 -->
+    <div>
+      <label>
+        Weight
+        <input id="wght" type="range" min="1" max="1000" step="1" value="400" oninput="this.nextElementSibling.value = this.value">
+        <output>400</output>
+      </label>
+    </div>
+    <div>
+      <label>
+        Width
+        <input id="wdth" type="range" min="50" max="150" step="1" value="100" oninput="this.nextElementSibling.value = this.value">
+        <output>100</output>
+      </label>
+    </div>
+    <div>
+      <label>
+        Optical Size
+        <input id="opsz" type="range" min="6" max="144" step="1" value="16" oninput="this.nextElementSibling.value = this.value">
+        <output>16</output>
+      </label>
+    </div>
+  </form>
+  <div>
+    <span class="otf AlternateGlyphs">HLT</span>
+    <span>AlternateGlyphs</span>
+  </div>
+  <div>
+    <span class="otf AlternateGlyphsAvar1">HLT</span>
+    <span>AlternateGlyphsAvar1</span>
+  </div>
+  <div>
+    <span class="otf AlternateGlyphsAvar2">HLT</span>
+    <span>AlternateGlyphsAvar2</span>
+  </div>
+  <div>
+    <span class="otf AlternateGlyphsFencesAvar2">HLT</span>
+    <span>AlternateGlyphsFencesAvar2</span>
+  </div>
+  <div>
+    <span class="otf AlternateGlyphsOpticalSizeAvar2">HLT</span>
+    <span>AlternateGlyphsOpticalSizeAvar2</span>
+  </div>
+  <div>
+    <span class="otf TestFont">HLT</span>
+    <span>TestFont</span>
+  </div>
+  <div>
+    <span class="otf TestFontAvar1">HLT</span>
+    <span>TestFontAvar1</span>
+  </div>
+  <div>
+    <span class="otf TestFontAvar2">HLT</span>
+    <span>TestFontAvar2</span>
+  </div>
+  <div>
+    <span class="otf TestFontFencesAvar2">HLT</span>
+    <span>TestFontFencesAvar2</span>
+  </div>
+  <div>
+    <span class="otf TestFontOpticalSizeAvar2">HLT</span>
+    <span>TestFontOpticalSizeAvar2</span>
+  </div>
+  <script>
+    const wdthRange = document.getElementById('wdth');
+    const wghtRange = document.getElementById('wght');
+    const opszRange = document.getElementById('opsz');
+
+    const targets = document.querySelectorAll('.otf');
+
+    function updateFontVariations() {
+      const wdth = wdthRange.value;
+      const wght = wghtRange.value;
+      const opsz = opszRange.value;
+
+      const fontVariationSettings = `"wdth" ${wdth}, "wght" ${wght}, "opsz" ${opsz}`;
+
+      targets.forEach(element => {
+        element.style.fontVariationSettings = fontVariationSettings;
+      });
+    }
+
+    wdthRange.addEventListener('input', updateFontVariations);
+    wghtRange.addEventListener('input', updateFontVariations);
+    opszRange.addEventListener('input', updateFontVariations);
+
+    updateFontVariations();
+  </script>
+</body>
+</html>
