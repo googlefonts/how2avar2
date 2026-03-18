@@ -2,6 +2,8 @@
 /ttx
 
 *~
+.venv
+.venv-test
 uv.lock
 venv
 venv-test
