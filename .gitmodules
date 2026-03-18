@@ -1,0 +1,4 @@
+[submodule "submodules/adobe-fonts/adobe-blank-2"]
+	path = submodules/adobe-fonts/adobe-blank-2
+	url = git@github.com:adobe-fonts/adobe-blank-2.git
+	shallow = true
