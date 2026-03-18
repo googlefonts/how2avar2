@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "prebuild": "npx rimraf .next .source out node_modules/.cache",
+    "prebuild": "rimraf .next .source out node_modules/.cache",
     "build": "next build",
     "dev": "next dev",
     "start": "next start",
@@ -11,7 +11,7 @@
     "postinstall": "fumadocs-mdx",
     "lint": "eslint",
     "predeploy": "npm run build",
-    "deploy": "npx gh-pages -d out --nojekyll"
+    "deploy": "gh-pages -d out --nojekyll"
   },
   "dependencies": {
     "@orama/orama": "3.1.18",
