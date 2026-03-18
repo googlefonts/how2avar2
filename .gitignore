@@ -2,6 +2,7 @@
 /ttx
 
 *~
+uv.lock
 venv
 venv-test
 build.stamp
