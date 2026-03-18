@@ -23,4 +23,8 @@ rust = "1.93.1"
 "cargo:fontspector" = "1.6.0"
 
 [env]
-_.source = ["venv/bin/activate"]
+_.python.venv = ".venv"
+_.path = ["how2avar2/node_modules/.bin", "infographics/node_modules/.bin"]
+
+UV_PREVIEW_FEATURES = "add-bounds"
+
