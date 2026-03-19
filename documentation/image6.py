@@ -27,11 +27,11 @@ FRAMES = 1
 
 # List of fonts to process
 FONT_PATHS = [
-    "fonts/variable/TestFont[opsz,wdth,wght].ttf",
-    "fonts/variable/TestFontAvar1[opsz,wdth,wght].ttf",
-    "fonts/variable/TestFontAvar2[opsz,wdth,wght].ttf",
-    "fonts/variable/TestFontFencesAvar2[opsz,wdth,wght].ttf",
-    "fonts/variable/TestFontOpticalSizeAvar2[opsz,wdth,wght].ttf",
+    "fonts/test-font/variable/TestFont[opsz,wdth,wght].ttf",
+    "fonts/test-font/variable/TestFontAvar1[opsz,wdth,wght].ttf",
+    "fonts/test-font/variable/TestFontAvar2[opsz,wdth,wght].ttf",
+    "fonts/test-font/variable/TestFontFencesAvar2[opsz,wdth,wght].ttf",
+    "fonts/test-font/variable/TestFontOpticalSizeAvar2[opsz,wdth,wght].ttf",
 ]
 FONT_LICENSE = "OFL v1.1"
 AUXILIARY_FONT = "Helvetica"

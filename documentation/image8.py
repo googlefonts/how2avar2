@@ -25,9 +25,9 @@ FRAMES = 1
 # List of fonts to process
 # Note: Ensure these fonts actually support the ZROT axis
 FONT_PATHS = [
-    "fonts/variable/TestFont[opsz,wdth,wght].ttf",
-    "fonts/variable/LinearRotation[ZROT].ttf",
-    "fonts/variable/QuadraticRotation[AAAA,BBBB,ZROT].ttf",
+    "fonts/test-font/variable/TestFont[opsz,wdth,wght].ttf",
+    "fonts/linear-rotation/variable/LinearRotation[ZROT].ttf",
+    "fonts/quadratic-rotation/variable/QuadraticRotation[AAAA,BBBB,ZROT].ttf",
 ]
 FONT_LICENSE = "OFL v1.1"
 AUXILIARY_FONT = "Helvetica"
