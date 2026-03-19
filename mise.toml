@@ -71,3 +71,8 @@ run = [
 [tasks."fonts.clean"]
 run = ["rm -rf fonts fonts.zip"]
 
+[tasks."fonts.zip"]
+description = "Zip font files for release"
+sources = ["fonts/**/*"]
+depends = "fonts.build"
+run = ["rm -rf fonts.zip", "zip -r fonts.zip fonts -x '*.DS_Store'"]
