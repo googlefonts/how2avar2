@@ -54,3 +54,6 @@ dir = "infographics"
 run = "npm install"
 sources = ["infographics/package.json"]
 
+[tasks."fonts.clean"]
+run = ["rm -rf fonts fonts.zip"]
+
