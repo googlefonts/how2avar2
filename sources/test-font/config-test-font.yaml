@@ -7,7 +7,7 @@
 # sources/ directory, so all paths should be relative to that
 # directory.
 sources:
-  - QuadraticRotation.glyphspackage
+  - TestFont.glyphspackage
 # You don't have to supply the family name, but builds are slightly
 # faster if you do.
 # familyName: "Radio Canada Display"
@@ -16,7 +16,7 @@ sources:
 # binaries to live. But we'd recommend you stick to the defaults
 # especially if you are planning to upload your font to Google Fonts.
 
-# outputDir: ../fonts
+outputDir: ../../fonts/test-font
 # vfDir: $outputDir/variable
 # ttDir: $outputDir/ttf
 # otDir: $outputDir/otf

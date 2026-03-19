@@ -71,14 +71,6 @@
       </mapping>
       <mapping>
         <input>
-          <dimension name="Width" xvalue="100"/>
-        </input>
-        <output>
-          <dimension name="Width" xvalue="100"/>
-        </output>
-      </mapping>
-      <mapping>
-        <input>
           <dimension name="Width" xvalue="125"/>
         </input>
         <output>
