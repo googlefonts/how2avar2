@@ -24,9 +24,11 @@
       <mapping>
         <input>
           <dimension name="Weight" xvalue="400"/>
+          <dimension name="Width" xvalue="100"/>
         </input>
         <output>
           <dimension name="Weight" xvalue="400"/>
+          <dimension name="Width" xvalue="100"/>
         </output>
       </mapping>
       <mapping>
