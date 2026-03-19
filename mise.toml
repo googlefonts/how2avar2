@@ -44,6 +44,9 @@ run = "uv-upgrade --profile with_pinned --dry-run"
 description = "uv-check-updates update"
 run = "uv-upgrade --profile with_pinned"
 
+[tasks.setup]
+run = { tasks = ["**.setup"] }
+
 [tasks."how2avar2.setup"]
 sources = ["how2avar2/package.json"]
 dir = "how2avar2"
@@ -53,6 +56,17 @@ run = "npm install"
 dir = "infographics"
 run = "npm install"
 sources = ["infographics/package.json"]
+
+[tasks."fonts.build"]
+depends = "fonts.setup"
+run = [
+  { tasks = [
+    "fonts.build.test-font",
+    "fonts.build.alternate-glyphs",
+    "fonts.build.linear-rotation",
+    "fonts.build.quadratic-rotation",
+  ] },
+]
 
 [tasks."fonts.clean"]
 run = ["rm -rf fonts fonts.zip"]
