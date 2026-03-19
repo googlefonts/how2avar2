@@ -44,3 +44,13 @@ run = "uv-upgrade --profile with_pinned --dry-run"
 description = "uv-check-updates update"
 run = "uv-upgrade --profile with_pinned"
 
+[tasks."how2avar2.setup"]
+sources = ["how2avar2/package.json"]
+dir = "how2avar2"
+run = "npm install"
+
+[tasks."infographics.setup"]
+dir = "infographics"
+run = "npm install"
+sources = ["infographics/package.json"]
+
