@@ -73,4 +73,4 @@ To fix axis bounds in test fonts, use `./scripts/fix-axis-bounds.py`.
 
 To rename fonts after making a new variation, use `./scripts/rename-fonts.py`.
 
-For examples, see the `Makefile`.
+For examples, see the `mise/tasks/fonts.build.*.sh` tasks.
