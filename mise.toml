@@ -32,7 +32,7 @@ UV_PREVIEW_FEATURES = "add-bounds"
 [tasks]
 
 [tasks.chmod]
-description = "Give mise shell scripts executable permissions"
+description = "Executable permissions for mise shell scripts"
 sources = ["mise/tasks/*.sh"]
 run = "chmod -R +x mise/tasks"
 
@@ -45,14 +45,17 @@ description = "uv-check-updates update"
 run = "uv-upgrade --profile with_pinned"
 
 [tasks.setup]
+description = "Install all dependencies"
 run = { tasks = ["**.setup"] }
 
 [tasks."how2avar2.setup"]
+description = "Install documentation website JavaScript dependencies"
 sources = ["how2avar2/package.json"]
 dir = "how2avar2"
 run = "npm install"
 
 [tasks."infographics.setup"]
+description = "Install infographics JavaScript dependencies"
 dir = "infographics"
 run = "npm install"
 sources = ["infographics/package.json"]
@@ -69,6 +72,7 @@ run = [
 ]
 
 [tasks."fonts.clean"]
+description = "Delete font compiled artifacts"
 run = ["rm -rf fonts fonts.zip"]
 
 [tasks."fonts.zip"]
