@@ -9,6 +9,7 @@ node = "24.14.0"
 "npm:corepack" = { version = "0.34.6", postinstall = "corepack enable npm" }
 "npm:npm-check-updates" = "19.6.3"
 "npm:serve" = "14.2.6"
+"npm:pixelmatch" = "7.1.0"
 
 python = "3.13.12"
 uv = "0.9.18"
