@@ -54,27 +54,15 @@ def main():
 
     # clean up STAT table DesignAxisRecord
     if "STAT" in font2:
-        stat = font2["STAT"].table
-        if hasattr(stat, "DesignAxisRecord"):
-            records = stat.DesignAxisRecord.Axis
-            new_records = []
-            for record in records:
-                if record.AxisTag in RENAME_AXES:
-                    record.AxisTag = HOI_AXIS
-                new_records.append(record)
-            stat.DesignAxisRecord.Axis = new_records
-            stat.DesignAxisRecord.DesignAxisCount = len(new_records)
+        for record in font2["STAT"].table.DesignAxisRecord.Axis:
+            if record.AxisTag in RENAME_AXES:
+                record.AxisTag = HOI_AXIS
 
     # rename keys in fvar table
     for instance in fvar.instances:
-        new_coords = {}
-        for old_axis, value in instance.coordinates.items():
-            if old_axis in RENAME_AXES:
-                # safely set identical values for shared axis names
-                new_coords[HOI_AXIS] = value
-            else:
-                new_coords[old_axis] = value
-        instance.coordinates = new_coords
+        for axis in RENAME_AXES:
+            if axis in instance.coordinates:
+                instance.coordinates[HOI_AXIS] = instance.coordinates.pop(axis)
 
     font2.save("fonts/quadratic-rotation/variable/QuadraticRotation[ZROT].ttf")
 
