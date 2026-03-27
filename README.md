@@ -34,7 +34,7 @@ The following fonts are similar to the ones above, except the base test font is 
 The following fonts test rotation:
 
 - **LinearRotation[ZROT].ttf** linear rotation with the letter `H` and the `ZROT` Rotation in Z axis range between 0-90.
-- **QuadraticRotationAvar1[AAAA,BBBB,ZROT].ttf** HOI/NIL quadratic rotation with the letter `H` and the `ZROT` Rotation in Z axis range between 0-90. Renames axes `AAAA` and `BBBB` to share the same name `ZROT`.
+- **QuadraticRotation[ZROT].ttf** HOI/NIL quadratic rotation with the letter `H` and the `ZROT` Rotation in Z axis range between 0-90. Renames axes `AAAA` and `BBBB` to share the same name `ZROT`.
 - **QuadraticRotationAvar2[AAAA,BBBB,ZROT].ttf** HOI/NIL quadratic rotation with the letter `H` and the `ZROT` Rotation in Z axis range between 0-90. Includes intermediate hidden axes `AAAA` and `BBBB`.
 
 ### Source files
