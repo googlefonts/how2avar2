@@ -76,7 +76,7 @@ def main():
                 new_coords[old_axis] = value
         instance.coordinates = new_coords
 
-    font2.save("fonts/quadratic-rotation/variable/QuadraticRotationAvar1[ZROT].ttf")
+    font2.save("fonts/quadratic-rotation/variable/QuadraticRotation[ZROT].ttf")
 
 
 if __name__ == "__main__":
