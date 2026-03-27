@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # [MISE] depends=["fonts.setup"]
-# [MISE] sources=["scripts/fix-axis-bounds.py", "sources/quadratic-rotation/config*.yaml", "sources/quadratic-rotation/*.glyphspackage", "sources/quadratic-rotation/*.designspace"]
+# [MISE] sources=["scripts/fix-axis-bounds.py", "scripts/avar1-quadratic-rotation.py", "sources/quadratic-rotation/config*.yaml", "sources/quadratic-rotation/*.glyphspackage", "sources/quadratic-rotation/*.designspace"]
 # [MISE] outputs=["fonts/quadratic-rotation/**/*"]
 
 set -euo pipefail
