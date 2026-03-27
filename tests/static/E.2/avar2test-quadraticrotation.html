@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html class="reftest-wait">
+<link rel="mismatch" href="avar2test-linearrotation-expected-mismatch.html">
+<meta charset="utf-8">
+<style>
+  @font-face {
+    font-family: avar2test_quadraticrotation;
+    src: url(../../../fonts/quadratic-rotation/variable/QuadraticRotationAvar2[AAAA\,BBBB\,ZROT].ttf);
+  }
+
+  body {
+    font-family: avar2test_quadraticrotation, sans-serif;
+    font-size: 200px;
+  }
+
+  .zrot-45 {
+    font-variation-settings: "ZROT" 45;
+  }
+
+  .zrot-90 {
+    font-variation-settings: "ZROT" 90;
+  }
+</style>
+<!-- The avar2test_quadraticrotation implements quadratic rotation using HOI (Higher Order Interpolation).
+     HOI works by interpolating multiple axes at the same time.
+     Using avar2, the ZROT axis controls the AAAA and BBBB hidden axes, which interpolate together.
+-->
+H <span class="zrot-45">H</span> <span class="zrot-90">H</span>
+<script>
+  document.fonts.ready.then(
+    () => { document.documentElement.classList.remove("reftest-wait"); });
+</script>

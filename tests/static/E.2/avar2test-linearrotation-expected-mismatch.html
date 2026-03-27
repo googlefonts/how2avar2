@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html class="reftest-wait">
+<meta charset="utf-8">
+<style>
+  @font-face {
+    font-family: avar2test_linearrotation;
+    src: url(../../../fonts/linear-rotation/variable/LinearRotation[ZROT].ttf);
+  }
+
+  body {
+    font-family: avar2test_linearrotation, sans-serif;
+    font-size: 200px;
+  }
+
+  .zrot-45 {
+    font-variation-settings: "ZROT" 45;
+  }
+
+  .zrot-90 {
+    font-variation-settings: "ZROT" 90;
+  }
+</style>
+<!-- This test is expected to fail, because avar2test_linearrotation
+     implements linear rotation, not quadratic rotation.
+     Linear rotation only rotates using one axis,
+     unlike quadratic rotation, which uses two axes.
+     Linear rotation should have a noticeably smaller H at the 45 degree angle.
+-->
+H <span class="zrot-45">H</span> <span class="zrot-90">H</span>
+<script>
+  document.fonts.ready.then(
+    () => { document.documentElement.classList.remove("reftest-wait"); });
+</script>

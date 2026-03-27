@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html class="reftest-wait">
+<meta charset="utf-8">
+<style>
+  @font-face {
+    font-family: avar2test_quadraticrotation;
+    src: url(../../../fonts/quadratic-rotation/variable/QuadraticRotation[ZROT].ttf);
+  }
+
+  body {
+    font-family: avar2test_quadraticrotation, sans-serif;
+    font-size: 200px;
+  }
+
+  .zrot-45 {
+    font-variation-settings: "ZROT" 45;
+  }
+
+  .zrot-90 {
+    font-variation-settings: "ZROT" 90;
+  }
+</style>
+<!-- The avar2test_quadraticrotation implements quadratic rotation using HOI (Higher Order Interpolation).
+     HOI works by interpolating multiple axes at the same time.
+     Without an avar table, you can achieve the effect
+     by naming multiple axes with the same name.
+     In this case, two axes are named ZROT to implement rotation.
+     When ZROT changes, both axes named ZROT change together.
+-->
+H <span class="zrot-45">H</span> <span class="zrot-90">H</span>
+<script>
+  document.fonts.ready.then(
+    () => { document.documentElement.classList.remove("reftest-wait"); });
+</script>
