@@ -54,6 +54,13 @@ sources = ["how2avar2/package.json"]
 dir = "how2avar2"
 run = "npm install"
 
+[tasks."how2avar2.build"]
+description = "Build documentation website"
+sources = ["how2avar2/**/*"]
+depends = "how2avar2.setup"
+dir = "how2avar2"
+run = "npm run build"
+
 [tasks."infographics.setup"]
 description = "Install infographics JavaScript dependencies"
 dir = "infographics"
