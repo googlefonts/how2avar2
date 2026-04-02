@@ -66,6 +66,12 @@ The following fonts test rotation:
 - **avar2Fences.designspace** Design space fences for `TestFont.glyphspackage` and `AlternateGlyphs.glyphspackage`, implemented with avar2
 - **avar2OpticalSize.designspace** An optical size axis that manipulates the width and weight axes for `TestFont.glyphspackage` and `AlternateGlyphs.glyphspackage`, implemented with avar2
 
+### Reftests
+
+Reftests can be found in [tests/static](https://github.com/googlefonts/how2avar2/tree/main/tests/static).
+
+You can [preview](https://googlefonts.github.io/how2avar2/tests/) them on the documentation site.
+
 ### Scripts
 
 To combine `.designspace` files with test fonts, use `fonttools varLib.avar.build`.
