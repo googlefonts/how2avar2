@@ -27,8 +27,8 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }} # [default: ${{ github.token }}] GitHub token for API authentication
       - uses: actions/cache@v4
         with:
-          path: ./venv/
-          key: ${{ runner.os }}-venv-${{ hashFiles('**/requirements*.txt') }}
+          path: ./.venv/
+          key: ${{ runner.os }}-venv-${{ hashFiles('**/pyproject.toml') }}
           restore-keys: |
             ${{ runner.os }}-venv-
       - name: Set artifact file name
@@ -38,16 +38,19 @@ jobs:
         run: echo "ZIP_NAME=$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')-fonts" >> $GITHUB_ENV
 
       # If a new release is cut, use the release tag to auto-bump the source files
+      # bumpfontversion does not work with .glyphspackage https://github.com/simoncozens/bumpfontversion/issues/11
       # - name: Bump release
       #   if: github.event_name == 'release'
       #   run: |
-      #     . venv/bin/activate
-      #     SRCS=$(yq e ".sources[]" sources/config.yaml)
+      #     . .venv/bin/activate
       #     TAG_NAME=${GITHUB_REF/refs\/tags\//}
-      #     echo "Bumping $SRCS to $TAG_NAME"
-      #     for src in $SRCS
-      #     do
-      #       bumpfontversion sources/$src --new-version $TAG_NAME;
+      #     for config in $(find sources -name "config*.yaml"); do
+      #       SRCS=$(yq e ".sources[]" $config)
+      #       DIR=$(dirname $config)
+      #       echo "Bumping $SRCS in $DIR to $TAG_NAME"
+      #       for src in $SRCS; do
+      #         bumpfontversion "$DIR/$src" --new-version $TAG_NAME;
+      #       done
       #     done
 
       - name: Build font
