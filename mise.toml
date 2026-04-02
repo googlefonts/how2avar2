@@ -57,7 +57,7 @@ run = "npm install"
 [tasks."how2avar2.build"]
 description = "Build documentation website"
 sources = ["how2avar2/**/*"]
-depends = "how2avar2.setup"
+depends = ["how2avar2.setup", "fonts.build"]
 dir = "how2avar2"
 run = "npm run build"
 

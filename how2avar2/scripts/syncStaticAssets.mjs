@@ -9,11 +9,15 @@ const monorepoRoot = path.resolve(import.meta.dirname, "..");
 const publicDir = path.resolve(monorepoRoot, "public");
 
 async function pathExists(path) {
-  try {
-    await fs.access(path);
-    return true;
-  } catch {
-    return false;
+  return await fs.access(path).then(
+    () => true,
+    () => false,
+  );
+}
+
+async function ensureDir(directory) {
+  if (!(await pathExists(directory))) {
+    await fs.mkdir(directory, { recursive: true });
   }
 }
 
@@ -26,9 +30,7 @@ async function syncDirectory(srcDirName) {
     return;
   }
 
-  if (!(await pathExists(targetDir))) {
-    await fs.mkdir(targetDir, { recursive: true });
-  }
+  await ensureDir(targetDir);
 
   const files = await Array.fromAsync(fs.glob("**/*", { cwd: srcDir }));
 
@@ -40,11 +42,11 @@ async function syncDirectory(srcDirName) {
       const stats = await fs.stat(srcPath);
 
       if (stats.isDirectory()) {
-        if (!(await pathExists(targetPath))) {
-          await fs.mkdir(targetPath, { recursive: true });
-        }
-        return;
+        return await ensureDir(targetPath);
       }
+
+      // Ensure parent directory exists
+      await ensureDir(path.dirname(targetPath));
 
       async function copyFile() {
         await fs.copyFile(srcPath, targetPath);
@@ -52,8 +54,7 @@ async function syncDirectory(srcDirName) {
       }
 
       if (!(await pathExists(targetPath))) {
-        await copyFile();
-        return;
+        return await copyFile();
       }
 
       const targetStats = await fs.stat(targetPath);
