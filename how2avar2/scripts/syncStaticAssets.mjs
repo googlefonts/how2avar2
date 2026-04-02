@@ -45,10 +45,8 @@ async function syncDirectory(srcDirName) {
         return await ensureDir(targetPath);
       }
 
-      // Ensure parent directory exists
-      await ensureDir(path.dirname(targetPath));
-
       async function copyFile() {
+        await ensureDir(path.dirname(targetPath));
         await fs.copyFile(srcPath, targetPath);
         await fs.utimes(targetPath, stats.atime, stats.mtime);
       }
