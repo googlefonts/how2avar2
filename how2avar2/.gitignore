@@ -3,6 +3,8 @@
 
 # generated content
 .source
+/public/tests/
+/public/fonts/
 
 # test & build
 /coverage

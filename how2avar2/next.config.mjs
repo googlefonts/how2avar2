@@ -1,4 +1,7 @@
 import { createMDX } from "fumadocs-mdx/next";
+import { syncStaticAssets } from "./scripts/syncStaticAssets.mjs";
+
+await syncStaticAssets();
 
 const withMDX = createMDX();
 
