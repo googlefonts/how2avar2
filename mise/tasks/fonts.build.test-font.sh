@@ -28,3 +28,17 @@ fonttools varLib.avar.build -o "./fonts/test-font/variable/TestFontFencesAvar2[o
 # create Avar2 demo with optical size
 fonttools varLib.avar.build -o "./fonts/test-font/variable/TestFontOpticalSizeAvar2[opsz,wdth,wght].ttf" "./fonts/test-font/variable/TestFont[opsz,wdth,wght].ttf" "./sources/designspaces/avar2OpticalSize.designspace"
 ./scripts/rename-fonts.py --inplace --suffix " Optical Size Avar2" "./fonts/test-font/variable/TestFontOpticalSizeAvar2[opsz,wdth,wght].ttf"
+
+# create instances of the optical size font
+# regular
+fonttools varLib.instancer "./fonts/test-font/variable/TestFontOpticalSizeAvar2[opsz,wdth,wght].ttf" wght=400 wdth=100 opsz=6 -o "./fonts/test-font/TestFontOpticalSizeRegularCaption.ttf"
+fonttools varLib.instancer "./fonts/test-font/variable/TestFontOpticalSizeAvar2[opsz,wdth,wght].ttf" wght=400 wdth=100 opsz=16 -o "./fonts/test-font/TestFontOpticalSizeRegularText.ttf"
+fonttools varLib.instancer "./fonts/test-font/variable/TestFontOpticalSizeAvar2[opsz,wdth,wght].ttf" wght=400 wdth=100 opsz=144 -o "./fonts/test-font/TestFontOpticalSizeRegularCinema.ttf"
+# thin expanded
+fonttools varLib.instancer "./fonts/test-font/variable/TestFontOpticalSizeAvar2[opsz,wdth,wght].ttf" wght=100 wdth=125 opsz=6 -o "./fonts/test-font/TestFontOpticalSizeThinExpandedCaption.ttf"
+fonttools varLib.instancer "./fonts/test-font/variable/TestFontOpticalSizeAvar2[opsz,wdth,wght].ttf" wght=100 wdth=125 opsz=16 -o "./fonts/test-font/TestFontOpticalSizeThinExpandedText.ttf"
+fonttools varLib.instancer "./fonts/test-font/variable/TestFontOpticalSizeAvar2[opsz,wdth,wght].ttf" wght=100 wdth=125 opsz=144 -o "./fonts/test-font/TestFontOpticalSizeThinExpandedCinema.ttf"
+# black condensed
+fonttools varLib.instancer "./fonts/test-font/variable/TestFontOpticalSizeAvar2[opsz,wdth,wght].ttf" wght=900 wdth=75 opsz=6 -o "./fonts/test-font/TestFontOpticalSizeBlackCondensedCaption.ttf"
+fonttools varLib.instancer "./fonts/test-font/variable/TestFontOpticalSizeAvar2[opsz,wdth,wght].ttf" wght=900 wdth=75 opsz=16 -o "./fonts/test-font/TestFontOpticalSizeBlackCondensedText.ttf"
+fonttools varLib.instancer "./fonts/test-font/variable/TestFontOpticalSizeAvar2[opsz,wdth,wght].ttf" wght=900 wdth=75 opsz=144 -o "./fonts/test-font/TestFontOpticalSizeBlackCondensedCinema.ttf"
