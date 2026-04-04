@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html class="reftest-wait">
+<meta charset="utf-8">
+<style>
+  @font-face {
+    font-family: avar2test_static_caption_regular;
+    src: url(../../../fonts/test-font/TestFontOpticalSizeRegularCaption.ttf);
+  }
+
+  @font-face {
+    font-family: avar2test_static_caption_thin_expanded;
+    src: url(../../../fonts/test-font/TestFontOpticalSizeThinExpandedCaption.ttf);
+  }
+
+  @font-face {
+    font-family: avar2test_static_caption_black_condensed;
+    src: url(../../../fonts/test-font/TestFontOpticalSizeBlackCondensedCaption.ttf);
+  }
+
+  body {
+    font-family: avar2test_static_caption_regular, sans-serif;
+    font-size: 200px;
+  }
+
+  .thin-expanded {
+    font-family: avar2test_static_caption_thin_expanded, sans-serif;
+  }
+
+  .black-condensed {
+    font-family: avar2test_static_caption_black_condensed, sans-serif;
+  }
+</style>
+<!-- Static caption fonts instanced at opsz 6 -->
+H <span class="thin-expanded">H</span> <span class="black-condensed">H</span>
+<script>
+  document.fonts.ready.then(
+    () => { document.documentElement.classList.remove("reftest-wait"); });
+</script>

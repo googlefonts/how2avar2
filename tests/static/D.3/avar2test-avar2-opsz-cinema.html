@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html class="reftest-wait">
+<link rel="match" href="avar2test-avar1-expected.html">
+<link rel="mismatch" href="avar2test-variable-expected-mismatch.html">
+<meta charset="utf-8">
+<style>
+  @font-face {
+    font-family: avar2test_avar2;
+    src: url(../../../fonts/test-font/variable/TestFontOpticalSizeAvar2[opsz\,wdth\,wght].ttf);
+  }
+
+  body {
+    font-family: avar2test_avar2, sans-serif;
+    font-size: 200px;
+    font-variation-settings: "opsz" 144;
+  }
+
+  .thin-expanded {
+    font-variation-settings: "wght" 100, "wdth" 125, "opsz" 144;
+  }
+
+  .black-condensed {
+    font-variation-settings: "wght" 900, "wdth" 75, "opsz" 144;
+  }
+</style>
+<!-- The avar2test_avar2 implements "opsz" using avar2,
+     which affects its width and weight at opsz 144.
+-->
+H <span class="thin-expanded">H</span> <span class="black-condensed">H</span>
+<script>
+  document.fonts.ready.then(
+    () => { document.documentElement.classList.remove("reftest-wait"); });
+</script>
