@@ -14,18 +14,18 @@
     font-size: 200px;
   }
 
-  .light-expanded {
+  .thin-expanded {
     font-variation-settings: "wght" 100, "wdth" 125;
   }
 
-  .bold-condensed {
+  .black-condensed {
     font-variation-settings: "wght" 900, "wdth" 75;
   }
 </style>
 <!-- The avar2test_avar2 re-implements the avar2test_avar1 font,
      using the avar table format 2
 -->
-H <span class="light-expanded">H</span> <span class="bold-condensed">H</span>
+H <span class="thin-expanded">H</span> <span class="black-condensed">H</span>
 <script>
   document.fonts.ready.then(
     () => { document.documentElement.classList.remove("reftest-wait"); });
