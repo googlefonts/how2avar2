@@ -8,7 +8,12 @@ import {
   statuses,
 } from "@/components/StatusBadge";
 import { FailMessage } from "@/components/FailMessage";
-import { PlatformIcons } from "@/components/PlatformIcons";
+import {
+  PlatformIcons,
+  PlatformIconKey,
+  osPlatforms,
+  browserPlatforms,
+} from "@/components/PlatformIcons";
 import {
   getTestGroups,
   sortHtmls,
@@ -24,15 +29,30 @@ export default async function TestsPage() {
     <div className="prose dark:prose-invert mx-auto mt-16 max-w-4xl px-8">
       <h1>Reftests</h1>
 
+      <p>
+        <Link href="/tests/interactive/demo.html">Interactive Demo</Link>
+      </p>
+
       <div className="not-prose mb-6 flex flex-wrap gap-3">
+        <p>Statuses</p>
         {statuses.map((status) => (
           <StatusBadgeKey key={status} status={status} />
         ))}
       </div>
 
-      <p>
-        <Link href="/tests/interactive/demo.html">Interactive Demo</Link>
-      </p>
+      <div className="not-prose mb-6 flex flex-wrap gap-3">
+        <p>Operating Systems</p>
+        {osPlatforms.map((platform) => (
+          <PlatformIconKey key={platform} platform={platform} />
+        ))}
+      </div>
+
+      <div className="not-prose mb-6 flex flex-wrap gap-3">
+        <p>Browsers</p>
+        {browserPlatforms.map((platform) => (
+          <PlatformIconKey key={platform} platform={platform} />
+        ))}
+      </div>
 
       {groups.map(([groupName, { htmls, pngs, mds }]) => (
         <Fragment key={groupName}>
