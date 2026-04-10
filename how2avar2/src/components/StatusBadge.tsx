@@ -4,6 +4,7 @@ import {
   faXmark,
   faEquals,
   faNotEqual,
+  faLayerGroup,
 } from "@fortawesome/free-solid-svg-icons";
 import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
@@ -12,9 +13,9 @@ export const statuses = [
   "failed",
   "expected",
   "expected-mismatch",
+  "composited",
 ] as const;
-export type Statuses = typeof statuses;
-export type Status = Statuses[number];
+export type Status = (typeof statuses)[number];
 
 export const statusConfig: Record<
   Status,
@@ -44,6 +45,12 @@ export const statusConfig: Record<
     icon: faNotEqual,
     label: "Expected Mismatch",
   },
+  composited: {
+    bg: "bg-gray-100",
+    text: "text-gray-900",
+    icon: faLayerGroup,
+    label: "Composited",
+  },
 };
 
 export function StatusBadgeKey({ status }: { status: Status }) {
@@ -52,7 +59,7 @@ export function StatusBadgeKey({ status }: { status: Status }) {
     <span
       className={`flex items-center gap-1.5 rounded px-2 py-1 text-sm ${bg} ${text}`}
     >
-      <FontAwesomeIcon icon={icon} className="size-3.5" />
+      <FontAwesomeIcon icon={icon} className="size-4" />
       {label}
     </span>
   );

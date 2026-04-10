@@ -25,16 +25,23 @@ export function PlatformIcons({
   os,
   browser,
 }: {
-  os: string;
-  browser: string;
+  os?: string;
+  browser?: string;
 }) {
-  const osIcon = osIcons[os];
-  const browserIcon = browserIcons[browser];
-
+  const osIcon = os ? osIcons[os] : undefined;
+  const browserIcon = browser ? browserIcons[browser] : undefined;
   return (
     <span className="flex shrink-0 flex-col items-center justify-around p-2 bg-gray-100 text-gray-600">
-      {osIcon && <FontAwesomeIcon icon={osIcon} className="size-4" />}
-      {browserIcon && <FontAwesomeIcon icon={browserIcon} className="size-4" />}
+      {osIcon ? (
+        <FontAwesomeIcon icon={osIcon} className="size-4" />
+      ) : (
+        <span className="size-5" />
+      )}
+      {browserIcon ? (
+        <FontAwesomeIcon icon={browserIcon} className="size-4" />
+      ) : (
+        <span className="size-5" />
+      )}
     </span>
   );
 }

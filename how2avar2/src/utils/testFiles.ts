@@ -1,25 +1,17 @@
 import { glob } from "node:fs/promises";
 import path from "node:path";
 import sortOn from "sort-on";
-import { match } from "ts-pattern";
 import type { Status } from "@/components/StatusBadge";
 
 type FileGroup = { htmls: string[]; pngs: string[]; mds: string[] };
 
 export const testsDirectory = path.resolve("public/tests/static");
 
-const fileGroupKey = (fileName: string): keyof FileGroup =>
-  match(fileName)
-    .returnType<keyof FileGroup>()
-    .when(
-      (fileName) => fileName.endsWith(".html"),
-      () => "htmls",
-    )
-    .when(
-      (fileName) => fileName.endsWith(".fail.md"),
-      () => "mds",
-    )
-    .otherwise(() => "pngs");
+const fileGroupKey = (fileName: string): keyof FileGroup => {
+  if (fileName.endsWith(".html")) return "htmls";
+  if (fileName.endsWith(".fail.md")) return "mds";
+  return "pngs";
+};
 
 export async function getTestGroups(): Promise<[string, FileGroup][]> {
   const files = await Array.fromAsync(
@@ -34,40 +26,34 @@ export async function getTestGroups(): Promise<[string, FileGroup][]> {
   return sortOn(Object.entries(grouped), [([name]) => name]);
 }
 
-const htmlSortKey = (name: string) =>
-  match(name)
-    .returnType<number>()
-    .when(
-      (n) => n.includes("mismatch"),
-      () => 2,
-    )
-    .when(
-      (n) => n.includes("expected"),
-      () => 1,
-    )
-    .otherwise(() => 0);
+const htmlSortKey = (name: string): number => {
+  if (name.includes("expected-mismatch")) return 2;
+  if (name.includes("expected")) return 1;
+  return 0;
+};
 
 export function sortHtmls(htmls: string[]): string[] {
   return sortOn(htmls, [htmlSortKey, (name: string) => name]);
 }
 
-export const screenshotStatusOf = (
-  htmlName: string,
-  failMdPath: string | null,
-): Status =>
-  match({ htmlName, failMdPath })
-    .returnType<Status>()
-    .when(
-      ({ failMdPath }) => failMdPath !== null,
-      () => "failed",
-    )
-    .when(
-      ({ htmlName }) => htmlName.includes("expected-mismatch"),
-      () => "expected-mismatch",
-    )
-    .when(
-      ({ htmlName }) => htmlName.includes("expected"),
-      () => "expected",
-    )
-    .otherwise(() => "passed");
+const pngSortKey = (name: string): number => {
+  if (name.includes("composited")) return 0;
+  if (name.includes("expected-mismatch")) return 3;
+  if (name.includes("expected")) return 2;
+  return 1;
+};
 
+export function sortPngs(pngs: string[]): string[] {
+  return sortOn(pngs, [pngSortKey, (name: string) => name]);
+}
+
+export const screenshotStatusOf = (
+  pngName: string,
+  failMdPath: string | null,
+): Status => {
+  if (failMdPath !== null) return "failed";
+  if (pngName.includes("composited")) return "composited";
+  if (pngName.includes("expected-mismatch")) return "expected-mismatch";
+  if (pngName.includes("expected")) return "expected";
+  return "passed";
+};

@@ -12,6 +12,7 @@ import { PlatformIcons } from "@/components/PlatformIcons";
 import {
   getTestGroups,
   sortHtmls,
+  sortPngs,
   screenshotStatusOf,
   testsDirectory,
 } from "@/utils/testFiles";
@@ -39,9 +40,9 @@ export default async function TestsPage() {
           <ul>
             {sortHtmls(htmls).map((html) => {
               const htmlName = path.parse(html).name;
-              const screenshots = pngs
-                .filter((png) => png.includes(htmlName))
-                .sort();
+              const screenshots = sortPngs(
+                pngs.filter((png) => png.includes(htmlName)),
+              );
 
               return (
                 <li key={html}>
@@ -57,7 +58,7 @@ export default async function TestsPage() {
                         const failMdPath = mds.includes(failMd)
                           ? path.join(testsDirectory, groupName, failMd)
                           : null;
-                        const status = screenshotStatusOf(htmlName, failMdPath);
+                        const status = screenshotStatusOf(pngName, failMdPath);
                         const [os, browser] = png.split(".");
 
                         return (
