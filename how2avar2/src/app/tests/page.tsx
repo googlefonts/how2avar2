@@ -1,7 +1,6 @@
 import path from "node:path";
-import Link from "next/link";
 import Image from "next/image";
-import { Fragment, Suspense } from "react";
+import { Fragment } from "react";
 import { StatusBadge } from "@/components/StatusBadge";
 import { PlatformIcons } from "@/components/PlatformIcons";
 import { FailMessage } from "@/components/FailMessage";
@@ -11,8 +10,15 @@ import {
   sortHtmls,
   sortPngs,
   screenshotStatusOf,
-  testsDirectory,
 } from "@/utils/testFiles";
+
+// cannot use Link component when linking to non-next.js files https://stackoverflow.com/a/61059425
+// cannot use useRouter inside of an async function https://github.com/vercel/next.js/discussions/43924
+// cannot easily reference basePath at runtime https://github.com/vercel/next.js/discussions/16059
+// while unsupported, addBasePath is the best option
+// - https://github.com/vercel/next.js/discussions/16047
+// - https://til.dchan.cc/posts/01-22-2024/
+import { addBasePath } from "next/dist/client/add-base-path.js";
 
 export default async function TestsPage() {
   const groups = await getTestGroups();
@@ -22,7 +28,9 @@ export default async function TestsPage() {
       <h1>Reftests</h1>
 
       <p>
-        <Link href="/tests/interactive/demo.html">Interactive Demo</Link>
+        <a href={addBasePath("/tests/interactive/demo.html")}>
+          Interactive Demo
+        </a>
       </p>
 
       <IconKeys />
@@ -39,17 +47,19 @@ export default async function TestsPage() {
 
               return (
                 <li key={html}>
-                  <Link href={`/tests/static/${groupName}/${html}`}>
+                  <a href={addBasePath(`/tests/static/${groupName}/${html}`)}>
                     {htmlName}
-                  </Link>
+                  </a>
                   {screenshots.length > 0 && (
                     <ul>
                       {screenshots.map((png) => {
-                        const pngUrl = `/how2avar2/tests/static/${groupName}/${png}`;
+                        const pngUrl = addBasePath(
+                          `/tests/static/${groupName}/${png}`,
+                        );
                         const pngName = path.parse(png).name;
                         const failMd = `${pngName}.fail.md`;
                         const failMdPath = mds.includes(failMd)
-                          ? path.join(testsDirectory, groupName, failMd)
+                          ? `${groupName}/${failMd}`
                           : null;
                         const status = screenshotStatusOf(pngName, failMdPath);
                         const [os, browser] = png.split(".");
@@ -72,9 +82,7 @@ export default async function TestsPage() {
                                 </a>
                               </div>
                               {failMdPath && (
-                                <Suspense fallback={null}>
-                                  <FailMessage filePath={failMdPath} />
-                                </Suspense>
+                                <FailMessage filePath={failMdPath} />
                               )}
                             </div>
                           </li>

@@ -1,4 +1,3 @@
-import { readFile } from "node:fs/promises";
 import production from "react/jsx-runtime";
 import { remark } from "remark";
 import remarkGfm from "remark-gfm";
@@ -18,10 +17,9 @@ export const inlineSchema: Schema = {
 };
 
 export async function parseMarkdown(
-  filePath: string,
+  content: string,
   schema: Schema = inlineSchema,
 ): Promise<ReactNode> {
-  const content = await readFile(filePath, "utf-8");
   const file = await remark()
     .use(remarkGfm)
     .use(remarkRehype)
