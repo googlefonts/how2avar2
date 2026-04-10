@@ -1,7 +1,7 @@
 import path from "node:path";
 import Link from "next/link";
 import Image from "next/image";
-import { Fragment } from "react";
+import { Fragment, Suspense } from "react";
 import { StatusBadge } from "@/components/StatusBadge";
 import { PlatformIcons } from "@/components/PlatformIcons";
 import { FailMessage } from "@/components/FailMessage";
@@ -72,7 +72,9 @@ export default async function TestsPage() {
                                 </a>
                               </div>
                               {failMdPath && (
-                                <FailMessage filePath={failMdPath} />
+                                <Suspense fallback={null}>
+                                  <FailMessage filePath={failMdPath} />
+                                </Suspense>
                               )}
                             </div>
                           </li>
