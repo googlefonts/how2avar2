@@ -10,7 +10,7 @@ import type { ReactNode } from "react";
 
 export const inlineSchema: Schema = {
   ...defaultSchema,
-  tagNames: ["a", "em", "strong", "code", "del", "br", "span"],
+  tagNames: ["ul", "li", "p", "a", "em", "strong", "code", "del", "br", "span"],
   attributes: {
     ...defaultSchema.attributes,
     a: ["href", "title"],
