@@ -1,7 +1,7 @@
 import { glob } from "node:fs/promises";
 import path from "node:path";
 import sortOn from "sort-on";
-import type { Status } from "@/components/StatusBadge";
+import type { Status } from "@/utils/statuses";
 
 type FileGroup = { htmls: string[]; pngs: string[]; mds: string[] };
 

@@ -22,8 +22,7 @@ const platformConfig: Record<string, PlatformConfig> = {
   // firefox: { icon: faFirefox, label: "Firefox" },
 };
 
-export const osPlatforms = ["mac", "win" /* , "linux" */] as const;
-export const browserPlatforms = ["safari", "chrome" /* , "firefox" */] as const;
+export { osPlatforms, browserPlatforms } from "@/utils/platforms";
 
 export function PlatformIconKey({ platform }: { platform: string }) {
   const { icon, label } = platformConfig[platform];
@@ -47,20 +46,24 @@ export function PlatformIcons({
   return (
     <span className="flex shrink-0 flex-col items-center justify-around p-2 bg-gray-100 text-gray-600">
       {osConfig ? (
-        <FontAwesomeIcon
-          icon={osConfig.icon}
-          title={osConfig.label}
-          className="size-4"
-        />
+        <span title={osConfig.label}>
+          <FontAwesomeIcon
+            icon={osConfig.icon}
+            aria-label={osConfig.label}
+            className="size-4"
+          />
+        </span>
       ) : (
         <span className="size-5" />
       )}
       {browserConfig ? (
-        <FontAwesomeIcon
-          icon={browserConfig.icon}
-          title={browserConfig.label}
-          className="size-4"
-        />
+        <span title={browserConfig.label}>
+          <FontAwesomeIcon
+            icon={browserConfig.icon}
+            aria-label={browserConfig.label}
+            className="size-4"
+          />
+        </span>
       ) : (
         <span className="size-5" />
       )}

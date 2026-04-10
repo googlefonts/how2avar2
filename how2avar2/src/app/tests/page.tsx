@@ -2,18 +2,11 @@ import path from "node:path";
 import Link from "next/link";
 import Image from "next/image";
 import { Fragment } from "react";
-import {
-  StatusBadge,
-  StatusBadgeKey,
-  statuses,
-} from "@/components/StatusBadge";
+import { StatusBadge, StatusBadgeKey } from "@/components/StatusBadge";
+import { PlatformIcons, PlatformIconKey } from "@/components/PlatformIcons";
 import { FailMessage } from "@/components/FailMessage";
-import {
-  PlatformIcons,
-  PlatformIconKey,
-  osPlatforms,
-  browserPlatforms,
-} from "@/components/PlatformIcons";
+import { statuses } from "@/utils/statuses";
+import { osPlatforms, browserPlatforms } from "@/utils/platforms";
 import {
   getTestGroups,
   sortHtmls,

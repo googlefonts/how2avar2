@@ -9,17 +9,11 @@ import {
   faLayerGroup,
 } from "@fortawesome/free-solid-svg-icons";
 import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import { type Status } from "@/utils/statuses";
 
-export const statuses = [
-  "passed",
-  "failed",
-  "expected",
-  "expected-mismatch",
-  "composited",
-] as const;
-export type Status = (typeof statuses)[number];
+export { statuses, type Status } from "@/utils/statuses";
 
-export const statusConfig: Record<
+const statusConfig: Record<
   Status,
   { bg: string; text: string; icon: IconDefinition; label: string }
 > = {
@@ -71,9 +65,10 @@ export function StatusBadge({ status }: { status: Status }) {
   const { bg, text, icon, label } = statusConfig[status];
   return (
     <span
+      title={label}
       className={`flex shrink-0 items-center justify-center p-2 ${bg} ${text}`}
     >
-      <FontAwesomeIcon icon={icon} title={label} className="size-4" />
+      <FontAwesomeIcon icon={icon} aria-label={label} className="size-4" />
     </span>
   );
 }
