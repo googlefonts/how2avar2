@@ -1,0 +1,1 @@
+Without avar2 support, the corner of condensed and bold weights can still be accessed by the user.  Fencing off corners of the designspace allows type designers to restrict areas of the font that may be broken or ugly.

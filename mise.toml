@@ -83,6 +83,10 @@ run = [
 description = "Delete font compiled artifacts"
 run = ["rm -rf fonts fonts.zip"]
 
+[tasks."fonts.composite"]
+description = "Generate composited font images from all browsers and platforms"
+run = ["python3 scripts/composited-images.py"]
+
 [tasks."fonts.zip"]
 description = "Zip font files for release"
 sources = ["fonts/**/*"]
