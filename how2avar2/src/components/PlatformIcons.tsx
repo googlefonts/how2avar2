@@ -4,10 +4,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faApple,
   faWindows,
-  faLinux,
+  // faLinux,
   faSafari,
   faChrome,
-  faFirefox,
+  // faFirefox,
 } from "@fortawesome/free-brands-svg-icons";
 import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
