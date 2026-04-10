@@ -1,55 +1,43 @@
-import { glob } from "node:fs/promises";
 import path from "node:path";
 import Link from "next/link";
 import Image from "next/image";
-import titleize from "titleize";
-import sortOn from "sort-on";
 import { Fragment } from "react";
+import {
+  StatusBadge,
+  StatusBadgeKey,
+  statuses,
+} from "@/components/StatusBadge";
+import { FailMessage } from "@/components/FailMessage";
+import { PlatformIcons } from "@/components/PlatformIcons";
+import {
+  getTestGroups,
+  sortHtmls,
+  screenshotStatusOf,
+  testsDirectory,
+} from "@/utils/testFiles";
 
 export default async function TestsPage() {
-  const interactiveDemo = "interactive/demo.html";
-  const cwd = path.resolve("public/tests/static");
-
-  const allFiles = await Array.fromAsync(glob("**/*.{html,png}", { cwd }));
-
-  const groups = sortOn(
-    Object.entries(
-      allFiles.reduce<Record<string, { htmls: string[]; pngs: string[] }>>(
-        (accumulator, file) => {
-          const [groupName, fileName] = file.split("/");
-          accumulator[groupName] ??= { htmls: [], pngs: [] };
-          const fileType = fileName.endsWith(".html") ? "htmls" : "pngs";
-          accumulator[groupName][fileType].push(fileName);
-          return accumulator;
-        },
-        {},
-      ),
-    ),
-    [([groupName]) => groupName],
-  );
+  const groups = await getTestGroups();
 
   return (
-    <div className="prose dark:prose-invert mx-auto mt-16 max-w-lg px-8">
+    <div className="prose dark:prose-invert mx-auto mt-16 max-w-4xl px-8">
       <h1>Reftests</h1>
 
-      {interactiveDemo && (
-        <p>
-          <Link href={`/tests/${interactiveDemo}`}>Interactive Demo</Link>
-        </p>
-      )}
+      <div className="not-prose mb-6 flex flex-wrap gap-3">
+        {statuses.map((status) => (
+          <StatusBadgeKey key={status} status={status} />
+        ))}
+      </div>
 
-      {groups.map(([groupName, { htmls, pngs }]) => (
+      <p>
+        <Link href="/tests/interactive/demo.html">Interactive Demo</Link>
+      </p>
+
+      {groups.map(([groupName, { htmls, pngs, mds }]) => (
         <Fragment key={groupName}>
           <h2>{groupName}</h2>
           <ul>
-            {sortOn(htmls, [
-              (name) => {
-                if (name.includes("mismatch")) return 2;
-                if (name.includes("expected")) return 1;
-                return 0;
-              },
-              (name) => name,
-            ]).map((html) => {
+            {sortHtmls(htmls).map((html) => {
               const htmlName = path.parse(html).name;
               const screenshots = pngs
                 .filter((png) => png.includes(htmlName))
@@ -62,21 +50,40 @@ export default async function TestsPage() {
                   </Link>
                   {screenshots.length > 0 && (
                     <ul>
-                      {screenshots.map((png) => (
-                        <li key={png}>
-                          <small>
-                            {titleize(png.split(".").slice(0, 2).join(" "))}
-                          </small>
-                          <Image
-                            src={`/how2avar2/tests/static/${groupName}/${png}`}
-                            alt={png}
-                            width={1440}
-                            height={400}
-                            unoptimized
-                            className="block mt-2 mb-6 border rounded shadow-sm"
-                          />
-                        </li>
-                      ))}
+                      {screenshots.map((png) => {
+                        const pngUrl = `/how2avar2/tests/static/${groupName}/${png}`;
+                        const pngName = path.parse(png).name;
+                        const failMd = `${pngName}.fail.md`;
+                        const failMdPath = mds.includes(failMd)
+                          ? path.join(testsDirectory, groupName, failMd)
+                          : null;
+                        const status = screenshotStatusOf(htmlName, failMdPath);
+                        const [os, browser] = png.split(".");
+
+                        return (
+                          <li key={png}>
+                            <div className="mt-2 mb-6">
+                              <div className="not-prose grid grid-cols-[auto_auto_1fr] overflow-clip rounded border bg-white shadow-sm">
+                                <StatusBadge status={status} />
+                                <PlatformIcons os={os} browser={browser} />
+                                <a href={pngUrl} className="pl-9">
+                                  <Image
+                                    src={pngUrl}
+                                    alt={png}
+                                    width={1440}
+                                    height={400}
+                                    unoptimized
+                                    className="block w-full h-auto"
+                                  />
+                                </a>
+                              </div>
+                              {failMdPath && (
+                                <FailMessage filePath={failMdPath} />
+                              )}
+                            </div>
+                          </li>
+                        );
+                      })}
                     </ul>
                   )}
                 </li>
