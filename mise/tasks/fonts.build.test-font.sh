@@ -25,6 +25,10 @@ fonttools varLib.avar.build -o "./fonts/test-font/variable/TestFontAvar2[opsz,wd
 fonttools varLib.avar.build -o "./fonts/test-font/variable/TestFontFencesAvar2[opsz,wdth,wght].ttf" "./fonts/test-font/variable/TestFont[opsz,wdth,wght].ttf" "./sources/designspaces/avar2Fences.designspace"
 ./scripts/rename-fonts.py --inplace --suffix " Fences Avar2" "./fonts/test-font/variable/TestFontFencesAvar2[opsz,wdth,wght].ttf"
 
+# create instances of the fences font
+fonttools varLib.instancer "./fonts/test-font/variable/TestFontFencesAvar2[opsz,wdth,wght].ttf" wght=900 wdth=75 opsz=16 -o "./fonts/test-font/TestFontFencesBlackCondensed.ttf"
+fonttools varLib.instancer "./fonts/test-font/variable/TestFontFencesAvar2[opsz,wdth,wght].ttf" wght=400 wdth=100 opsz=16 -o "./fonts/test-font/TestFontFencesDefault.ttf"
+
 # create Avar2 demo with optical size
 fonttools varLib.avar.build -o "./fonts/test-font/variable/TestFontOpticalSizeAvar2[opsz,wdth,wght].ttf" "./fonts/test-font/variable/TestFont[opsz,wdth,wght].ttf" "./sources/designspaces/avar2OpticalSize.designspace"
 ./scripts/rename-fonts.py --inplace --suffix " Optical Size Avar2" "./fonts/test-font/variable/TestFontOpticalSizeAvar2[opsz,wdth,wght].ttf"

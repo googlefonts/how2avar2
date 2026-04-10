@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html class="reftest-wait">
+<meta charset="utf-8">
+<style>
+  @font-face {
+    font-family: avar2test_variable;
+    src: url(../../../fonts/test-font/variable/TestFont[opsz\,wdth\,wght].ttf);
+  }
+
+  body {
+    font-family: avar2test_variable, sans-serif;
+    font-size: 200px;
+    font-variation-settings: "wght" 1000, "wdth" 75;
+  }
+</style>
+<!-- The avar2test_variable font does not implement fences,
+     and will mismatch at the corner of condensed and bold weights.
+-->
+H
+<script>
+  document.fonts.ready.then(
+    () => { document.documentElement.classList.remove("reftest-wait"); });
+</script>

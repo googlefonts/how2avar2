@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html class="reftest-wait">
+<link rel="match" href="avar2test-static-fences-default-expected.html">
+<link rel="match" href="avar2test-variable-fences-default-expected.html">
+<meta charset="utf-8">
+<style>
+  @font-face {
+    font-family: avar2test_fences_avar2;
+    src: url(../../../fonts/test-font/variable/TestFontFencesAvar2[opsz\,wdth\,wght].ttf);
+  }
+
+  body {
+    font-family: avar2test_fences_avar2, sans-serif;
+    font-size: 200px;
+  }
+</style>
+<!-- The avar2test_fences_avar2 implements fences using avar2,
+     but should match other fonts at the default axis values.
+-->
+H
+<script>
+  document.fonts.ready.then(
+    () => { document.documentElement.classList.remove("reftest-wait"); });
+</script>
