@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html class="reftest-wait">
+<meta charset="utf-8">
+<style>
+  @font-face {
+    font-family: avar2test_fences_static_default_substitution;
+    src: url(../../../fonts/alternate-glyphs/AlternateGlyphsFencesDefault.ttf);
+  }
+
+  @font-face {
+    font-family: avar2test_fences_static_black_condensed_substitution;
+    src: url(../../../fonts/alternate-glyphs/AlternateGlyphsFencesBlackCondensed.ttf);
+  }
+
+  body {
+    font-family: avar2test_fences_static_default_substitution, sans-serif;
+    font-size: 200px;
+  }
+
+  .black-condensed {
+    font-family: avar2test_fences_static_black_condensed_substitution, sans-serif;
+  }
+</style>
+<!-- Static fences fonts instanced at default and "wght" 900, "wdth" 75 -->
+H <span class="black-condensed">H</span>
+<script>
+  document.fonts.ready.then(
+    () => { document.documentElement.classList.remove("reftest-wait"); });
+</script>
