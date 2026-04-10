@@ -1,3 +1,5 @@
+"use client";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheck,
@@ -66,12 +68,12 @@ export function StatusBadgeKey({ status }: { status: Status }) {
 }
 
 export function StatusBadge({ status }: { status: Status }) {
-  const { bg, text, icon } = statusConfig[status];
+  const { bg, text, icon, label } = statusConfig[status];
   return (
     <span
       className={`flex shrink-0 items-center justify-center p-2 ${bg} ${text}`}
     >
-      <FontAwesomeIcon icon={icon} className="size-4" />
+      <FontAwesomeIcon icon={icon} title={label} className="size-4" />
     </span>
   );
 }
