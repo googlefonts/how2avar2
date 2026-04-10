@@ -2,11 +2,10 @@ import path from "node:path";
 import Link from "next/link";
 import Image from "next/image";
 import { Fragment } from "react";
-import { StatusBadge, StatusBadgeKey } from "@/components/StatusBadge";
-import { PlatformIcons, PlatformIconKey } from "@/components/PlatformIcons";
+import { StatusBadge } from "@/components/StatusBadge";
+import { PlatformIcons } from "@/components/PlatformIcons";
 import { FailMessage } from "@/components/FailMessage";
-import { statuses } from "@/utils/statuses";
-import { osPlatforms, browserPlatforms } from "@/utils/platforms";
+import { IconKeys } from "@/components/IconKey";
 import {
   getTestGroups,
   sortHtmls,
@@ -26,26 +25,7 @@ export default async function TestsPage() {
         <Link href="/tests/interactive/demo.html">Interactive Demo</Link>
       </p>
 
-      <div className="not-prose mb-6 flex flex-wrap gap-3">
-        <p>Statuses</p>
-        {statuses.map((status) => (
-          <StatusBadgeKey key={status} status={status} />
-        ))}
-      </div>
-
-      <div className="not-prose mb-6 flex flex-wrap gap-3">
-        <p>Operating Systems</p>
-        {osPlatforms.map((platform) => (
-          <PlatformIconKey key={platform} platform={platform} />
-        ))}
-      </div>
-
-      <div className="not-prose mb-6 flex flex-wrap gap-3">
-        <p>Browsers</p>
-        {browserPlatforms.map((platform) => (
-          <PlatformIconKey key={platform} platform={platform} />
-        ))}
-      </div>
+      <IconKeys />
 
       {groups.map(([groupName, { htmls, pngs, mds }]) => (
         <Fragment key={groupName}>
