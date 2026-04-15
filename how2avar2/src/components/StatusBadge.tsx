@@ -10,6 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { type Status } from "@/utils/statuses";
+import { cn } from "@/utils/cn";
 
 export { statuses, type Status } from "@/utils/statuses";
 
@@ -66,7 +67,7 @@ export function StatusBadge({ status }: { status: Status }) {
   return (
     <span
       title={label}
-      className={`flex shrink-0 items-center justify-center p-2 ${bg} ${text}`}
+      className={cn("flex shrink-0 items-center justify-center p-2", bg, text)}
     >
       <FontAwesomeIcon icon={icon} aria-label={label} className="size-4" />
     </span>

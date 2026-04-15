@@ -5,8 +5,8 @@ import { osPlatforms, browserPlatforms } from "@/utils/platforms";
 
 function IconKey({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div className="not-prose mb-6 flex flex-wrap gap-3">
-      <p>{label}</p>
+    <div className="flex flex-wrap items-center gap-2 py-2">
+      <span>{label}</span>
       {children}
     </div>
   );
@@ -15,11 +15,13 @@ function IconKey({ label, children }: { label: string; children: React.ReactNode
 export function IconKeys() {
   return (
     <>
-      <IconKey label="Statuses">
-        {statuses.map((status) => (
-          <StatusBadgeKey key={status} status={status} />
-        ))}
-      </IconKey>
+      <div className="sticky top-0 z-10 -mx-8 bg-fd-background px-8">
+        <IconKey label="Statuses">
+          {statuses.map((status) => (
+            <StatusBadgeKey key={status} status={status} />
+          ))}
+        </IconKey>
+      </div>
       <IconKey label="Operating Systems">
         {osPlatforms.map((platform) => (
           <PlatformIconKey key={platform} platform={platform} />

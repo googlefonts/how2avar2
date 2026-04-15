@@ -4,10 +4,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faApple,
   faWindows,
-  // faLinux,
+  faLinux,
   faSafari,
   faChrome,
-  // faFirefox,
+  faFirefox,
+  faFigma,
 } from "@fortawesome/free-brands-svg-icons";
 import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
@@ -16,10 +17,11 @@ type PlatformConfig = { icon: IconDefinition; label: string };
 const platformConfig: Record<string, PlatformConfig> = {
   mac: { icon: faApple, label: "macOS" },
   win: { icon: faWindows, label: "Windows" },
-  // linux: { icon: faLinux, label: "Linux" },
+  linux: { icon: faLinux, label: "Linux" },
   safari: { icon: faSafari, label: "Safari" },
   chrome: { icon: faChrome, label: "Chrome" },
-  // firefox: { icon: faFirefox, label: "Firefox" },
+  firefox: { icon: faFirefox, label: "Firefox" },
+  figma: { icon: faFigma, label: "Figma" },
 };
 
 export { osPlatforms, browserPlatforms } from "@/utils/platforms";
