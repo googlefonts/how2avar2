@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html class="reftest-wait">
+<link rel="match" href="avar2test-avar1-kerning-expected.html">
+<link rel="mismatch" href="avar2test-variable-kerning-expected-mismatch.html">
+<meta charset="utf-8">
+<style>
+  @font-face {
+    font-family: avar2test_avar2;
+    src: url(../../../fonts/test-font/variable/TestFontAvar2[opsz\,wdth\,wght].ttf);
+  }
+
+  body {
+    font-family: avar2test_avar2, sans-serif;
+    font-size: 200px;
+  }
+
+  .thin-expanded {
+    font-variation-settings: "wght" 100, "wdth" 125;
+  }
+
+  .black-condensed {
+    font-variation-settings: "wght" 900, "wdth" 75;
+  }
+</style>
+<!-- The avar2test_avar2 re-implements the avar2test_avar1 font,
+     using the avar table format 2.
+     LT kerning is 0 at default, positive at expanded weights, and negative at condensed weights.
+-->
+LT <span class="thin-expanded">LT</span> <span class="black-condensed">LT</span>
+<script>
+  document.fonts.ready.then(
+    () => { document.documentElement.classList.remove("reftest-wait"); });
+</script>

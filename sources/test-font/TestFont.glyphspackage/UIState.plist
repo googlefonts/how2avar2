@@ -1,7 +1,8 @@
 {
 displayStrings = (
-HHHLLTTTT,
+Lt,
 " ",
-"/nbspace"
+"/nbspace",
+H
 );
 }
