@@ -1,0 +1,1 @@
+In this example, the `ZROT` axis controls two other axes with avar2.  Without support, the other axes do not change and no rotation occurs. However, this test also checks that linear rotation (rotation with one axis, not two axes) does not occur.

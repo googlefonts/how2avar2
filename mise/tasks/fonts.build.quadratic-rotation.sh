@@ -14,6 +14,8 @@ gftools builder ./sources/quadratic-rotation/config-quadratic-rotation.yaml
 
 # create Avar1 demo with quadratic rotation
 python3 ./scripts/avar1-quadratic-rotation.py
+./scripts/rename-fonts.py --inplace --suffix " Avar1" "./fonts/quadratic-rotation/variable/QuadraticRotation[ZROT].ttf"
 
 # create Avar2 demo with quadratic rotation
 fonttools varLib.avar.build -o "./fonts/quadratic-rotation/variable/QuadraticRotationAvar2[AAAA,BBBB,ZROT].ttf" "./fonts/quadratic-rotation/variable/QuadraticRotation[AAAA,BBBB,ZROT].ttf" "./sources/quadratic-rotation/avar2QuadraticRotation.designspace"
+./scripts/rename-fonts.py --inplace --suffix " Avar2" "./fonts/quadratic-rotation/variable/QuadraticRotationAvar2[AAAA,BBBB,ZROT].ttf"

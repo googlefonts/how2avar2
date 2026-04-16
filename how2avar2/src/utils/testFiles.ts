@@ -43,8 +43,23 @@ const pngSortKey = (name: string): number => {
   return 1;
 };
 
+const osSortKey = (name: string): number => {
+  if (name.startsWith("mac.")) return 0;
+  if (name.startsWith("win.")) return 1;
+  if (name.startsWith("lnx.")) return 2;
+  return 3;
+};
+
+const browserSortKey = (name: string): number => {
+  if (name.includes(".safari.")) return 0;
+  if (name.includes(".chrome.")) return 1;
+  if (name.includes(".firefox.")) return 2;
+  if (name.includes(".figma.")) return 3;
+  return 4;
+};
+
 export function sortPngs(pngs: string[]): string[] {
-  return sortOn(pngs, [pngSortKey, (name: string) => name]);
+  return sortOn(pngs, [pngSortKey, osSortKey, browserSortKey, (name: string) => name]);
 }
 
 export const screenshotStatusOf = (

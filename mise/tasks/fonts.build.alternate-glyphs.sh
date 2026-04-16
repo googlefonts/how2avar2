@@ -32,7 +32,9 @@ fonttools varLib.avar.build -o "./fonts/alternate-glyphs/variable/AlternateGlyph
 
 # create instances of the fences font
 fonttools varLib.instancer "./fonts/alternate-glyphs/variable/AlternateGlyphsFencesAvar2[opsz,wdth,wght].ttf" wght=1000 wdth=75 opsz=16 -o "./fonts/alternate-glyphs/AlternateGlyphsFencesBlackCondensed.ttf"
+./scripts/rename-fonts.py --inplace --suffix " Black Condensed" "./fonts/alternate-glyphs/AlternateGlyphsFencesBlackCondensed.ttf"
 fonttools varLib.instancer "./fonts/alternate-glyphs/variable/AlternateGlyphsFencesAvar2[opsz,wdth,wght].ttf" wght=400 wdth=100 opsz=16 -o "./fonts/alternate-glyphs/AlternateGlyphsFencesDefault.ttf"
+./scripts/rename-fonts.py --inplace --suffix " Default" "./fonts/alternate-glyphs/AlternateGlyphsFencesDefault.ttf"
 
 # create Avar2 demo with optical size
 fonttools varLib.avar.build -o "./fonts/alternate-glyphs/variable/AlternateGlyphsOpticalSizeAvar2[opsz,wdth,wght].ttf" "./fonts/alternate-glyphs/variable/AlternateGlyphs[opsz,wdth,wght].ttf" "./sources/designspaces/avar2OpticalSize.designspace"

@@ -1,0 +1,1 @@
+Firefox on Windows does not implement avar2. Instead, you will see the same result as `avar2test-variable-expected-mismatch`, which is a variable font without an avar table. In this example, the avar table makes the lighter weights less light and the bolder weights less bold.

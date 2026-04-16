@@ -63,7 +63,7 @@ export default async function TestsPage() {
 
                 return (
                   <li key={html} id={`${groupName}-${htmlName}`} className="scroll-mt-12">
-                    <span className="flex items-start gap-1">
+                    <div className="flex items-start gap-1">
                       <DisclosureLink
                         href={addBasePath(`/tests/static/${groupName}/${html}`)}
                         label={`Open ${htmlName}`}
@@ -113,7 +113,7 @@ export default async function TestsPage() {
                         </ul>
                       )}
                     </details>
-                    </span>
+                    </div>
                   </li>
                 );
               })}

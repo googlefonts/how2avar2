@@ -11,17 +11,17 @@ from PIL import Image
 def generate_composite(
     parent_dir: Path, base_test_name: str, files: list[Path], root_dir: Path
 ) -> None:
-    if len(files) != 3:
+    if len(files) < 2:
         print(
-            f"skipping {base_test_name}: expected 3 files, got {len(files)}",
+            f"skipping {base_test_name}: expected at least 2 files, got {len(files)}",
             file=sys.stderr,
         )
         return
 
     images = [Image.open(file).convert("RGB") for file in files]
     composite = images[0]
-    for image in images[1:]:
-        composite = Image.blend(composite, image, alpha=0.33)
+    for i, image in enumerate(images[1:], start=2):
+        composite = Image.blend(composite, image, alpha=1.0 / i)
 
     output_path = parent_dir / f"composited.{base_test_name}"
     composite.save(output_path)
