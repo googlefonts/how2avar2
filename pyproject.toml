@@ -9,7 +9,7 @@ dependencies = [
   "sh==2.2.2",
   "bumpfontversion==0.4.1",
   "fonttools==4.62.1",
-  "pillow==12.1.1",
+  "pillow==12.2.0",
 ]
 
 [project.optional-dependencies]
